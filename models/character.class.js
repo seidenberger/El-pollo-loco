@@ -32,14 +32,14 @@ class Character extends MovableObject{
         setInterval(() => {
             if (this.world.keyboard.D) {
                 this.x += this.speed;
-                this.otherDiretion = false;
+                this.otherDirection = false;
             }
 
             if (this.world.keyboard.A) {
                 this.x -= this.speed;
-                this.otherDiretion = true;
+                this.otherDirection = true;
             }
-
+            this.world.camera_x = -this.x;
         }, 1000 / 60);
 
         setInterval(() => {
@@ -53,7 +53,7 @@ class Character extends MovableObject{
                 this.currentImage++;
 
             }
-        }, 40);
+        }, 60);
             
     }
 
