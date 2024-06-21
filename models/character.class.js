@@ -13,11 +13,13 @@ class Character extends MovableObject{
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png'
     ];
+    
 
     world;
+    walking_sound = new Audio('audio/walking.mp3');
 
     constructor(){
-        super().loadImage('img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage(this.Images_Walkin_Pepe[0]);
 
         this.loadImages(this.Images_Walkin_Pepe);
 
@@ -31,27 +33,32 @@ class Character extends MovableObject{
             console.log('Aktuelle Position y:', this.y);
             console.log('Aktuelle Position x:', this.x);
             console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
+            this.walking_sound.pause();
             if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
                 // debugger
                 this.x += this.speed;
                 this.otherDirection = false;
+                this.walking_sound.play();
             }
 
             if (this.world.keyboard.A  && this.x > 0) {
                 this.x -= this.speed;
                 this.otherDirection = true;
+                this.walking_sound.play();
             }
             this.world.camera_x = -this.x +150;
         }, 100 / 60);
         setInterval(() => {
 
             if (this.world.keyboard.D || this.world.keyboard.A) {
-                this.x += this.speed;
 
-                let i = this.currentImage % this.Images_Walkin_Pepe.length;
-                let path = this.Images_Walkin_Pepe[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.Images_Walkin_Pepe);
+
+                //modul 16 geändert 
+                // let i = this.currentImage % this.Images_Walkin_Pepe.length;
+                // let path = this.Images_Walkin[i];
+                // this.img = this.imageCache[path];
+                // this.currentImage++;
 
             }
         }, 60);
