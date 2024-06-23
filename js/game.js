@@ -8,6 +8,7 @@ function init() {
 
     
     console.log('my character is', world.character)
+    console.log(world.level.enemies)
 
     }
 
@@ -17,8 +18,8 @@ function init() {
     //     console.log(event);
     // })
 
-    window.addEventListener("keydown", (e) => {
-    if (e.keyCode == 39 || e.keyCode == 68) { 
+    window.addEventListener("keydown", (event) => {
+    if (event.keyCode == 39 || event.keyCode == 68) { 
         keyboard.RIGHT = true;
         keyboard.D = true;
     }

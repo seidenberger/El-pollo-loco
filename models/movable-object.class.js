@@ -8,7 +8,25 @@ class MovableObject {
     imageCache = {};
     speed = 0.05;
     otherDirection = false;
+    speedY = 0;
+    acceleration = 3;
     
+
+    
+    applayGravitty() {
+        setInterval(() => {
+            if(this.isAboveGround()) {
+            this.y -= this.speedY;
+            this.speedY -= this.acceleration;
+            }
+        }, 1000 / 25);
+    }
+
+    isAboveGround(){
+        return this.y < 190;
+    }
+
+
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;

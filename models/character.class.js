@@ -1,10 +1,12 @@
 class Character extends MovableObject{
     // x = 50;
-    y = 190;
+    // y = 190;
+    y = 130;
 
     height = 240;
     width = 120;
     speed = 5;
+
     Images_Walkin_Pepe = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -13,6 +15,19 @@ class Character extends MovableObject{
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png'
     ];
+
+    Images_Jamping = [
+        'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-32.png',
+        'img/2_character_pepe/3_jump/J-33.png',
+        'img/2_character_pepe/3_jump/J-34.png',
+        'img/2_character_pepe/3_jump/J-35.png',
+        'img/2_character_pepe/3_jump/J-36.png',
+        'img/2_character_pepe/3_jump/J-37.png',
+        'img/2_character_pepe/3_jump/J-38.png',
+        'img/2_character_pepe/3_jump/J-39.png'
+        
+    ];
     
 
     world;
@@ -20,9 +35,9 @@ class Character extends MovableObject{
 
     constructor(){
         super().loadImage(this.Images_Walkin_Pepe[0]);
-
         this.loadImages(this.Images_Walkin_Pepe);
-
+        this.loadImages(this.Images_Jamping);
+        this.applayGravitty();
         this.animate();
 
     }
@@ -30,9 +45,9 @@ class Character extends MovableObject{
     animate() {
 
         setInterval(() => {
-            console.log('Aktuelle Position y:', this.y);
-            console.log('Aktuelle Position x:', this.x);
-            console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
+            // console.log('Aktuelle Position y:', this.y);
+            // console.log('Aktuelle Position x:', this.x);
+            // console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
             this.walking_sound.pause();
             if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
                 // debugger
@@ -50,18 +65,17 @@ class Character extends MovableObject{
         }, 100 / 60);
         setInterval(() => {
 
-            if (this.world.keyboard.D || this.world.keyboard.A) {
+            if (this.isAboveGround()) {
+                this.playAnimation(this.Images_Jamping);
+                // debugger
+            } else {
 
-                this.playAnimation(this.Images_Walkin_Pepe);
+                if (this.world.keyboard.D || this.world.keyboard.A) {
+                    this.playAnimation(this.Images_Walkin_Pepe);
 
-                //modul 16 geändert 
-                // let i = this.currentImage % this.Images_Walkin_Pepe.length;
-                // let path = this.Images_Walkin[i];
-                // this.img = this.imageCache[path];
-                // this.currentImage++;
-
+                }
             }
-        }, 60);
+        },60);
             
     }
 
