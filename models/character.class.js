@@ -50,19 +50,26 @@ class Character extends MovableObject{
             // console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
             this.walking_sound.pause();
             if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-                // debugger
-                this.x += this.speed;
+                this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
             }
 
             if (this.world.keyboard.A  && this.x > 0) {
-                this.x -= this.speed;
-                this.otherDirection = true;
-                this.walking_sound.play();
+                this.moveLeft();
+                this.otherDirection = true;                
+                this.walking_sound.play();            
+            }
+
+            // console.log('this.speedY', this.speedY)
+
+            if(this.world.keyboard.UP && !this.isAboveGround()) {
+                this.jump();
+                // this.playAnimation(this.Images_Jamping);
             }
             this.world.camera_x = -this.x +150;
         }, 100 / 60);
+
         setInterval(() => {
 
             if (this.isAboveGround()) {
@@ -70,7 +77,8 @@ class Character extends MovableObject{
                 // debugger
             } else {
 
-                if (this.world.keyboard.D || this.world.keyboard.A) {
+                // if (this.world.keyboard.D || this.world.keyboard.A) {
+                if (this.world.keyboard.D) {
                     this.playAnimation(this.Images_Walkin_Pepe);
 
                 }
@@ -80,7 +88,7 @@ class Character extends MovableObject{
     }
 
     jump() {
-
+        this.speedY = 30;
     }
 }
 
