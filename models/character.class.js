@@ -57,8 +57,9 @@ class Character extends MovableObject{
 
             if (this.world.keyboard.A  && this.x > 0) {
                 this.moveLeft();
+                this.walking_sound.play();   
                 this.otherDirection = true;                
-                this.walking_sound.play();            
+         
             }
 
             // console.log('this.speedY', this.speedY)
