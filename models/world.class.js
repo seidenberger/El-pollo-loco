@@ -14,6 +14,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     }
 
     /**
@@ -21,6 +22,27 @@ class World {
      */
     setWorld() {
         this.character.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy) ) {
+                    // console.log('Collision with Caracter', enemy)
+
+                    // 1 energie verlieren 
+                    //caragter koliediert mit denm hunchen und verkliert energy
+                    this.character.hit();
+                    console.log('Collision with Caracter', this.character.energy)
+                    //animation von getroffen absielen 
+
+                    
+                    
+                    //animation dad abspielen 
+                    
+                }
+            });
+        }, 200);
     }
 
     draw() {

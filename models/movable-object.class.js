@@ -10,6 +10,7 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 3;
+    energy = 100;
     
 
     
@@ -69,6 +70,17 @@ class MovableObject {
 
     }
 
+    hit() {
+        
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
 
     playAnimation(images) {
     let i = this.currentImage % images.length;
@@ -76,5 +88,21 @@ class MovableObject {
     this.img = this.imageCache[path];
     this.currentImage++;
     }
+
+
+    // character.iscolliding ()chicken;
+    isColliding(mo){
+        return this.x + this.width > mo.x &&
+        this.y + this.height > mo.y &&
+        this.x < mo.x &&
+        this.y < mo.y +mo.height
+    }
+
+    // isColliding (obj) {
+    //     return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) && 
+    //             (this.Y + this.offsetY + this.height) >= obj.Y &&
+    //             (this.Y + this.offsetY) <= (obj.Y + obj.height) && 
+    //             obj.onCollisionCourse; 
+    // }
 
 }
