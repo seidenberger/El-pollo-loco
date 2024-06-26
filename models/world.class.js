@@ -33,7 +33,7 @@ class World {
                     // 1 energie verlieren 
                     //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
-                    console.log('Collision with Caracter', this.character.energy)
+            console.log('Collision with Caracter', this.character.energy)
                     //animation von getroffen absielen 
 
                     
