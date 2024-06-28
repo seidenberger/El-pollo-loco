@@ -4,16 +4,27 @@ class Cloud extends MovableObject{
     width = 500;
 
 
-    constructor(){
-        super().loadImage('img/5_background/layers/4_clouds/1.png');
+    constructor(imagePath, x){
 
-        this.x = 0 + Math.random() * 500;
-        this.speed = 0.05 + Math.random() * 0.35;
+        super().loadImage(imagePath);
+
+        this.x = 200 + Math.random() * 2500;
+        this.speed = 0.15 + Math.random() * 1.35;
+
         this.animate();
 
     }
     animate() {
-        this.moveLeft();
+
+
+        setInterval(() => {
+            // this.moveLeft();
+            this.x -= 0.5;
+        
+        }, 1000 / 60);
+
+        // warum war die funktion so drin und hat nicht mehr funktioniert
+        // this.moveLeft();
     }
 
 

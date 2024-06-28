@@ -5,6 +5,7 @@ class World {
     ctx;
     keyboard;
     camera_x = -100;
+    statusbar = new Statusbar();
 
     // extendedArray = [];
 
@@ -22,6 +23,7 @@ class World {
      */
     setWorld() {
         this.character.world = this;
+        this.statusbar.world = this;
     }
 
     checkCollisions() {
@@ -33,7 +35,9 @@ class World {
                     // 1 energie verlieren 
                     //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
-            console.log('Collision with Caracter', this.character.energy)
+                    this.statusbar.setPercentage(this.character.energy);
+                    this.statusbar.setPercentage(this.character.bottle);
+   
                     //animation von getroffen absielen 
 
                     
@@ -56,12 +60,35 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusbar);
+
 
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
         });
     }
+
+    // draw() {
+    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    //     this.ctx.translate(this.camera_x, 0);
+    //     this.addObjectsToMap(this.level.backgroundObject);
+
+    //     this.ctx.translate(-this.camera_x, 0);
+
+    //     this.addObjectsToMap(this.level.clouds);
+    //     this.addToMap(this.character);
+    //     this.addObjectsToMap(this.level.enemies);
+
+    //     this.addToMap(this.statusbar);
+
+
+    //     let self = this;
+    //     requestAnimationFrame(function() {
+    //         self.draw();
+    //     });
+    // }
 
     addObjectsToMap(objects){
         objects.forEach(o => {
