@@ -1,0 +1,6 @@
+class Coin extends DrawabelObject {
+
+
+
+    
+}

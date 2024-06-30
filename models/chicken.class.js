@@ -32,6 +32,7 @@ class Chicken extends MovableObject{
             this.playAnimation(this.Images_chicken_normal)
         }, 250);
     }
+    
 
 }
 }

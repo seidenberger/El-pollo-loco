@@ -2,8 +2,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    background-image: url('img/5_background/layers/main_background/desolate.jpg');
+    /* background-image: url('img/5_background/layers/main_background/desert-5730586_1920.jpg'); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 canvas {
     background-color: black;
-}
+    width: 720px; 
+    /* height: 480px;  */
+ } 

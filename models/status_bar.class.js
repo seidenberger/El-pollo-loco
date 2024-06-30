@@ -52,8 +52,7 @@ class Statusbar extends DrawabelObject {
         this.loadImages(this.Images_Statusbar_health);
         this.x = 10;
         this.y = 0;
-        // this.loadImages(this.Images_Statusbar_bottle);
-        // this.spacing = 20;
+
   
         this.height = 40;
         this.width = 200;

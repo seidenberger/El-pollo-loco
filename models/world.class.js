@@ -6,7 +6,7 @@ class World {
     keyboard;
     camera_x = -100;
     statusbar = new Statusbar();
-
+    // statusbarBottle = new StatusbarBottle();
     // extendedArray = [];
 
     constructor(canvas, keyboard){
@@ -36,7 +36,8 @@ class World {
                     //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
-                    this.statusbar.setPercentage(this.character.bottle);
+                    // this.statusbarBottle.setPercentageBottle(this.character.bottle);
+                    
    
                     //animation von getroffen absielen 
 
