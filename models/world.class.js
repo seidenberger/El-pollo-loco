@@ -6,6 +6,8 @@ class World {
     keyboard;
     camera_x = -100;
     statusbar = new Statusbar();
+
+    // statusbarBottle = new StatusbarBottle();
     // statusbarBottle = new StatusbarBottle();
     // extendedArray = [];
 
@@ -24,6 +26,7 @@ class World {
     setWorld() {
         this.character.world = this;
         this.statusbar.world = this;
+        // this.statusbarBottle.world = this;
     }
 
     checkCollisions() {
@@ -36,7 +39,7 @@ class World {
                     //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
                     this.statusbar.setPercentage(this.character.energy);
-                    // this.statusbarBottle.setPercentageBottle(this.character.bottle);
+                    // this.statusbarBottle.setPercentage(this.character.bottle);
                     
    
                     //animation von getroffen absielen 
@@ -60,10 +63,12 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.bottle);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusbar);
+        // this.addToMap(this.statusbarBottle);
 
-
+        // drew() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function() {
             self.draw();

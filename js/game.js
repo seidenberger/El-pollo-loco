@@ -2,21 +2,26 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+
+/**
+  * Initializes the canvas and world for the application.
+ * 
+ * This function selects a canvas element from the DOM using its ID
+ * and then creates a new instance of the World class with the selected
+ * canvas and a keyboard object.
+ */
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
     
     console.log('my character is', world.character)
+    console.log('my world is', world)
     console.log(world.level.enemies)
 
     }
 
-    // window.addEventListener("keydown", (event) => {
-    //     if (event.key === "ArrowRight");
-    //         keyboard.RIGHT = true
-    //     console.log(event);
-    // })
 
     window.addEventListener("keydown", (event) => {
     if (event.keyCode == 39 || event.keyCode == 68) { 

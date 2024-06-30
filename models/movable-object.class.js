@@ -66,10 +66,5 @@ class MovableObject extends DrawabelObject {
     );
   }
 
-  // isColliding (obj) {
-  //     return  (this.X + this.width) >= obj.X && this.X <= (obj.X + obj.width) &&
-  //             (this.Y + this.offsetY + this.height) >= obj.Y &&
-  //             (this.Y + this.offsetY) <= (obj.Y + obj.height) &&
-  //             obj.onCollisionCourse;
-  // }
+
 }
