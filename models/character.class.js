@@ -143,7 +143,7 @@ class Character extends MovableObject {
     setTimeout(() => {
       this.playAnimation(this.Images_Idle);
       this.longIdle = true;
-      console.log(this.longIdle);
+      // console.log(this.longIdle);
     }, 1000);
     // setInterval(() => {
     // this.playAnimation(this.Images_Idle);

@@ -4,7 +4,6 @@ class Statusbar extends DrawabelObject {
     y = 20;
     height = 40;
     width = 90;
-    // spacing = 20;
 
     // Images_Statusbar_coin = [
     //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
@@ -25,25 +24,6 @@ class Statusbar extends DrawabelObject {
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png',
 
     ];
-
-    // Images_Statusbar_bottle = [
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png',
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/20.png',
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/40.png',
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/60.png',
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/80.png',
-    //     'img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/100.png',
-
-    // ];
-
-    // Images_Statusbar_Endboss = [
-    //     'img/7_statusbars/2_statusbar_endboss/health/green0.png',
-    //     'img/7_statusbars/2_statusbar_endboss/health/green20.png',
-    //     'img/7_statusbars/2_statusbar_endboss/health/green40.png',
-    //     'img/7_statusbars/2_statusbar_endboss/health/green60.png',
-    //     'img/7_statusbars/2_statusbar_endboss/health/green80.png',
-    //     'img/7_statusbars/2_statusbar_endboss/health/green100.png'
-    // ];
 
     percentage = 100;
 

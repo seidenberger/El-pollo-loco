@@ -1,9 +1,9 @@
-class Bottle extends DrawabelObject {
-  y = 250;
+class Bottle extends MovableObject {
+  y = 370;
   x = 250;
 
-  height = 30;
-  width = 25;
+  height = 50;
+  width = 70;
 
   Images_salsa_bottle = [
     "img/6_salsa_bottle/1_salsa_bottle_on_ground.png",
@@ -13,10 +13,13 @@ class Bottle extends DrawabelObject {
   constructor() {
     super().loadImage('img/6_salsa_bottle/1_salsa_bottle_on_ground.png');
     this.loadImages(this.Images_salsa_bottle);
-    // this.animate();
+    this.x = 250 + Math.random() *1500;
+    this.animate();
   }
 
   animate() {
-    
+    setInterval(() => {
+      this.playAnimation(this.Images_salsa_bottle)
+    }, 1000/ 2);
   }
 }

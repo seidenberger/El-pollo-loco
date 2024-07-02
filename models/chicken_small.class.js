@@ -24,7 +24,7 @@ class ChickenSmall extends MovableObject{
     }
 
     animate() {
-        {
+        // {
             setInterval(() => {
                 this.moveLeft();            
             }, 1000 / 60);
@@ -35,6 +35,6 @@ class ChickenSmall extends MovableObject{
     }
     
 
-}
+// }
 
 }

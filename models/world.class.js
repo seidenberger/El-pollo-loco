@@ -7,8 +7,8 @@ class World {
     camera_x = -100;
     statusbar = new Statusbar();
 
-    // statusbarBottle = new StatusbarBottle();
-    // statusbarBottle = new StatusbarBottle();
+    statusbarBottle = new StatusbarBottle();
+
     // extendedArray = [];
 
     constructor(canvas, keyboard){
@@ -26,7 +26,7 @@ class World {
     setWorld() {
         this.character.world = this;
         this.statusbar.world = this;
-        // this.statusbarBottle.world = this;
+        this.statusbarBottle.world = this;
     }
 
     checkCollisions() {
@@ -57,13 +57,12 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
-        // this.addObjectsToMap(this.extendedArray);
         this.addObjectsToMap(this.level.backgroundObject);
         this.addObjectsToMap(this.level.clouds);
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.bottle);
+        this.addObjectsToMap(this.level.coin);
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusbar);
         // this.addToMap(this.statusbarBottle);
@@ -75,26 +74,6 @@ class World {
         });
     }
 
-    // draw() {
-    //     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-    //     this.ctx.translate(this.camera_x, 0);
-    //     this.addObjectsToMap(this.level.backgroundObject);
-
-    //     this.ctx.translate(-this.camera_x, 0);
-
-    //     this.addObjectsToMap(this.level.clouds);
-    //     this.addToMap(this.character);
-    //     this.addObjectsToMap(this.level.enemies);
-
-    //     this.addToMap(this.statusbar);
-
-
-    //     let self = this;
-    //     requestAnimationFrame(function() {
-    //         self.draw();
-    //     });
-    // }
 
     addObjectsToMap(objects){
         objects.forEach(o => {
