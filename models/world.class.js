@@ -5,10 +5,9 @@ class World {
     ctx;
     keyboard;
     camera_x = -100;
-    statusbar = new Statusbar();
-
+    statusbarHealth = new StatusbarHealth();
     statusbarBottle = new StatusbarBottle();
-
+    statusbarCoin = new StatusbarCoin();
     // extendedArray = [];
 
     constructor(canvas, keyboard){
@@ -25,8 +24,9 @@ class World {
      */
     setWorld() {
         this.character.world = this;
-        this.statusbar.world = this;
+        this.statusbarHealth.world = this;
         this.statusbarBottle.world = this;
+        this.statusbarCoin.world = this;
     }
 
     checkCollisions() {
@@ -38,7 +38,7 @@ class World {
                     // 1 energie verlieren 
                     //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
-                    this.statusbar.setPercentage(this.character.energy);
+                    this.statusbarHealth.setPercentage(this.character.energy);
                     // this.statusbarBottle.setPercentage(this.character.bottle);
                     
    
@@ -64,10 +64,10 @@ class World {
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.coin);
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusbar);
-        // this.addToMap(this.statusbarBottle);
-
-        // drew() wird immer wieder aufgerufen
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarBottle);
+        this.addToMap(this.statusbarCoin);
+        // // drew() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function() {
             self.draw();

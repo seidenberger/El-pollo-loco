@@ -1,36 +1,29 @@
 class Coin extends MovableObject {
+  y = 300;
+  x = 300;
 
-    y = 300;
-    x = 300;
-    
-    height = 90;
-    width = 90;
+  height = 90;
+  width = 90;
 
-    Images_coin = [
-        'img/8_coin/coin_1.png',
-        'img/8_coin/coin_2.png',        
-    ];
+  Images_coin = ["img/8_coin/coin_1.png", "img/8_coin/coin_2.png"];
 
-    // coinPositions = [
-    //     {x: 300, y: 290}
-    // ]
+  // coinPositions = [
+  //     {x: 300, y: 290}
+  // ]
 
-    constructor() {
-        super().loadImage('img/8_coin/coin_1.png');
-        this.loadImages(this.Images_coin);
-        // this.x = 250 + Math.random() *1000;
+  constructor(x, y) {
+    super().loadImage("img/8_coin/coin_1.png");
+    this.loadImages(this.Images_coin);
+    // this.x = 250 + Math.random() *1000;
+    this.x = x;
+    this.y = y;
 
+    this.animate();
+  }
 
-        this.animate();
-        
-    }
-
-
-
-    animate() {
-        setInterval(() => {
-            this.playAnimation(this.Images_coin);
-        }, 1000);
-    }
-    
+  animate() {
+    setInterval(() => {
+      this.playAnimation(this.Images_coin);
+    }, 1000);
+  }
 }

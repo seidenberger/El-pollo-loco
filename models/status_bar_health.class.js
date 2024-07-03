@@ -1,19 +1,4 @@
-class Statusbar extends DrawabelObject {
-
-    x = 20;
-    y = 20;
-    height = 40;
-    width = 90;
-
-    // Images_Statusbar_coin = [
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png',
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/20.png',
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/40.png',
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/60.png',
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/80.png',
-    //     'img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png',
-
-    // ];
+class StatusbarHealth extends DrawabelObject {
 
     Images_Statusbar_health = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png',
@@ -25,7 +10,9 @@ class Statusbar extends DrawabelObject {
 
     ];
 
-    percentage = 100;
+
+    // für was brauch ich  ?
+    percentage = 0;
 
     constructor() {
         super();
