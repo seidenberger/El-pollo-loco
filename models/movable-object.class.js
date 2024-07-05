@@ -10,6 +10,13 @@ class MovableObject extends DrawabelObject {
   bottle = 0;
   coin = 0;
 
+  offset = {
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  }
+
   applayGravitty() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -57,11 +64,12 @@ class MovableObject extends DrawabelObject {
     this.currentImage++;
   }
 
-  // character.iscolliding ()chicken;
+  //haracter.iscolliding ()chicken;
   isColliding(mo) {
+
     return (
-      this.x + this.width > mo.x &&
-      this.y + this.height > mo.y &&
+      this.x + this.width - this.offset.left> mo.x &&
+      this.y + this.height - this.offset.top > mo.y &&
       this.x < mo.x &&
       this.y < mo.y + mo.height
     );

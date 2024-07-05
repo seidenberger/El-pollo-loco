@@ -5,6 +5,13 @@ class Endboss extends MovableObject{
     width = 200;
     y = 140;
 
+    offset = {
+        top: 50,
+        bottom: 20,
+        left: 10,
+        right: 10,
+      }
+
     Images_endboss_walk =[
         'img/4_enemie_boss_chicken/1_walk/G1.png',
         'img/4_enemie_boss_chicken/1_walk/G2.png',

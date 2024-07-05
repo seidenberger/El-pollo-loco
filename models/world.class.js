@@ -17,6 +17,11 @@ class World {
         this.draw();
         this.setWorld();
         this.checkCollisions();
+        // 
+        this.checkCollisionWithObject();
+        this.checkCollisionWithbottle();
+
+
     }
 
     /**
@@ -34,20 +39,41 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy) ) {
                     // console.log('Collision with Caracter', enemy)
-
-                    // 1 energie verlieren 
-                    //caragter koliediert mit denm hunchen und verkliert energy
                     this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
-                    // this.statusbarBottle.setPercentage(this.character.bottle);
-                    
-   
-                    //animation von getroffen absielen 
+                    this.statusbarHealth.setPercentage(this.character.energy);                
+                }
 
+            });
+        }, 1200);
+    }
+
+    checkCollisionWithObject() {
+        setInterval(() => {
+            this.level.coin.forEach((coin, index) => {
+                // debugger
+                if (this.character.isColliding(coin)) {
+                    console.log('Collision with Coin', this.level.coin)
+                    // 
+                    // console.log('Collision with Coin', index)
+                    // splice()
+                    this.level.coin.splice(index, 1);
+
+                }
+            });
+        }, 200);
+    }
+
+    checkCollisionWithbottle() {
+        setInterval(() => {
+            this.level.bottle.forEach((bottle, index) => {
+                // debugger
+                if (this.character.isColliding(bottle)) {
+                    console.log('Collision with bottle', this.level.bottle)
                     
-                    
-                    //animation dad abspielen 
-                    
+                    console.log('Collision with bottle', index)
+                    // splice()
+                    this.level.bottle.splice(index, 1);
+
                 }
             });
         }, 200);
@@ -88,6 +114,7 @@ class World {
         }
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
+        mo.drawFrameOffset(this.ctx)
 
 
 

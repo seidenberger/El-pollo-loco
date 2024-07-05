@@ -8,6 +8,15 @@ class Character extends MovableObject {
   speed = 5;
   longIdle = true;
 
+  offset = {
+    top: 100,
+    bottom: 10,
+    left: 25,
+    right: 35,
+  }
+
+
+
   Images_Walkin_Pepe = [
     "img/2_character_pepe/2_walk/W-21.png",
     "img/2_character_pepe/2_walk/W-22.png",
