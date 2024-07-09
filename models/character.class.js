@@ -13,7 +13,7 @@ class Character extends MovableObject {
     bottom: 10,
     left: 25,
     right: 35,
-  }
+  };
 
 
 
@@ -51,19 +51,18 @@ class Character extends MovableObject {
     "img/2_character_pepe/1_idle/idle/I-10.png",
   ];
 
-  // Images_Long_Idle = [
-  //     'img/2_character_pepe/1_idle/long_idle/I-11.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-12.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-13.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-14.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-15.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-16.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-17.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-18.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-19.png',
-  //     'img/2_character_pepe/1_idle/long_idle/I-20.png',
-
-  // ];
+  Images_Long_Idle = [
+    "img/2_character_pepe/1_idle/long_idle/I-11.png",
+    "img/2_character_pepe/1_idle/long_idle/I-12.png",
+    "img/2_character_pepe/1_idle/long_idle/I-13.png",
+    "img/2_character_pepe/1_idle/long_idle/I-14.png",
+    "img/2_character_pepe/1_idle/long_idle/I-15.png",
+    "img/2_character_pepe/1_idle/long_idle/I-16.png",
+    "img/2_character_pepe/1_idle/long_idle/I-17.png",
+    "img/2_character_pepe/1_idle/long_idle/I-18.png",
+    "img/2_character_pepe/1_idle/long_idle/I-19.png",
+    "img/2_character_pepe/1_idle/long_idle/I-20.png",
+  ];
 
   Images_Hurt = [
     "img/2_character_pepe/4_hurt/H-41.png",
@@ -83,6 +82,9 @@ class Character extends MovableObject {
 
   world;
   walking_sound = new Audio("audio/walking.mp3");
+//neu
+longIdleThreshold = 5000; 
+  // lastMovementTime = getCurrentTimeMillis();
 
   constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
@@ -91,9 +93,13 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Jamping);
     this.loadImages(this.Images_Hurt);
     this.loadImages(this.Images_Idle);
-
+    this.loadImages(this.Images_Long_Idle);
     this.applayGravitty();
     this.animate();
+
+
+    this.idleStartTime = null; // Zeitstempel, wann der Charakter idle wurde
+    this.isIdleState = false;
   }
 
   animate() {
@@ -125,9 +131,6 @@ class Character extends MovableObject {
     }, 100 / 60);
 
     setInterval(() => {
-      // if (this.statusbar()) {
-
-      // }
       if (this.isDead()) {
         this.playAnimation(this.Images_Dead);
       } else if (this.isHurt()) {
@@ -138,7 +141,16 @@ class Character extends MovableObject {
         // debugger
       } else if (this.world.keyboard.D || this.world.keyboard.A) {
         this.playAnimation(this.Images_Walkin_Pepe);
-      } else {
+
+        //neu
+
+
+
+
+      // } else if (this.isIdle()) {
+      } 
+      else {
+        // true oder false setzen mit zeit 
         this.isIdle();
       }
     }, 60);
@@ -149,24 +161,69 @@ class Character extends MovableObject {
   }
 
   isIdle() {
-    setTimeout(() => {
-      this.playAnimation(this.Images_Idle);
-      this.longIdle = true;
-      // console.log(this.longIdle);
-    }, 1000);
-    // setInterval(() => {
-    // this.playAnimation(this.Images_Idle);
-    // this.longIdle = true;
-    // console.log(this.longIdle)
-    // }, 1000);
+    // this.idleStartTime = new Date().getTime();;
+    // // this.lastHit = new Date().getTime();
+    // console.log('start log idle', this.idleStartTime )
+
+    //   this.playAnimation(this.Images_Idle);
+
+    // if (timepassed = new Date().getTime() + this.lastHit;)
+  
+  
+
+      // Aktuelle Zeit erfassen
+      let currentTime = new Date().getTime();
+  
+      // Wenn idleStartTime noch nicht gesetzt wurde, setzen Sie es auf die aktuelle Zeit
+      if (!this.idleStartTime) {
+          this.idleStartTime = currentTime;
+          console.log('Starte Idle-Zeitmessung:', this.idleStartTime);
+          console.log('x charakter', this.x)
+          console.log('charater ist an der stelle x', this.previousPosition);
+          
+          // Idle-Animation abspielen
+          this.playAnimation(this.Images_Idle);
+      }
+  
+      // Zeitdifferenz seit dem letzten Klick berechnen
+      let timePassed = currentTime - this.lastHit;
+  
+      // Überprüfen, ob 5 Sekunden vergangen sind seit dem letzten Klick
+      if (this.world.keyboard) {
+          // Neue Animation abspielen, da mehr als 5 Sekunden vergangen sind
+          this.playAnimation(this.Images_Long_Idle);
+          
+          // Idle-Zeit zurücksetzen, da sich das System bewegt hat
+          this.idleStartTime = null;
+      }
   }
-}
+  
+  }
 
-// console.log('Aktuelle Position x:', this.x);
-// console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
+  // isLongIdle() {
+  //   // setTimeout(() => {
+  //     this.playAnimation(this.);
+    
+  //   // }, 5000);
+  //   }
 
-// if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-//     // Bewegungscode hier
-// } else {
-//     console.log('Bewegung gestoppt. x ist größer oder gleich level_end_x.');
-// }
+
+  // fallaAsleep() {
+  //   let urrwntTime = new Date().getTime();
+  //   let asleep = currentTime - this.idleTimer;
+  //    if (this.isNotMoving() && asleep >= 3000) {
+  //     // console
+  //     return true;
+
+  //     {
+  //       else { 
+  //         asleep =0
+
+  //         return false;
+  //       }
+  //     }
+  //    }
+  // }
+
+
+

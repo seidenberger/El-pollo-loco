@@ -59,7 +59,7 @@ class Endboss extends MovableObject{
         this.loadImages(this.Images_endboss_walk);
         // debugger
         this.speed = 1
-        this.x = 2500;
+        this.x = 3600;
         this.animate();
         this.playAnimation(this.Images_endboss_walk);
     }

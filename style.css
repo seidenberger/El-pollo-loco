@@ -3,15 +3,47 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('img/5_background/layers/main_background/desolate.jpg');
+    background-image: url('img/5_background/layers/main_background/desert-orange.png');
     /* background-image: url('img/5_background/layers/main_background/desert-5730586_1920.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
+    font-family: 'ga_maamli', 'arial',  ;
+}
+h1 {
+    font-size: 64px;
+    letter-spacing: 3px;
+    text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);
 }
 
 canvas {
     background-color: black;
-    width: 720px; 
+    display: block;
     /* height: 480px;  */
  } 
+
+.start_display {
+    background-image: url("img/9_intro_outro_screens/start/startscreen_2.png");
+
+}
+
+
+ .hidden {
+    display: none;
+ }
+
+ @media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+ }
+
+ @media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+    .hidden {
+        display: none;
+     }
+    
+ }

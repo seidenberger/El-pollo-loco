@@ -22,12 +22,19 @@ class MovableObject extends DrawabelObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-      }
+        // console.log('this.speedy', this.speedY)
+      } 
     }, 1000 / 25);
   }
 
   isAboveGround() {
+
+    // console.log('Character isAboveGround y:', this.y);
+    // console.log('Character isAboveGround height:', this.height);
+    // console.log('Bottom edge of Character isAboveGround:', this.y + this.height);
     return this.y < 190;
+    // return this.y + this.height < 190;
+
   }
 
   moveRight() {
@@ -65,15 +72,25 @@ class MovableObject extends DrawabelObject {
   }
 
   //haracter.iscolliding ()chicken;
-  isColliding(mo) {
 
+
+
+  isColliding(mo) {
     return (
-      this.x + this.width - this.offset.left> mo.x &&
-      this.y + this.height - this.offset.top > mo.y &&
-      this.x < mo.x &&
-      this.y < mo.y + mo.height
+        this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     );
-  }
+}
+
+
+
+chickenDead() {
+        
+  this.playAnimation(this.Images_chicken_small_dead);
+}
+
 
 
 }

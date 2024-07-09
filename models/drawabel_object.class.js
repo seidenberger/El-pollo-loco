@@ -19,17 +19,17 @@ class DrawabelObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    drawFrame(ctx) {
+    // a(ctx) {
 
-        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss ||
-             this instanceof ChickenSmall || this instanceof Coin || this instanceof Bottle) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'green';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
+    //     if (this instanceof Character || this instanceof Chicken || this instanceof Endboss ||
+    //          this instanceof ChickenSmall || this instanceof Coin || this instanceof Bottle) {
+    //         ctx.beginPath();
+    //         ctx.lineWidth = '5';
+    //         ctx.strokeStyle = 'green';
+    //         ctx.rect(this.x, this.y, this.width, this.height);
+    //         ctx.stroke();
+    //     }
+    // }
     drawFrameOffset(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof Endboss ||
              this instanceof ChickenSmall || this instanceof Coin || this instanceof Bottle) {

@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El pollo loco</title>
+    <!-- <link rel="stylesheet" href="fonts.css/ga-maamli-v1-latin_latin-ext.zip"> -->
+     <style>
+@font-face {
+    font-family: 'ga maamli';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./fonts/ga-maamli-v1-latin_latin-ext-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+     </style>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png">
     <script src="./models/drawabel_object.class.js"></script>
@@ -28,15 +37,19 @@
     <script src="./js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body >
 
-    <h1>El pollo loco</h1>
+    <h1 >El pollo loco</h1>
+<div id="start_display" class="start_display  ">
 
-    <!-- <button onclick="initLevel()">start</button> -->
+    <button onclick="initLevel()">Start hier klicken</button>
+</div>
+    <div>
 
     <canvas  width="720px" height="480px" id="canvas">
-
+        <button>full</button>
 
     </canvas>
+</div>
 </body>
 </html>

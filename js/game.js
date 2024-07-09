@@ -11,7 +11,9 @@ let keyboard = new Keyboard();
  * canvas and a keyboard object.
  */
 
-function init() {
+// function init() {
+function initLevel(){
+    document.getElementById("start_display").classList.add("hidden");
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
