@@ -6,6 +6,7 @@ class Character extends MovableObject {
   height = 240;
   width = 120;
   speed = 5;
+  currentTimeWalking = 0;
   longIdle = true;
 
   offset = {
@@ -14,8 +15,6 @@ class Character extends MovableObject {
     left: 25,
     right: 35,
   };
-
-
 
   Images_Walkin_Pepe = [
     "img/2_character_pepe/2_walk/W-21.png",
@@ -82,8 +81,8 @@ class Character extends MovableObject {
 
   world;
   walking_sound = new Audio("audio/walking.mp3");
-//neu
-longIdleThreshold = 5000; 
+  //neu
+  longIdleThreshold = 5000;
   // lastMovementTime = getCurrentTimeMillis();
 
   constructor() {
@@ -96,7 +95,6 @@ longIdleThreshold = 5000;
     this.loadImages(this.Images_Long_Idle);
     this.applayGravitty();
     this.animate();
-
 
     this.idleStartTime = null; // Zeitstempel, wann der Charakter idle wurde
     this.isIdleState = false;
@@ -139,19 +137,14 @@ longIdleThreshold = 5000;
       } else if (this.isAboveGround()) {
         this.playAnimation(this.Images_Jamping);
         // debugger
-      } else if (this.world.keyboard.D || this.world.keyboard.A) {
+      } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
-
-        //neu
-
-
-
-
-      // } else if (this.isIdle()) {
-      } 
-      else {
-        // true oder false setzen mit zeit 
-        this.isIdle();
+        this.currentTimeWalking = new Date().getTime();
+      } else if (this.isIdle()) {
+        // true oder false setzen mit zeit
+        this.playAnimation(this.Images_Idle);
+      } else {
+        this.playAnimation(this.Images_Long_Idle);
       }
     }, 60);
   }
@@ -161,69 +154,22 @@ longIdleThreshold = 5000;
   }
 
   isIdle() {
-    // this.idleStartTime = new Date().getTime();;
-    // // this.lastHit = new Date().getTime();
-    // console.log('start log idle', this.idleStartTime )
-
-    //   this.playAnimation(this.Images_Idle);
-
-    // if (timepassed = new Date().getTime() + this.lastHit;)
-  
-  
-
-      // Aktuelle Zeit erfassen
-      let currentTime = new Date().getTime();
-  
-      // Wenn idleStartTime noch nicht gesetzt wurde, setzen Sie es auf die aktuelle Zeit
-      if (!this.idleStartTime) {
-          this.idleStartTime = currentTime;
-          console.log('Starte Idle-Zeitmessung:', this.idleStartTime);
-          console.log('x charakter', this.x)
-          console.log('charater ist an der stelle x', this.previousPosition);
-          
-          // Idle-Animation abspielen
-          this.playAnimation(this.Images_Idle);
-      }
-  
-      // Zeitdifferenz seit dem letzten Klick berechnen
-      let timePassed = currentTime - this.lastHit;
-  
-      // Überprüfen, ob 5 Sekunden vergangen sind seit dem letzten Klick
-      if (this.world.keyboard) {
-          // Neue Animation abspielen, da mehr als 5 Sekunden vergangen sind
-          this.playAnimation(this.Images_Long_Idle);
-          
-          // Idle-Zeit zurücksetzen, da sich das System bewegt hat
-          this.idleStartTime = null;
-      }
+    let timepassed = new Date().getTime() - this.currentTimeWalking; // differenzin ms
+    timepassed = timepassed / 1000; // difference in s
+    return timepassed < 3; // truh zum abspiellen von idle
   }
-  
-  }
+  //  abspielen lon idle
 
-  // isLongIdle() {
-  //   // setTimeout(() => {
-  //     this.playAnimation(this.);
-    
-  //   // }, 5000);
-  //   }
+  //     if (this.world.keyboard) {
 
+  //
 
-  // fallaAsleep() {
-  //   let urrwntTime = new Date().getTime();
-  //   let asleep = currentTime - this.idleTimer;
-  //    if (this.isNotMoving() && asleep >= 3000) {
-  //     // console
-  //     return true;
-
-  //     {
-  //       else { 
-  //         asleep =0
-
-  //         return false;
-  //       }
+  //         this.idleStartTime = null;
   //     }
-  //    }
   // }
+}
+
+
 
 
 

@@ -8,6 +8,7 @@ class World {
   statusbarHealth = new StatusbarHealth();
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
+  statusbarEndboss = new StatusbarEndboss();
   // extendedArray = [];
 
   constructor(canvas, keyboard) {
@@ -17,7 +18,6 @@ class World {
     this.draw();
     this.setWorld();
     this.checkCollisions();
-    //
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
   }
@@ -30,6 +30,7 @@ class World {
     this.statusbarHealth.world = this;
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
+    this.statusbarEndboss.world = this;
   }
 
   checkCollisions() {
@@ -132,6 +133,7 @@ class World {
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
+    this.addToMap(this.statusbarEndboss);
     // // drew() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
