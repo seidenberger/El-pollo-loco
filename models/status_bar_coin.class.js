@@ -26,12 +26,12 @@ class StatusbarCoin extends DrawabelObject {
         this.width = 200;
         // this.height = 40;
         // this.width = 200;
-        // this.setPercentage(100);
+        this.setPercentage(0);
 
     }
 
 
-    setPercentage(percentage) {
+    setPercentageCoin(percentage) {
         this.percentage = percentage;
         let path = this.Images_Statusbar_Coin[this.resolveImageIndex()];
         this.img = this.imageCache[path];

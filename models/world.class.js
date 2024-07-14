@@ -30,7 +30,7 @@ class World {
     this.statusbarHealth.world = this;
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
-    this.statusbarEndboss.world = this;
+   
   }
 
   checkCollisions() {
@@ -94,8 +94,8 @@ class World {
       this.level.coin.forEach((coin, index) => {
         // debugger
         if (this.character.isColliding(coin)) {
-          // console.log('Collision with Coin', this.level.coin)
-          //
+          console.log('Collision with Coin', this.level.coin)
+          this.statusbarCoin.setPercentageCoin(coinCollect());
           // console.log('Collision with Coin', index)
           // splice()
           this.level.coin.splice(index, 1);
@@ -104,20 +104,20 @@ class World {
     }, 100);
   }
 
-  checkCollisionWithbottle() {
-    setInterval(() => {
-      this.level.bottle.forEach((bottle, index) => {
-        // debugger
-        if (this.character.isColliding(bottle)) {
-          // console.log('Collision with bottle', this.level.bottle)
+  // checkCollisionWithbottle() {
+  //   setInterval(() => {
+  //     this.level.bottle.forEach((bottle, index) => {
+  //       // debugger
+  //       if (this.character.isColliding(bottle)) {
+  //         // console.log('Collision with bottle', this.level.bottle)
 
-          // console.log('Collision with bottle', index)
-          // splice()
-          this.level.bottle.splice(index, 1);
-        }
-      });
-    }, 100);
-  }
+  //         // console.log('Collision with bottle', index)
+  //         // splice()
+  //         this.level.bottle.splice(index, 1);
+  //       }
+  //     });
+  //   }, 100);
+  // }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -169,5 +169,9 @@ class World {
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
+  }
+
+  coinCollect() {
+
   }
 }

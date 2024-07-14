@@ -154,19 +154,11 @@ class Character extends MovableObject {
   }
 
   isIdle() {
-    let timepassed = new Date().getTime() - this.currentTimeWalking; // differenzin ms
-    timepassed = timepassed / 1000; // difference in s
-    return timepassed < 3; // truh zum abspiellen von idle
+    let timepassed = new Date().getTime() - this.currentTimeWalking;
+    timepassed = timepassed / 1000; 
+    return timepassed < 3;
   }
-  //  abspielen lon idle
 
-  //     if (this.world.keyboard) {
-
-  //
-
-  //         this.idleStartTime = null;
-  //     }
-  // }
 }
 
 

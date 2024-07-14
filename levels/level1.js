@@ -10,7 +10,7 @@ const level1 = new Level(
         // new ChickenSmall(),
         // new ChickenSmall(),
         // new ChickenSmall(),
-        // new ChickenSmall(),
+        new ChickenSmall(),
         // new ChickenSmall(),
         // new ChickenSmall(),
         // new ChickenSmall(),
@@ -29,9 +29,10 @@ const level1 = new Level(
         new Cloud('img/5_background/layers/4_clouds/2.png', 720, 50),
         new Cloud('img/5_background/layers/4_clouds/1.png',1200, 20),
         new Cloud('img/5_background/layers/4_clouds/2.png',1700, 50),
-        new Cloud('img/5_background/layers/4_clouds/1.png',2200, 10),
-        new Cloud('img/5_background/layers/4_clouds/2.png',2700, 30),
-        new Cloud('img/5_background/layers/4_clouds/1.png',3200, 20)
+        new Cloud('img/5_background/layers/4_clouds/1.png',2300, 10),
+        new Cloud('img/5_background/layers/4_clouds/2.png',2800, 30),
+        new Cloud('img/5_background/layers/4_clouds/1.png',3300, 20),
+        new Cloud('img/5_background/layers/4_clouds/2.png',4000, 30),
     ],
     [
         new BackgroundObject('img/5_background/layers/air.png', -719),
@@ -85,6 +86,9 @@ const level1 = new Level(
         new Coin(1540, 300),
         new Coin(1840, 300)
 
+    ],
+    [
+    //    new StatusbarEndboss(), 
     ]
 
 ); 

@@ -1,4 +1,4 @@
-class StatusbarEndboss extends DrawabelObject {
+class StatusbarEndboss extends MovableObject {
 
     Images_Statusbar_Endboss = [
         

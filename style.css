@@ -11,6 +11,7 @@ body {
     font-family: 'ga_maamli', 'arial',  ;
 }
 h1 {
+    color: red;
     font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);

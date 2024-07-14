@@ -2,7 +2,7 @@ class StatusbarBottle extends DrawabelObject {
 
   // height = 40;
   // width = 90;
-  percentage = 100;
+  percentage = 0;
 
   Images_Statusbar_bottle = [
     "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png",
@@ -25,9 +25,9 @@ class StatusbarBottle extends DrawabelObject {
     // debugger
   }
 
-  setPercentage(percentage) {
+  setPercentage() {
     // debugger
-    this.percentage = percentage;
+    this.percentage;
     let path = this.Images_Statusbar_bottle[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }

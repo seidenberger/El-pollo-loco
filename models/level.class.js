@@ -4,6 +4,7 @@ class Level {
     backgroundObject;
     bottle;
     coin;
+    // statusbarEndboss;
 
     level_end_x = 3700;
 
@@ -14,5 +15,6 @@ class Level {
     this.backgroundObject = backgroundObject;
     this.bottle = bottle;
     this.coin = coin;
+    // this.statusbarEndboss =  statusbarEndboss;
     }
 }
