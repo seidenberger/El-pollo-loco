@@ -2,12 +2,19 @@ class StatusbarEndboss extends MovableObject {
 
     Images_Statusbar_Endboss = [
         
-        'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
-        'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
-        'img/7_statusbars/2_statusbar_endboss/orange/orange40.png',
-        'img/7_statusbars/2_statusbar_endboss/orange/orange60.png',        
-        'img/7_statusbars/2_statusbar_endboss/orange/orange80.png',
-        'img/7_statusbars/2_statusbar_endboss/orange/orange100.png'
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange0.png',
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange20.png',
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange40.png',
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange60.png',        
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange80.png',
+        // 'img/7_statusbars/2_statusbar_endboss/orange/orange100.png'
+
+        'img/7_statusbars/2_statusbar_endboss/green/green0.png',
+        'img/7_statusbars/2_statusbar_endboss/green/green20.png',
+        'img/7_statusbars/2_statusbar_endboss/green/green40.png',
+        'img/7_statusbars/2_statusbar_endboss/green/green60.png',        
+        'img/7_statusbars/2_statusbar_endboss/green/green80.png',
+        'img/7_statusbars/2_statusbar_endboss/green/green100.png'
     ];
 
 
@@ -20,7 +27,9 @@ class StatusbarEndboss extends MovableObject {
   
         this.height = 40;
         this.width = 200;
-        this.setPercentage(100);
+        // this.setPercentage(100);
+        
+        this.setPercentage(80);
     }
 
     setPercentage(percentage) {

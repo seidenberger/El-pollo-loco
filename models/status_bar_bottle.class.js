@@ -25,9 +25,9 @@ class StatusbarBottle extends DrawabelObject {
     // debugger
   }
 
-  setPercentage() {
+  setPercentagebottle(percentage) {
     // debugger
-    this.percentage;
+    this.percentage = percentage;
     let path = this.Images_Statusbar_bottle[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }

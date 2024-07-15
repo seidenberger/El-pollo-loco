@@ -94,30 +94,30 @@ class World {
       this.level.coin.forEach((coin, index) => {
         // debugger
         if (this.character.isColliding(coin)) {
-          console.log('Collision with Coin', this.level.coin)
-          this.statusbarCoin.setPercentageCoin(coinCollect());
-          // console.log('Collision with Coin', index)
-          // splice()
-          this.level.coin.splice(index, 1);
+          // debugger
+          console.log('Collision with Coin', this.character.coin)
+          this.character.coin += 10;
+          console.log('coins collected', this.character.coin)
+          this.statusbarCoin.setPercentageCoin(this.character.coin);
+          console.log('Collision with Coin', this.character.coin)
+          this.level.coin.splice(index, 1); 
         }
       });
     }, 100);
   }
 
-  // checkCollisionWithbottle() {
-  //   setInterval(() => {
-  //     this.level.bottle.forEach((bottle, index) => {
-  //       // debugger
-  //       if (this.character.isColliding(bottle)) {
-  //         // console.log('Collision with bottle', this.level.bottle)
-
-  //         // console.log('Collision with bottle', index)
-  //         // splice()
-  //         this.level.bottle.splice(index, 1);
-  //       }
-  //     });
-  //   }, 100);
-  // }
+  checkCollisionWithbottle() {
+    setInterval(() => {
+      this.level.bottle.forEach((bottle, index) => {
+        // debugger
+        if (this.character.isColliding(bottle)) {
+          this.character.bottle += 20;
+          this.statusbarBottle.setPercentagebottle(this.character.bottle);
+          this.level.bottle.splice(index, 1);
+        }
+      });
+    }, 100);
+  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
