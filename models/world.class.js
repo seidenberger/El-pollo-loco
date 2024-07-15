@@ -92,14 +92,12 @@ class World {
   checkCollisionWithObject() {
     setInterval(() => {
       this.level.coin.forEach((coin, index) => {
-        // debugger
         if (this.character.isColliding(coin)) {
-          // debugger
-          console.log('Collision with Coin', this.character.coin)
+          // console.log('Collision with Coin', this.character.coin)
           this.character.coin += 10;
-          console.log('coins collected', this.character.coin)
+          // console.log('coins collected', this.character.coin)
           this.statusbarCoin.setPercentageCoin(this.character.coin);
-          console.log('Collision with Coin', this.character.coin)
+          // console.log('Collision with Coin', this.character.coin)
           this.level.coin.splice(index, 1); 
         }
       });
