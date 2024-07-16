@@ -1,13 +1,14 @@
 class Character extends MovableObject {
-  // x = 50;
-  // y = 190;
-  y = 130;
 
+  y = 130;
   height = 240;
   width = 120;
-  speed = 5;
+  speed = 3;
   currentTimeWalking = 0;
   longIdle = true;
+  world;
+  // walking_sound = new Audio("audio/walking.mp3");
+  longIdleThreshold = 5000;
 
   offset = {
     top: 100,
@@ -79,11 +80,6 @@ class Character extends MovableObject {
     "img/2_character_pepe/5_dead/D-57.png",
   ];
 
-  world;
-  walking_sound = new Audio("audio/walking.mp3");
-  //neu
-  longIdleThreshold = 5000;
-  // lastMovementTime = getCurrentTimeMillis();
 
   constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
@@ -95,35 +91,30 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Long_Idle);
     this.applayGravitty();
     this.animate();
+    // this.bottelThrow();
 
-    this.idleStartTime = null; // Zeitstempel, wann der Charakter idle wurde
+    this.idleStartTime = null; 
     this.isIdleState = false;
   }
 
   animate() {
     setInterval(() => {
-      // console.log('Aktuelle Position character y:', this.y);
-      // console.log('Aktuelle Position character x:', this.x);
-      // console.log('Ende des Levels level_end_x:', this.world.level.level_end_x);
-      this.walking_sound.pause();
+      walking_sound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
-        this.walking_sound.play();
-        // console.log('this.keybord')
+        walking_sound.play();     
       }
 
       if (this.world.keyboard.A && this.x > 0) {
         this.moveLeft();
-        this.walking_sound.play();
+        walking_sound.play();
         this.otherDirection = true;
       }
 
-      // console.log('this.speedY', this.speedY)
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
         this.jump();
-        // this.playAnimation(this.Images_Jamping);
       }
       this.world.camera_x = -this.x + 150;
     }, 100 / 60);
@@ -133,15 +124,17 @@ class Character extends MovableObject {
         this.playAnimation(this.Images_Dead);
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
-        // debugger
       } else if (this.isAboveGround()) {
         this.playAnimation(this.Images_Jamping);
-        // debugger
       } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
+      // } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
+      //   debugger
+      //   this.bottelThrow();
+
       } else if (this.isIdle()) {
-        // true oder false setzen mit zeit
+
         this.playAnimation(this.Images_Idle);
       } else {
         this.playAnimation(this.Images_Long_Idle);
@@ -151,11 +144,14 @@ class Character extends MovableObject {
 
   jump() {
     this.speedY = 30;
+
   }
 
   isIdle() {
+    sleep_sound.play();
     let timepassed = new Date().getTime() - this.currentTimeWalking;
     timepassed = timepassed / 1000; 
+    sleep_sound.pause();
     return timepassed < 3;
   }
 

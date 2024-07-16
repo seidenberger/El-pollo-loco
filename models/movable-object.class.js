@@ -7,7 +7,8 @@ class MovableObject extends DrawabelObject {
   lastHit = 0;
   lastMove = 0;
   energy = 100;
-  bottle = 0;
+  // bottle = 0;
+  bottle = 50;
   coin = 0;
 
   offset = {
@@ -19,10 +20,12 @@ class MovableObject extends DrawabelObject {
 
   applayGravitty() {
     setInterval(() => {
+      
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
         // console.log('this.speedy', this.speedY)
+      
       } 
     }, 1000 / 25);
   }
@@ -46,7 +49,9 @@ class MovableObject extends DrawabelObject {
   }
 
   hit() {
+    
     this.energy -= 5;
+    
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -55,8 +60,11 @@ class MovableObject extends DrawabelObject {
   }
 
   isHurt() {
+    // hurt_sound.play();
     let timepassed = new Date().getTime() - this.lastHit; // differenzin ms
     timepassed = timepassed / 1000; // difference in s
+    // hurt_sound.pause();
+
     return timepassed < 1;
   }
 
@@ -90,6 +98,24 @@ chickenDead() {
         
   this.playAnimation(this.Images_chicken_small_dead);
 }
+
+bottelThrow() {
+ this.speedY = 5;
+ animateBottleRotation()
+ debugger
+
+
+// in welche richtung schau ich 
+  // hit() = 20 %
+  // isColliding(mo)
+  // applayGravitty()
+}
+
+// animateBottleRotation() {
+//   setInterval(() => {
+//     this. playAnimation(this.Images_salsa_bottle_rotation)
+//   }, 1000 / 60);
+// }
 
 
 

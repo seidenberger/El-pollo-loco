@@ -9,7 +9,6 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
-  // extendedArray = [];
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -22,9 +21,7 @@ class World {
     this.checkCollisionWithbottle();
   }
 
-  /**
-   * zum verknüpfen unteranderem mit dem keybord
-   */
+
   setWorld() {
     this.character.world = this;
     this.statusbarHealth.world = this;
@@ -44,14 +41,14 @@ class World {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
-          console.log("isAboveGround:", this.character.isAboveGround());
+          // console.log("isAboveGround:", this.character.isAboveGround());
           if (enemy instanceof Chicken) {
-            console.log("Collision with Chicken:", enemy);
+            // console.log("Collision with Chicken:", enemy);
             this.playDeathAnimation(enemy); 
             enemiesToRemove.push(index);
-            console.log("Collision with Chicken:", enemy);
+            // console.log("Collision with Chicken:", enemy);
           } else if (enemy instanceof ChickenSmall) {
-            console.log("Collision with ChickenSmall:", enemy);
+            // console.log("Collision with ChickenSmall:", enemy);
             this.playDeathAnimation(enemy); 
             enemiesToRemove.push(index);
           }
@@ -83,7 +80,7 @@ class World {
       }, 1000); 
 }
 
-  chickenDead(index, enemiesToRemove) {
+  chickenDead(index) {
     console.log("Chicken is dead:", this.level.enemies[index]);
     this.level.enemies.splice(index, 1);
   }
@@ -107,7 +104,6 @@ class World {
   checkCollisionWithbottle() {
     setInterval(() => {
       this.level.bottle.forEach((bottle, index) => {
-        // debugger
         if (this.character.isColliding(bottle)) {
           this.character.bottle += 20;
           this.statusbarBottle.setPercentagebottle(this.character.bottle);
@@ -132,7 +128,6 @@ class World {
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
     this.addToMap(this.statusbarEndboss);
-    // // drew() wird immer wieder aufgerufen
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -169,7 +164,5 @@ class World {
     this.ctx.restore();
   }
 
-  coinCollect() {
 
-  }
 }
