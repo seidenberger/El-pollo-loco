@@ -18,13 +18,10 @@ function enableMute() {
     sleep_sound.muted = true;
     throw_sound.muted = true;
     angri_chicken_sound.muted = true;
-    chicken_sound.muted = true;
-
-    
-
-  } 
+    chicken_sound.muted = true;  
+} 
   
-  function disableMute() { 
+function disableMute() { 
     hurt_sound.muted = false;
     jump_sound.muted = false;
     walking_sound.muted = false;
@@ -32,7 +29,7 @@ function enableMute() {
     throw_sound.muted = false;
     angri_chicken_sound.muted = false;
     chicken_sound.muted = false;
-  } 
+} 
 
 
 

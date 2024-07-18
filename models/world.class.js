@@ -9,6 +9,7 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
+  // throwingBottles = new throwingBottles();
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -27,6 +28,7 @@ class World {
     this.statusbarHealth.world = this;
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
+    // this.statusbarBottle.world = this;
    
   }
 
@@ -41,14 +43,10 @@ class World {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
-          // console.log("isAboveGround:", this.character.isAboveGround());
           if (enemy instanceof Chicken) {
-            // console.log("Collision with Chicken:", enemy);
             this.playDeathAnimation(enemy); 
             enemiesToRemove.push(index);
-            // console.log("Collision with Chicken:", enemy);
           } else if (enemy instanceof ChickenSmall) {
-            // console.log("Collision with ChickenSmall:", enemy);
             this.playDeathAnimation(enemy); 
             enemiesToRemove.push(index);
           }
@@ -87,14 +85,11 @@ class World {
 
 
   checkCollisionWithObject() {
-    setInterval(() => {
+       setInterval(() => {
       this.level.coin.forEach((coin, index) => {
         if (this.character.isColliding(coin)) {
-          // console.log('Collision with Coin', this.character.coin)
           this.character.coin += 10;
-          // console.log('coins collected', this.character.coin)
           this.statusbarCoin.setPercentageCoin(this.character.coin);
-          // console.log('Collision with Coin', this.character.coin)
           this.level.coin.splice(index, 1); 
         }
       });
@@ -145,7 +140,6 @@ class World {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
-    // mo.drawFrame(this.ctx);
     mo.drawFrameOffset(this.ctx);
 
     if (mo.otherDirection) {

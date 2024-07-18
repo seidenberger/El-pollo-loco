@@ -66,7 +66,7 @@ class Endboss extends MovableObject{
 
     animate() {
 
-
+        // angri_chicken_sound.play()
         setInterval(() => {
             this.moveLeft();
 

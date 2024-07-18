@@ -1,13 +1,12 @@
 class Character extends MovableObject {
-
+  // x = 50;
   y = 130;
   height = 240;
   width = 120;
-  speed = 3;
+  speed = 5;
   currentTimeWalking = 0;
   longIdle = true;
   world;
-  // walking_sound = new Audio("audio/walking.mp3");
   longIdleThreshold = 5000;
 
   offset = {
@@ -131,28 +130,33 @@ class Character extends MovableObject {
         this.currentTimeWalking = new Date().getTime();
       // } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
       //   debugger
-      //   this.bottelThrow();
-
+      //   // this.bottelThrow();
       } else if (this.isIdle()) {
 
         this.playAnimation(this.Images_Idle);
+
       } else {
+        sleep_sound.play();
         this.playAnimation(this.Images_Long_Idle);
+        sleep_sound.pause();
       }
     }, 60);
   }
 
   jump() {
     this.speedY = 30;
+    jump_sound.play();
 
   }
 
   isIdle() {
-    sleep_sound.play();
+  
     let timepassed = new Date().getTime() - this.currentTimeWalking;
     timepassed = timepassed / 1000; 
-    sleep_sound.pause();
+
+
     return timepassed < 3;
+    
   }
 
 }

@@ -1,5 +1,8 @@
 class MovableObject extends DrawabelObject {
-  speed = 0.05;
+  x = 50;
+  y = 130;
+  
+  // speed = 0.05;
   otherDirection = false;
   speedY = 0;
   acceleration = 3;
@@ -17,6 +20,8 @@ class MovableObject extends DrawabelObject {
     left: 0,
     right: 0,
   }
+
+
 
   applayGravitty() {
     setInterval(() => {
@@ -51,7 +56,7 @@ class MovableObject extends DrawabelObject {
   hit() {
     
     this.energy -= 5;
-    
+    this.hurtSound();
     if (this.energy < 0) {
       this.energy = 0;
     } else {
@@ -60,7 +65,8 @@ class MovableObject extends DrawabelObject {
   }
 
   isHurt() {
-    // hurt_sound.play();
+
+
     let timepassed = new Date().getTime() - this.lastHit; // differenzin ms
     timepassed = timepassed / 1000; // difference in s
     // hurt_sound.pause();
@@ -99,16 +105,12 @@ chickenDead() {
   this.playAnimation(this.Images_chicken_small_dead);
 }
 
-bottelThrow() {
- this.speedY = 5;
- animateBottleRotation()
- debugger
 
 
-// in welche richtung schau ich 
-  // hit() = 20 %
-  // isColliding(mo)
-  // applayGravitty()
+hurtSound(){
+
+    hurt_sound.play() 
+
 }
 
 // animateBottleRotation() {
