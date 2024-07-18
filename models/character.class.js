@@ -80,9 +80,9 @@ class Character extends MovableObject {
   ];
 
 
-  constructor() {
+  // constructor() {
     
-  // constructor(x, y) {
+  constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
     this.loadImages(this.Images_Walkin_Pepe);
     this.loadImages(this.Images_Dead);
@@ -96,8 +96,6 @@ class Character extends MovableObject {
 
     this.idleStartTime = null; 
     this.isIdleState = false;
-    // this.x = x;
-    // this.y = y;
   }
 
   animate() {

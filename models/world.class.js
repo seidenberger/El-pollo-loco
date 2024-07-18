@@ -48,7 +48,7 @@ class World {
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
     this.throwingBottles.world = this;
-    // this.statusbarBottle.world = this;
+    this.statusbarBottle.world = this;
   }
 
   checkCollisions() {
@@ -142,6 +142,7 @@ class World {
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
     this.addToMap(this.statusbarEndboss);
+    this.addToMap(this.throwingBottles)
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
