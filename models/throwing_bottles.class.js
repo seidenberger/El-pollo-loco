@@ -1,7 +1,7 @@
 class throwingBottles extends MovableObject {
 
   y = 60;
-  
+  world;
 
     Images_salsa_bottle_rotation  = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -23,36 +23,25 @@ class throwingBottles extends MovableObject {
     constructor() {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.Images_salsa_bottle_rotation)
+        // this.x = x;
         this.width = 60;
         this.height = 60;
         // this.animateBottleRotation();
+        // this.x = this.character.x;
+
         }
 
     animateBottleRotation() {
-    setInterval(() => {
-      if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
-        // this.speedY = 20;
-      }
-    }, 1000);
-
+      // debugger
+    // setInterval(() => {
       console.log('animateBottleRotation', this.x)
+      console.log('bottel x', this.x )
+      if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
+        this.speedY = 20;
+
       }
 
+    }
 
 
 }
-        // debugger
-        // setInterval(() => {
-        //   this.playAnimation(this.Images_salsa_bottle_rotation)
-        // }, 1000 / 2 ) 
-            // bottelThrow() {
-
-
-    //     debugger
-       
-       
-    //    // in welche richtung schau ich 
-    //      // hit() = 20 %
-    //      // isColliding(mo)
-    //      // applayGravitty()
-    //    }

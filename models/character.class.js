@@ -81,6 +81,8 @@ class Character extends MovableObject {
 
 
   constructor() {
+    
+  // constructor(x, y) {
     super().loadImage(this.Images_Walkin_Pepe[0]);
     this.loadImages(this.Images_Walkin_Pepe);
     this.loadImages(this.Images_Dead);
@@ -94,15 +96,20 @@ class Character extends MovableObject {
 
     this.idleStartTime = null; 
     this.isIdleState = false;
+    // this.x = x;
+    // this.y = y;
   }
 
   animate() {
     setInterval(() => {
       walking_sound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+        // debugger
         this.moveRight();
         this.otherDirection = false;
         walking_sound.play();     
+        console.log('charater x', this.x )
+        console.log('charater x', this.world.x )
       }
 
       if (this.world.keyboard.A && this.x > 0) {
@@ -128,9 +135,10 @@ class Character extends MovableObject {
       } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
-      // } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
+      } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
       //   debugger
       //   // this.bottelThrow();
+      // this.animateBottleRotation();
       } else if (this.isIdle()) {
 
         this.playAnimation(this.Images_Idle);

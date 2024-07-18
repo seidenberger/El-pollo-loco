@@ -9,12 +9,17 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
-  // throwingBottles = new throwingBottles();
+  
+//flasche 
+  throwingBottles = new throwingBottles();
+
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+
+
     this.draw();
     this.setWorld();
     this.checkCollisions();
@@ -22,14 +27,28 @@ class World {
     this.checkCollisionWithbottle();
   }
 
+//   //flsche
+//   update() {
+//     this.throwingBottles.forEach(bottle => {
+//         bottle.update();
+//     });
+// }
+
+// checkCollisionsbottel() {
+//   debugger
+//   // if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
+//     this.speedY = 20
+//   // }
+// }
+
 
   setWorld() {
     this.character.world = this;
     this.statusbarHealth.world = this;
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
+    this.throwingBottles.world = this;
     // this.statusbarBottle.world = this;
-   
   }
 
   checkCollisions() {
