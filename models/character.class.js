@@ -96,6 +96,9 @@ class Character extends MovableObject {
 
     this.idleStartTime = null; 
     this.isIdleState = false;
+
+    // test 
+    // this.throwingBottles = new ThrowingBottles();
   }
 
   animate() {
@@ -107,6 +110,7 @@ class Character extends MovableObject {
         this.otherDirection = false;
         walking_sound.play();     
         console.log('charater x', this.x )
+        console.log('charater y', this.y )
         console.log('charater x', this.world.x )
       }
 
@@ -133,10 +137,6 @@ class Character extends MovableObject {
       } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
-      } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
-      //   debugger
-      //   // this.bottelThrow();
-      // this.animateBottleRotation();
       } else if (this.isIdle()) {
 
         this.playAnimation(this.Images_Idle);

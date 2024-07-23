@@ -23,7 +23,11 @@ class throwingBottles extends MovableObject {
   constructor() {
         super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.Images_salsa_bottle_rotation)
-      // this.x = 170;
+        // this.charater.x = x;
+        // this.charater.y = y;
+        // this.x = x;
+        // this.y = y;
+      this.x = 170;
       this.y  = 320;
         this.width = 60;
         this.height = 60;
@@ -35,24 +39,43 @@ class throwingBottles extends MovableObject {
 
   animate() {
       setInterval(() => {
-        // if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
+        if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
+          this.speedY = 30;
         this.loadImages(this.Images_salsa_bottle_rotation);
-        // }
         this.playAnimation(this.Images_salsa_bottle_rotation)
-      }, 1000);
+        }
+      }, 1000 / 60);
   }
 
-  animateBottleRotation() {
-      // debugger
-    // setInterval(() => {
-      console.log('animateBottleRotation', this.x)
-      console.log('bottel x', this.x )
 
-        this.speedY = 20;
 
-      }
+  ////////////////////////////////////////////////
+//   constructor(x, y) {
+//     super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+//     this.loadImages(this.Images_salsa_bottle_rotation)
+//     // this.charater.x = x;
+//     // this.charater.y = y;
+//     this.x = x;
+//     this.y = y;
+//   // this.x = 170;
+//   // this.y  = 320;
+//     this.width = 60;
+//     this.height = 60;
+//     // this.character = character;
+//     // this.animateBottleRotation();
+//     // this.x = this.character.x;
+//     this.animate();
+// }
 
-  // }
+// animate() {
+//   setInterval(() => {
+//     if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
+//       this.speedY = 30;
+//     this.loadImages(this.Images_salsa_bottle_rotation);
+//     this.playAnimation(this.Images_salsa_bottle_rotation)
+//     }
+//   }, 1000 / 60);
+// }
 
 
 }
