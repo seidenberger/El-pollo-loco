@@ -111,7 +111,12 @@ class Character extends MovableObject {
         walking_sound.play();     
         console.log('charater x', this.x )
         console.log('charater y', this.y )
-        console.log('charater x', this.world.x )
+        
+        
+        //neu
+
+
+        new throwingBottles (this.x)
       }
 
       if (this.world.keyboard.A && this.x > 0) {

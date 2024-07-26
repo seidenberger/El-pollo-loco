@@ -16,6 +16,7 @@ function initLevel(){
     document.getElementById("start_display").classList.add("hidden");
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    enableMute();
 
     
     console.log('my character is', world.character)

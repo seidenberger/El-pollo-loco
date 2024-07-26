@@ -14,10 +14,6 @@ class ChickenSmall extends MovableObject{
         'img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ]
 
-    // Images_chicken_small_dead = [
-    //     'img/3_enemies_chicken/chicken_small/2_dead/dead.png',      
-    // ]
-
     offset = {
         top: 5,
         bottom: 5,
@@ -30,6 +26,7 @@ class ChickenSmall extends MovableObject{
         this.loadImages(this.Images_chicken_small);
         this.loadImages(this.Images_chicken_small_dead);
         this.x = 300 + Math.random() * 700;
+        // this.x = 100
         this.speed = 0.07 + Math.random() * 0.5;
         this.animate();
         
@@ -49,12 +46,12 @@ class ChickenSmall extends MovableObject{
         
     }
 
+
+
     chickenSmallDead() {
-        setInterval(() => {
             
         this.playAnimation(this.Images_chicken_small_dead);
-        }, 250);
-        // sound abspielen 
+
     }
     
     

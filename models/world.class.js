@@ -54,7 +54,7 @@ class World {
   checkCollisions() {
     setInterval(() => {
       this.checkCollisionsEnemy();
-    }, 20);
+    }, 50);
   }
 
   checkCollisionsEnemy() {
@@ -75,6 +75,11 @@ class World {
         }
       }
     });
+        this.removeEnemies(enemiesToRemove);
+
+  }
+
+  removeEnemies(enemiesToRemove) {
     enemiesToRemove
       .sort((a, b) => b - a)
       .forEach((index) => {
@@ -84,17 +89,24 @@ class World {
 
   playDeathAnimation(enemy) {
     const deathImage = enemy instanceof ChickenSmall 
-        ? enemy.Images_chicken_small_dead
-        : enemy.Images_chicken_dead;
-
-        enemy.img = deathImage; 
+        ? enemy.Images_chicken_small_dead[0]
+        : enemy.Images_chicken_normal_dead[0];
+        enemy.img = deathImage[deathImage]; 
 
         enemy.speed = 0;
         enemy.speedY = 0;
 
         setTimeout(() => {
           this.removeEnemyFromLevel(enemy);
-      }, 1000); 
+      }, 10000); 
+}
+
+
+removeEnemyFromLevel(enemy) {
+  const index = this.enemies.indexOf(enemy);
+  if (index > -1) {
+    this.enemies.splice(index, 1); 
+  }
 }
 
   chickenDead(index) {

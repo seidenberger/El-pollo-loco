@@ -41,7 +41,7 @@ class MovableObject extends DrawabelObject {
     // console.log('Character isAboveGround height:', this.height);
     // console.log('Bottom edge of Character isAboveGround:', this.y + this.height);
     return this.y < 190;
-    // return this.y + this.height < 190;
+
 
   }
 
@@ -113,11 +113,6 @@ hurtSound(){
 
 }
 
-// animateBottleRotation() {
-//   setInterval(() => {
-//     this. playAnimation(this.Images_salsa_bottle_rotation)
-//   }, 1000 / 60);
-// }
 
 
 
