@@ -18,8 +18,6 @@ class Cloud extends MovableObject {
       this.x -= 0.2;
     }, 1000 / 60);
 
-    // warum war die funktion so drin und hat nicht mehr funktioniert
-    // this.moveLeft();
   }
 }
 

@@ -1,6 +1,6 @@
 class Character extends MovableObject {
   // x = 50;
-  y = 130;
+  // y = 130;
   height = 240;
   width = 120;
   speed = 5;
@@ -92,13 +92,15 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Long_Idle);
     this.applayGravitty();
     this.animate();
-    // this.bottelThrow();
 
     this.idleStartTime = null; 
     this.isIdleState = false;
+    this.throwingBottle = new throwingBottles(this.x, this.y)
 
-    // test 
-    // this.throwingBottles = new ThrowingBottles();
+    // this.animatethrowingBottles();
+    // this.throwingBottlesInstance = new ThrowingBottles(); // Erstellen Sie eine Instanz von ThrowingBottles
+  
+
   }
 
   animate() {
@@ -109,14 +111,10 @@ class Character extends MovableObject {
         this.moveRight();
         this.otherDirection = false;
         walking_sound.play();     
-        console.log('charater x', this.x )
-        console.log('charater y', this.y )
-        
-        
-        //neu
-
-
-        new throwingBottles (this.x)
+        // console.log('charater x', this.x )
+        // console.log('charater y', this.y )
+        this.throwingBottle.updatePosition(this.x, this.y);
+             
       }
 
       if (this.world.keyboard.A && this.x > 0) {
@@ -127,6 +125,7 @@ class Character extends MovableObject {
 
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
+        // debugger
         this.jump();
       }
       this.world.camera_x = -this.x + 150;
@@ -142,6 +141,9 @@ class Character extends MovableObject {
       } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
+      } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
+       
+        this.throwingBottle.animatethrowingBottles();
       } else if (this.isIdle()) {
 
         this.playAnimation(this.Images_Idle);

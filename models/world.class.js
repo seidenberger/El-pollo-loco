@@ -11,7 +11,7 @@ class World {
   statusbarEndboss = new StatusbarEndboss();
   
 //flasche 
-  throwingBottles = new throwingBottles();
+  throwingBottles = new throwingBottles(this.character.x, this.character.y);
 
 
   constructor(canvas, keyboard) {
@@ -26,20 +26,6 @@ class World {
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
   }
-
-//   //flsche
-//   update() {
-//     this.throwingBottles.forEach(bottle => {
-//         bottle.update();
-//     });
-// }
-
-// checkCollisionsbottel() {
-//   debugger
-//   // if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
-//     this.speedY = 20
-//   // }
-// }
 
 
   setWorld() {
@@ -98,12 +84,12 @@ class World {
 
         setTimeout(() => {
           this.removeEnemyFromLevel(enemy);
-      }, 10000); 
+      }, 1000); 
 }
 
 
 removeEnemyFromLevel(enemy) {
-  const index = this.enemies.indexOf(enemy);
+  const index = this.level.enemies.indexOf(enemy);
   if (index > -1) {
     this.enemies.splice(index, 1); 
   }
@@ -189,6 +175,7 @@ removeEnemyFromLevel(enemy) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
+  
 
 
 }
