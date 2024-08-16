@@ -11,7 +11,13 @@ body {
     height: 100vh;
     font-family: 'ga_maamli', 'arial',  ;
 }
-h1 {    font-size: 64px;
+
+button {
+    height: 20px;
+}
+
+h1 {    
+    font-size: 64px;
     letter-spacing: 3px;
     text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);
 }
@@ -47,3 +53,9 @@ canvas {
      }
     
  }
+
+ @media (max-width: 700px) {
+    .gameName {
+      display: none;
+    }
+  }

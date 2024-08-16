@@ -1,5 +1,15 @@
 class throwingBottles extends MovableObject {
-
+  width = 60;
+  height = 60;
+  speedY = 0;
+  x = 0;
+  y = 0;  
+  offset = {
+    top: 10,
+    bottom: 5,
+    left: 20,
+    right: 15,
+  }
 
   world;
 
@@ -23,60 +33,60 @@ class throwingBottles extends MovableObject {
 
   constructor(x, y) {
     super().loadImage('img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
-    this.world = world;
-    this.x = x;
-    this.y = y;
-    this.loadImages(this.Images_salsa_bottle_rotation)
 
-    this.width = 60;
-    this.height = 60;
+//neu
+console.log('Konstruktor aufgerufen mit x:', x, 'y:', y); // Debugging
+this.world = world;
+this.x = x;
+this.y = y;
+
+if (typeof x === 'undefined' || typeof y === 'undefined') {
+  console.error('x oder y sind undefined!'); // Fehlererkennung
+}
+
+    // this.world = world;
+    // this.x = x;
+    // this.y = y;
+    this.loadImages(this.Images_salsa_bottle_rotation)
     this.updatePosition();
-    // animatethrowingBottles()
+    // this.animatethrowingBottles();
+    this.applyGravity();
 
 }
 
-updatePosition(x, y) {
-  this.x = x;
-    this.y = y;
-  // if (this.world && this.world.character) {
-    // if (this.x) {
-    // console.log('Character X position:', this.x);
-    // console.log('Character Y position:', this.y);
-  // } else {
-    // console.error('World or Character is undefined');
-    // console.log('World or Character is undefined');
-  // }
-
-  console.log('throwingBottles x', this.x )
-  console.log('throwingBottles y', this.y )
+updatePosition() {
+  this.x;
+    this.y;
+  // console.log('throwingBottles x', this.x )
+  // console.log('throwingBottles y', this.y )
+  console.log('updatePosition aufgerufen mit x:', this.x, 'y:', this.y); // Debugging
+  
 
 }
 
 animatethrowingBottles() {
   setInterval(() => {
-    // this.update();
-    this.speedY = 30;
-    this.loadImages(this.Images_salsa_bottle_rotation);
-    // this.playAnimation(this.Images_salsa_bottle_rotation)
+    this.playAnimation(this.Images_salsa_bottle_rotation)
+  
 
   }, 1000);
 
-
-    console.log('animate throwing Bottles')
-
 }
 
-  // animate() {
-  //     setInterval(() => {
-  //       if(this.world.keyboard.SPACE || this.world.keyboard.ENTER) { 
-  //         this.speedY = 30;
-  //       this.loadImages(this.Images_salsa_bottle_rotation);
-  //       this.playAnimation(this.Images_salsa_bottle_rotation)
-  //       console.log(throwingBottles, 'this.world.x')
-  //       }
-  //     }, 1000 / 60);
-  // }
+applyGravity() {
+  setInterval(() => {
+    if (this.y < 300 || this.speedY > 0) {  // 300 ist der Boden
+      this.y -= this.speedY;  // Bewegung der Flasche nach oben
+      this.speedY -= this.acceleration;  // Simulation der Schwerkraft
+    }
+  }, 1000 / 25);  // 25 FPS
+  console.log('Aktueller Wert von applyGravity speedY:', this.speedY);
+}
 
+throwingBottles() {
+  console.log('animate throwing Bottles')
 
-
+  this.speedY = 160;
+  console.log('Aktueller Wert von speedY:', this.speedY);
+}
 }

@@ -111,7 +111,7 @@ class Character extends MovableObject {
         this.moveRight();
         this.otherDirection = false;
         walking_sound.play();     
-        // console.log('charater x', this.x )
+        console.log('charater x', this.x )
         // console.log('charater y', this.y )
         this.throwingBottle.updatePosition(this.x, this.y);
              
@@ -143,7 +143,7 @@ class Character extends MovableObject {
         this.currentTimeWalking = new Date().getTime();
       } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
        
-        this.throwingBottle.animatethrowingBottles();
+        this.throwingBottle.throwingBottles();
       } else if (this.isIdle()) {
 
         this.playAnimation(this.Images_Idle);
