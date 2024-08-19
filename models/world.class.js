@@ -9,16 +9,14 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
-  
-//flasche 
-  throwingBottles = new throwingBottles(this.character.x, this.character.y);
 
+  //flasche
+  throwingBottles = new throwingBottles(this.character.x, this.character.y);
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-
 
     this.draw();
     this.setWorld();
@@ -26,7 +24,6 @@ class World {
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
   }
-
 
   setWorld() {
     this.character.world = this;
@@ -49,10 +46,10 @@ class World {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
           if (enemy instanceof Chicken) {
-            this.playDeathAnimation(enemy); 
+            this.playDeathAnimation(enemy);
             enemiesToRemove.push(index);
           } else if (enemy instanceof ChickenSmall) {
-            this.playDeathAnimation(enemy); 
+            this.playDeathAnimation(enemy);
             enemiesToRemove.push(index);
           }
         } else {
@@ -61,8 +58,7 @@ class World {
         }
       }
     });
-        this.removeEnemies(enemiesToRemove);
-
+    this.removeEnemies(enemiesToRemove);
   }
 
   removeEnemies(enemiesToRemove) {
@@ -74,40 +70,39 @@ class World {
   }
 
   playDeathAnimation(enemy) {
-    const deathImage = enemy instanceof ChickenSmall 
+    const deathImage =
+      enemy instanceof ChickenSmall
         ? enemy.Images_chicken_small_dead[0]
         : enemy.Images_chicken_normal_dead[0];
-        enemy.img = deathImage[deathImage]; 
+    enemy.img = deathImage[deathImage];
 
-        enemy.speed = 0;
-        enemy.speedY = 0;
+    enemy.speed = 0;
+    enemy.speedY = 0;
 
-        setTimeout(() => {
-          this.removeEnemyFromLevel(enemy);
-      }, 1000); 
-}
-
-
-removeEnemyFromLevel(enemy) {
-  const index = this.level.enemies.indexOf(enemy);
-  if (index > -1) {
-    this.enemies.splice(index, 1); 
+    setTimeout(() => {
+      this.removeEnemyFromLevel(enemy);
+    }, 1000);
   }
-}
+
+  removeEnemyFromLevel(enemy) {
+    const index = this.level.enemies.indexOf(enemy);
+    if (index > -1) {
+      this.enemies.splice(index, 1);
+    }
+  }
 
   chickenDead(index) {
     console.log("Chicken is dead:", this.level.enemies[index]);
     this.level.enemies.splice(index, 1);
   }
 
-
   checkCollisionWithObject() {
-       setInterval(() => {
+    setInterval(() => {
       this.level.coin.forEach((coin, index) => {
         if (this.character.isColliding(coin)) {
           this.character.coin += 10;
           this.statusbarCoin.setPercentageCoin(this.character.coin);
-          this.level.coin.splice(index, 1); 
+          this.level.coin.splice(index, 1);
         }
       });
     }, 100);
@@ -140,7 +135,7 @@ removeEnemyFromLevel(enemy) {
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
     this.addToMap(this.statusbarEndboss);
-    this.addToMap(this.throwingBottles)
+    this.addToMap(this.throwingBottles);
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -175,7 +170,4 @@ removeEnemyFromLevel(enemy) {
     mo.x = mo.x * -1;
     this.ctx.restore();
   }
-  
-
-
 }

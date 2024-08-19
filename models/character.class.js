@@ -79,9 +79,8 @@ class Character extends MovableObject {
     "img/2_character_pepe/5_dead/D-57.png",
   ];
 
-
   // constructor() {
-    
+
   constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
     this.loadImages(this.Images_Walkin_Pepe);
@@ -93,14 +92,12 @@ class Character extends MovableObject {
     this.applayGravitty();
     this.animate();
 
-    this.idleStartTime = null; 
+    this.idleStartTime = null;
     this.isIdleState = false;
-    this.throwingBottle = new throwingBottles(this.x, this.y)
+    this.throwingBottle = new throwingBottles(this.x, this.y);
 
     // this.animatethrowingBottles();
     // this.throwingBottlesInstance = new ThrowingBottles(); // Erstellen Sie eine Instanz von ThrowingBottles
-  
-
   }
 
   animate() {
@@ -110,11 +107,10 @@ class Character extends MovableObject {
         // debugger
         this.moveRight();
         this.otherDirection = false;
-        walking_sound.play();     
-        console.log('charater x', this.x )
+        walking_sound.play();
+        console.log("charater x", this.x);
         // console.log('charater y', this.y )
         this.throwingBottle.updatePosition(this.x, this.y);
-             
       }
 
       if (this.world.keyboard.A && this.x > 0) {
@@ -122,7 +118,6 @@ class Character extends MovableObject {
         walking_sound.play();
         this.otherDirection = true;
       }
-
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
         // debugger
@@ -138,16 +133,18 @@ class Character extends MovableObject {
         this.playAnimation(this.Images_Hurt);
       } else if (this.isAboveGround()) {
         this.playAnimation(this.Images_Jamping);
-      } else if (this.world.keyboard.D || this.world.keyboard.A || this.world.keyboard.W) { //sprung und wurf was amcht der carater
+      } else if (
+        this.world.keyboard.D ||
+        this.world.keyboard.A ||
+        this.world.keyboard.W
+      ) {
+        //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
       } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
-       
         this.throwingBottle.throwingBottles();
       } else if (this.isIdle()) {
-
         this.playAnimation(this.Images_Idle);
-
       } else {
         sleep_sound.play();
         this.playAnimation(this.Images_Long_Idle);
@@ -159,22 +156,12 @@ class Character extends MovableObject {
   jump() {
     this.speedY = 30;
     jump_sound.play();
-
   }
 
   isIdle() {
-  
     let timepassed = new Date().getTime() - this.currentTimeWalking;
-    timepassed = timepassed / 1000; 
-
+    timepassed = timepassed / 1000;
 
     return timepassed < 3;
-    
   }
-
 }
-
-
-
-
-

@@ -47,8 +47,10 @@
 
 <div id="start_display" class="start_display  ">
 
-    <button onclick="initLevel()"><img src="./img/10_steering/buttons_symbol/play.png" alt=""></button>
-    <button><img src="./img/10_steering/buttons_symbol/reload.png" alt=""></button>
+    <div onclick="initLevel()"><img src="./img/10_steering/buttons_symbol/play.png" alt=""></button></div>
+    <!-- <button onclick="initLevel()"><img src="./img/10_steering/buttons_symbol/play.png" alt=""></button> -->
+    <!-- <button><img src="./img/10_steering/buttons_symbol/reload.png" alt=""></button> -->
+    <div><img src="./img/10_steering/buttons_symbol/reload.png" alt=""></button></div>
 </div>
     <div>
 
@@ -63,17 +65,24 @@
 
  <div>
     <div>
-        <button><img src="./img/10_steering/buttons_symbol/left.png" alt=""> </button>
-        <button><img src="./img/10_steering/buttons_symbol/right.png" alt=""></button>
+        <div><img src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
+        <div><img src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
+        
     </div>
-    <div>
-        <button onclick="enableMute()" type="button"><img src="./img/10_steering/buttons_symbol/audio_off.png" alt=""></button>
-        <button onclick="disableMute()" type="button"><img src="./img/10_steering/buttons_symbol/audio_on.png" alt=""></button>
+    <div role="audioButten" onclick="changeSilently()">
+        <!-- <div onclick="enableMute()" type="button"> -->
 
+            <!-- false -->
+            <img src="./img/10_steering/buttons_symbol/audio_off.png" alt="" id="audioOff" > 
+        <!-- </div> -->
+        <!-- <div onclick="disableMute()" type="button"> -->
+            <img src="./img/10_steering/buttons_symbol/audio_on.png" alt="" id="audioOn" class="hidden">
+        <!-- </div> -->
     </div>
     <div>
-        <button><img src="./img/10_steering/buttons_symbol/up.png" alt=""></button>
-        <button><img src="./img/10_steering/buttons_symbol/throwing.png" alt=""></button>
+        <div><img src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
+        <div><img src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
+        
     </div>
  </div>
 

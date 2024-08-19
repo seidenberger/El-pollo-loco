@@ -1,5 +1,4 @@
 class StatusbarBottle extends DrawabelObject {
-
   // height = 40;
   // width = 90;
   percentage = 0;
@@ -14,7 +13,9 @@ class StatusbarBottle extends DrawabelObject {
   ];
 
   constructor() {
-    super().loadImage('img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png');
+    super().loadImage(
+      "img/7_statusbars/1_statusbar/3_statusbar_bottle/orange/0.png"
+    );
     // super();
     this.loadImages(this.Images_Statusbar_bottle);
     this.x = 10;
@@ -46,7 +47,7 @@ class StatusbarBottle extends DrawabelObject {
       return 2;
     } else if (this.percentage > 20) {
       return 1;
-    } else  {
+    } else {
       return 0;
     }
   }
