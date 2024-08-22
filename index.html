@@ -18,7 +18,6 @@
     <script src="./js/audio.js"></script>
     <script src="./models/drawabel_object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
-    
     <script src="./models/throwing_bottles.class.js"></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken_small.class.js"></script>
@@ -26,14 +25,12 @@
     <script src="./models/clouds.class.js"></script>
     <script src="./models/icon_bottle.class.js"></script>
     <script src="./models/icon_coin.class.js"></script>
-    <!-- <script src="./models/throwing_bottles.class.js"></script> -->
     <script src="./models/background_object.class.js"></script>
     <script src="./models/status_bar_coin.class.js"></script>
     <script src="./models/status_bar_health.class.js"></script>
     <script src="./models/status_bar_bottle.class.js"></script>
     <script src="./models/status_bar_endboss.class.js"></script>    
     <script src="./models/world.class.js"></script>    
-    <!-- <script src="./models/throwing_bottles.class.js"></script> -->
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./models/endboss.class.js"></script>
@@ -42,52 +39,47 @@
 </head>
 
 <body >
+    <head>
+        <button class="top-right-box"> [  ] </button>
+        <h1 class="gameName" >El pollo loco</h1>
+    </head>
 
-    <h1 class="gameName" >El pollo loco</h1>
+    <section id="start_display" class="container">
+        <img class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
+            <div onclick="initLevel()" class="buttons_start">
+                <img class="img " src="./img/10_steering/buttons_symbol/play.png" alt=""></button>
+            </div>
+    </section>
 
-<div id="start_display" class="start_display  ">
+    <section  class="containerCanvas">
+        <canvas class="hidden" width="720px" height="480px" id="canvas">
+        </canvas>
+        <div class="hidden" id="overlay">
+            <div class="d_j_center">
+                <img class="img" src="./img/10_steering/buttons_symbol/reload.png" alt=""></button>         
+            
+                <div role="audioButten" onclick="changeSilently()">
+                    <img class="img" src="./img/10_steering/buttons_symbol/audio_off.png" alt="" id="audioOff" > 
+                    <img class="img hidden" src="./img/10_steering/buttons_symbol/audio_on.png" alt="" id="audioOn" >
+                </div>
+            </div>
 
-    <div onclick="initLevel()"><img src="./img/10_steering/buttons_symbol/play.png" alt=""></button></div>
-    <!-- <button onclick="initLevel()"><img src="./img/10_steering/buttons_symbol/play.png" alt=""></button> -->
-    <!-- <button><img src="./img/10_steering/buttons_symbol/reload.png" alt=""></button> -->
-    <div><img src="./img/10_steering/buttons_symbol/reload.png" alt=""></button></div>
-</div>
-    <div>
+            <section class="d_flex play_button">
+                <div class="d_flex">
+                    <div><img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
+                    <div><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
+                
+                </div>
 
-    <canvas  width="720px" height="480px" id="canvas">
-        <button>full</button>
+                <div class="d_flex">
+                    <div><img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
+                    <div><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
+                </div>
+            </section>
+        </div>
 
-    </canvas>
+    </section>
 
-</div>
-
-
-
- <div>
-    <div>
-        <div><img src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
-        <div><img src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
-        
-    </div>
-    <div role="audioButten" onclick="changeSilently()">
-        <!-- <div onclick="enableMute()" type="button"> -->
-
-            <!-- false -->
-            <img src="./img/10_steering/buttons_symbol/audio_off.png" alt="" id="audioOff" > 
-        <!-- </div> -->
-        <!-- <div onclick="disableMute()" type="button"> -->
-            <img src="./img/10_steering/buttons_symbol/audio_on.png" alt="" id="audioOn" class="hidden">
-        <!-- </div> -->
-    </div>
-    <div>
-        <div><img src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
-        <div><img src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
-        
-    </div>
- </div>
-
-
-  
 
 </body>
 </html>

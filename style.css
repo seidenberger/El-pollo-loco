@@ -12,31 +12,92 @@ body {
     font-family: 'ga_maamli', 'arial',  ;
 }
 
-img {
+h1 {    
+  font-size: 64px;
+  letter-spacing: 3px;
+  text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);
+}
+
+.top-right-box {
+  position: relative;
+  margin-left: auto; 
+  margin-right: 20px;
+}
+
+.start_display_img{
+  width: 720px;
+  height: 480px;
+  position: relative;
+}
+
+.buttons_start {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.img {
     height: 40px;
     width: 40px;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-h1 {    
-    font-size: 64px;
-    letter-spacing: 3px;
-    text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);
+.containerCanvas {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    width: 720px; 
+    height: 480px;
+  
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    }
 
 canvas {
     background-color: black;
     display: block;
-    /* height: 480px;  */
  } 
 
-/* .start_display {
-    background-image: url("img/9_intro_outro_screens/start/startscreen_2.png");
-    
+.play_button {
+  display: flex;
+  flex-direction: column; /* Standardflexrichtung (von oben nach unten) */
+  justify-content: flex-end; /* Schiebt den Inhalt an das untere Ende des Containers */
+  align-items: center; 
+}
 
-} */
+.d_j_center {
+  display: flex;
+  justify-content: center;
+}
 
+.d_center {
+      display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.d_flex {
+  display: flex;
+} 
 
  .hidden {
     display: none;
@@ -63,3 +124,4 @@ canvas {
       display: none;
     }
   }
+

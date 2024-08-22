@@ -13,6 +13,8 @@ let changeAudio = false; //hat der ton wenn gestartet wird ist er aus
 
 // function init() {
 function initLevel() {
+  document.getElementById("canvas").classList.remove("hidden");
+  document.getElementById("overlay").classList.remove("hidden");
   document.getElementById("start_display").classList.add("hidden");
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
