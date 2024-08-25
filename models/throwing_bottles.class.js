@@ -29,58 +29,85 @@ class throwingBottles extends MovableObject {
   //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
   //   ];
 
-  constructor(x, y) {
+  constructor(x, y, otherDirection) {
     super().loadImage(
       "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png"
     );
-
-    console.log("Konstruktor aufgerufen mit x:", x, "y:", y); // Debugging
-    this.world = world;
+    // this.world = world;
     this.x = x;
     this.y = y;
-
-    if (typeof x === "undefined" || typeof y === "undefined") {
-      console.error("x oder y sind undefined!"); // Fehlererkennung
-    }
-
-    // this.world = world;
-    // this.x = x;
-    // this.y = y;
+    this.otherDirection = otherDirection;
     this.loadImages(this.Images_salsa_bottle_rotation);
-    this.updatePosition();
-    // this.animatethrowingBottles();
-    this.applyGravity();
+    // this.updatePosition();
+    // this.applayGravitty();
   }
 
-  updatePosition() {
-    // this.x;
-    //   this.y;
-    // // console.log('throwingBottles x', this.x )
-    // // console.log('throwingBottles y', this.y )
-    // console.log('updatePosition aufgerufen mit x:', this.x, 'y:', this.y); // Debugging
+  updatePosition(x, y, otherDirection) {
+    this.x = x;
+    this.y = y;
+    this.otherDirection = otherDirection;
+    console.log("throwingBottles x", this.x);
+    console.log("throwingBottles y", this.y);
   }
 
-  animatethrowingBottles() {
+  animateThrowingBottles() {
+    // debugger;
     setInterval(() => {
       this.playAnimation(this.Images_salsa_bottle_rotation);
     }, 1000);
   }
 
-  applyGravity() {
-    setInterval(() => {
-      if (this.y < 300 || this.speedY > 0) {
-        // 300 ist der Boden
-        this.y -= this.speedY; // Bewegung der Flasche nach oben
-        this.speedY -= this.acceleration; // Simulation der Schwerkraft
-      }
-    }, 1000 / 25); // 25 FPS
-    console.log("Aktueller Wert von applyGravity speedY:", this.speedY);
-  }
-
   throwingBottles() {
-    console.log("animate throwing Bottles");
+    console.log("Flasche wird geworfen!");
+    this.animateThrowingBottles();
+    this.bottleFlies();
 
-    this.speedY = 160;
-    console.log("Aktueller Wert von speedY:", this.speedY);
+    // if (this.otherDirection) {
+    //   this.x -= 10; // Beispielwert für links
+    //   this.bottleFlies();
+    //   console.log("left", this.x);
+    // } else {
+    //   this.x += 10; // Beispielwert für rechts
+    //   this.bottleFlies();
+    //   console.log("right", this.x);
+    // }
   }
+
+  bottleFlies() {
+    this.speedY = 20;
+    this.applayGravitty();
+    // const interval =
+    setInterval(() => {
+      if (this.otherDirection) {
+        this.x -= 10; // Bewegt sich nach links
+      } else {
+        this.x += 10; // Bewegt sich nach rechts
+      }
+
+      // Überprüfen, ob die Flasche den Boden erreicht hat oder aus dem Bildschirm ist'
+      // if (!this.isAboveGround() || this.x < 0 || this.x > this.world.level.level_end_x) {
+      //     clearInterval(interval); // Beendet die Bewegun''g der Flasche
+      //     this.stopAnimation(); // Beendet die Animation'
+      // }
+    }, 1000 / 25);
+  }
+
+  //   // Methode für die Bewegung der Flasche
+  //   throw() {
+  //     if (this.otherDirection) {
+  //         this.x -= 10; // Beispielwert für links
+  //     } else {
+  //         this.x += 10; // Beispielwert für rechts
+  //     }
+  // }
+
+  // applyGravity() {
+  //   setInterval(() => {
+  //     if (this.y < 300 || this.speedY > 0) {
+  //       this.y -= this.speedY;
+  //       this.speedY -= this.acceleration;
+  //     }
+  //   }, 1000 / 25);
+  //   console.log("Aktueller Wert von applyGravity speedY:", this.speedY);
+  // }
 }

@@ -79,8 +79,6 @@ class Character extends MovableObject {
     "img/2_character_pepe/5_dead/D-57.png",
   ];
 
-  // constructor() {
-
   constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
     this.loadImages(this.Images_Walkin_Pepe);
@@ -94,33 +92,40 @@ class Character extends MovableObject {
 
     this.idleStartTime = null;
     this.isIdleState = false;
-    this.throwingBottle = new throwingBottles(this.x, this.y);
-
-    // this.animatethrowingBottles();
-    // this.throwingBottlesInstance = new ThrowingBottles(); // Erstellen Sie eine Instanz von ThrowingBottles
+    this.throwingBottle = new throwingBottles(
+      this.x,
+      this.y,
+      this.otherDirection
+    );
   }
 
   animate() {
     setInterval(() => {
       walking_sound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-        // debugger
         this.moveRight();
         this.otherDirection = false;
         walking_sound.play();
         console.log("charater x", this.x);
+        console.log("charater y", this.y);
         // console.log('charater y', this.y )
-        this.throwingBottle.updatePosition(this.x, this.y);
+        this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
       }
 
       if (this.world.keyboard.A && this.x > 0) {
         this.moveLeft();
         walking_sound.play();
         this.otherDirection = true;
+        console.log("charater x", this.x);
+        console.log("charater y", this.y);
+        this.throwingBottle = new throwingBottles(
+          this.x,
+          this.y,
+          this.otherDirection
+        );
       }
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
-        // debugger
         this.jump();
       }
       this.world.camera_x = -this.x + 150;
@@ -138,7 +143,6 @@ class Character extends MovableObject {
         this.world.keyboard.A ||
         this.world.keyboard.W
       ) {
-        //sprung und wurf was amcht der carater
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
       } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {

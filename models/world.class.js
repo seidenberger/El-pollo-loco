@@ -11,7 +11,7 @@ class World {
   statusbarEndboss = new StatusbarEndboss();
 
   //flasche
-  throwingBottles = new throwingBottles(this.character.x, this.character.y);
+  // throwingBottles = new throwingBottles(this.character.x, this.character.y);
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -30,7 +30,7 @@ class World {
     this.statusbarHealth.world = this;
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
-    this.throwingBottles.world = this;
+    // this.throwingBottles.world = this;
     this.statusbarBottle.world = this;
   }
 
@@ -135,7 +135,7 @@ class World {
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
     this.addToMap(this.statusbarEndboss);
-    this.addToMap(this.throwingBottles);
+    // this.addToMap(this.throwingBottles);
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

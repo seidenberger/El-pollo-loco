@@ -26,15 +26,11 @@ class MovableObject extends DrawabelObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
-        // console.log('this.speedy', this.speedY)
       }
     }, 1000 / 25);
   }
 
   isAboveGround() {
-    // console.log('Character isAboveGround y:', this.y);
-    // console.log('Character isAboveGround height:', this.height);
-    // console.log('Bottom edge of Character isAboveGround:', this.y + this.height);
     return this.y < 190;
   }
 
@@ -57,10 +53,8 @@ class MovableObject extends DrawabelObject {
   }
 
   isHurt() {
-    let timepassed = new Date().getTime() - this.lastHit; // differenzin ms
-    timepassed = timepassed / 1000; // difference in s
-    // hurt_sound.pause();
-
+    let timepassed = new Date().getTime() - this.lastHit;
+    timepassed = timepassed / 1000;
     return timepassed < 1;
   }
 
@@ -74,8 +68,6 @@ class MovableObject extends DrawabelObject {
     this.img = this.imageCache[path];
     this.currentImage++;
   }
-
-  //haracter.iscolliding ()chicken;
 
   isColliding(mo) {
     return (
