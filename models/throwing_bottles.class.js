@@ -11,8 +11,6 @@ class throwingBottles extends MovableObject {
     right: 15,
   };
 
-  world;
-
   Images_salsa_bottle_rotation = [
     "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png",
     "img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png",
@@ -20,94 +18,41 @@ class throwingBottles extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png",
   ];
 
-  // Images_salsa_bottle_splash = [
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
-  //   'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
-  //   ];
+  Images_salsa_bottle_splash = [
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png",
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png",
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png",
+    "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
+  ];
 
-  constructor(x, y, otherDirection) {
+  constructor(x, y) {
     super().loadImage(
       "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png"
     );
-    // this.world = world;
-    this.x = x;
-    this.y = y;
-    this.otherDirection = otherDirection;
     this.loadImages(this.Images_salsa_bottle_rotation);
-    // this.updatePosition();
-    // this.applayGravitty();
-  }
-
-  updatePosition(x, y, otherDirection) {
+    this.loadImages(this.Images_salsa_bottle_splash);
     this.x = x;
     this.y = y;
-    this.otherDirection = otherDirection;
-    console.log("throwingBottles x", this.x);
-    console.log("throwingBottles y", this.y);
+    this.throw();
   }
 
-  animateThrowingBottles() {
-    // debugger;
+  animate() {
     setInterval(() => {
       this.playAnimation(this.Images_salsa_bottle_rotation);
-    }, 1000);
+    }, 1000 / 60);
   }
 
-  throwingBottles() {
-    console.log("Flasche wird geworfen!");
-    this.animateThrowingBottles();
-    this.bottleFlies();
-
-    // if (this.otherDirection) {
-    //   this.x -= 10; // Beispielwert für links
-    //   this.bottleFlies();
-    //   console.log("left", this.x);
-    // } else {
-    //   this.x += 10; // Beispielwert für rechts
-    //   this.bottleFlies();
-    //   console.log("right", this.x);
-    // }
-  }
-
-  bottleFlies() {
+  throw() {
+    this.x;
+    this.y;
     this.speedY = 20;
-    this.applayGravitty();
-    // const interval =
+    this.applayGravity();
     setInterval(() => {
-      if (this.otherDirection) {
-        this.x -= 10; // Bewegt sich nach links
-      } else {
-        this.x += 10; // Bewegt sich nach rechts
-      }
-
-      // Überprüfen, ob die Flasche den Boden erreicht hat oder aus dem Bildschirm ist'
-      // if (!this.isAboveGround() || this.x < 0 || this.x > this.world.level.level_end_x) {
-      //     clearInterval(interval); // Beendet die Bewegun''g der Flasche
-      //     this.stopAnimation(); // Beendet die Animation'
-      // }
-    }, 1000 / 25);
+      this.x += 15;
+    }, 50);
+    this.animate();
+    // this.playAnimation(this.Images_salsa_bottle_rotation);
   }
-
-  //   // Methode für die Bewegung der Flasche
-  //   throw() {
-  //     if (this.otherDirection) {
-  //         this.x -= 10; // Beispielwert für links
-  //     } else {
-  //         this.x += 10; // Beispielwert für rechts
-  //     }
-  // }
-
-  // applyGravity() {
-  //   setInterval(() => {
-  //     if (this.y < 300 || this.speedY > 0) {
-  //       this.y -= this.speedY;
-  //       this.speedY -= this.acceleration;
-  //     }
-  //   }, 1000 / 25);
-  //   console.log("Aktueller Wert von applyGravity speedY:", this.speedY);
-  // }
 }

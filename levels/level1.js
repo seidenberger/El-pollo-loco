@@ -124,6 +124,7 @@ const level1 = new Level(
   [
     //    new StatusbarEndboss(),
   ]
+  // [new throwingBottles()]
 );
 
 // }

@@ -50,4 +50,10 @@ class DrawabelObject {
       this.imageCache[path] = img;
     });
   }
+
+  animateThrowingBottles() {
+    let i = this.currentImage % images.length;
+    this.img = this.imageCache[images[i]];
+    this.currentImage++;
+  }
 }

@@ -5,7 +5,7 @@ class MovableObject extends DrawabelObject {
   // speed = 0.05;
   otherDirection = false;
   speedY = 0;
-  acceleration = 3;
+  acceleration = 4;
 
   lastHit = 0;
   lastMove = 0;
@@ -20,8 +20,10 @@ class MovableObject extends DrawabelObject {
     left: 0,
     right: 0,
   };
+  endpiont = 4000;
 
-  applayGravitty() {
+  // applayGravitty() {
+  applayGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
@@ -31,7 +33,11 @@ class MovableObject extends DrawabelObject {
   }
 
   isAboveGround() {
-    return this.y < 190;
+    if (this instanceof throwingBottles) {
+      return true;
+    } else {
+      return this.y < 190;
+    }
   }
 
   moveRight() {

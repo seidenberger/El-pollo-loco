@@ -87,16 +87,19 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Hurt);
     this.loadImages(this.Images_Idle);
     this.loadImages(this.Images_Long_Idle);
-    this.applayGravitty();
+    // this.applayGravitty();
+    this.applayGravity();
     this.animate();
 
     this.idleStartTime = null;
     this.isIdleState = false;
-    this.throwingBottle = new throwingBottles(
-      this.x,
-      this.y,
-      this.otherDirection
-    );
+    // this.throwingBottle = new throwingBottles(
+    //   this.x,
+    //   this.y,
+    //   this.otherDirection
+    // );
+
+    // this.setupEventListeners();
   }
 
   animate() {
@@ -109,7 +112,7 @@ class Character extends MovableObject {
         console.log("charater x", this.x);
         console.log("charater y", this.y);
         // console.log('charater y', this.y )
-        this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
+        // this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
       }
 
       if (this.world.keyboard.A && this.x > 0) {
@@ -118,11 +121,11 @@ class Character extends MovableObject {
         this.otherDirection = true;
         console.log("charater x", this.x);
         console.log("charater y", this.y);
-        this.throwingBottle = new throwingBottles(
-          this.x,
-          this.y,
-          this.otherDirection
-        );
+        // this.throwingBottle = new throwingBottles(
+        //   this.x,
+        //   this.y,
+        //   this.otherDirection
+        // );
       }
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {
@@ -145,8 +148,8 @@ class Character extends MovableObject {
       ) {
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
-      } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
-        this.throwingBottle.throwingBottles();
+        // } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
+        //   this.throwingBottle.throwingBottles();
       } else if (this.isIdle()) {
         this.playAnimation(this.Images_Idle);
       } else {
