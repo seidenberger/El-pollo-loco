@@ -24,6 +24,7 @@ class MovableObject extends DrawabelObject {
 
   // applayGravitty() {
   applayGravity() {
+    // debugger;
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
@@ -37,6 +38,7 @@ class MovableObject extends DrawabelObject {
       return true;
     } else {
       return this.y < 190;
+      // console.log("fall", this.y);
     }
   }
 

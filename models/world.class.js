@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  throwingBottles = new throwingBottles();
   level = level1;
   canvas;
   ctx;
@@ -14,10 +15,12 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    // let bottleThrown = false;
 
     this.draw();
     this.setWorld();
     this.checkCollisions();
+    this.checkSlowCollisions();
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
   }
@@ -35,8 +38,13 @@ class World {
       this.checkCollisionsEnemy();
       this.checkCollisionWithObject();
       this.checkCollisionWithbottle();
-      this.checkThrowObjects();
     }, 100);
+  }
+
+  checkSlowCollisions() {
+    setInterval(() => {
+      this.checkThrowObjects();
+    }, 1000);
   }
 
   checkCollisionsEnemy() {
@@ -90,8 +98,16 @@ class World {
         this.character.x + 50,
         this.character.y + 50
       );
+
       this.throwabeleObjects.push(bottle);
+      debugger;
     }
+    this.level.enemies.forEach((enemy, index) => {
+      if (this.throwabeleObjects.isColliding(enemy)) {
+        debugger;
+        console.log("isColliding with bottle(enemy", enemy);
+      }
+    });
   }
 
   removeEnemies(enemiesToRemove) {

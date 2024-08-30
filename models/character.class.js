@@ -109,7 +109,7 @@ class Character extends MovableObject {
         this.moveRight();
         this.otherDirection = false;
         walking_sound.play();
-        console.log("charater x", this.x);
+        // console.log("charater x", this.x);
         console.log("charater y", this.y);
         // console.log('charater y', this.y )
         // this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
