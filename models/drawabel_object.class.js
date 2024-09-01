@@ -24,7 +24,8 @@ class DrawabelObject {
       this instanceof Endboss ||
       this instanceof ChickenSmall ||
       this instanceof Coin ||
-      this instanceof Bottle
+      this instanceof Bottle ||
+      this instanceof throwingBottles
     ) {
       ctx.beginPath();
       ctx.lineWidth = "5";

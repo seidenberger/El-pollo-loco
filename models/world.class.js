@@ -1,6 +1,6 @@
 class World {
   character = new Character();
-  throwingBottles = new throwingBottles();
+  throwing_bottles = new throwingBottles();
   level = level1;
   canvas;
   ctx;
@@ -23,6 +23,8 @@ class World {
     this.checkSlowCollisions();
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
+    //check
+    this.checkCollisionWithThrwObject();
   }
 
   setWorld() {
@@ -33,12 +35,15 @@ class World {
     this.statusbarBottle.world = this;
   }
 
+  // zu schnell oder zu langsam
   checkCollisions() {
     setInterval(() => {
       this.checkCollisionsEnemy();
       this.checkCollisionWithObject();
       this.checkCollisionWithbottle();
-    }, 100);
+      // check
+      this.checkCollisionWithThrwObject();
+    }, 1000 / 60);
   }
 
   checkSlowCollisions() {
@@ -52,6 +57,7 @@ class World {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
+          // doppelt
           if (enemy instanceof Chicken) {
             this.playDeathAnimation(enemy);
             enemiesToRemove.push(index);
@@ -100,13 +106,26 @@ class World {
       );
 
       this.throwabeleObjects.push(bottle);
-      debugger;
+      // debugger;
     }
-    this.level.enemies.forEach((enemy, index) => {
-      if (this.throwabeleObjects.isColliding(enemy)) {
-        debugger;
-        console.log("isColliding with bottle(enemy", enemy);
-      }
+  }
+
+  checkCollisionWithThrwObject() {
+    this.throwabeleObjects.forEach((bottle) => {
+      this.level.enemies.forEach((enemy, index) => {
+        if (bottle.isColliding(enemy)) {
+          console.log(
+            `Kollision! Bottle bei X: ${bottle.x}, Y: ${bottle.y} trifft Enemy bei X: ${enemy.x}, Y: ${enemy.y}, Index: ${index}`
+          );
+        }
+        // if (enemy instanceof Chicken) {
+        //   this.playDeathAnimation(enemy);
+        //   enemiesToRemove.push(index);
+        // } else if (enemy instanceof ChickenSmall) {
+        //   this.playDeathAnimation(enemy);
+        //   enemiesToRemove.push(index);
+        // }
+      });
     });
   }
 
@@ -124,6 +143,7 @@ class World {
         ? enemy.Images_chicken_small_dead[0]
         : enemy.Images_chicken_normal_dead[0];
     enemy.img = deathImage[deathImage];
+    // debugger;
 
     enemy.speed = 0;
     enemy.speedY = 0;

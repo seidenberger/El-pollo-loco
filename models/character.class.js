@@ -110,7 +110,7 @@ class Character extends MovableObject {
         this.otherDirection = false;
         walking_sound.play();
         // console.log("charater x", this.x);
-        console.log("charater y", this.y);
+        // console.log("charater y", this.y);
         // console.log('charater y', this.y )
         // this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
       }
@@ -119,13 +119,8 @@ class Character extends MovableObject {
         this.moveLeft();
         walking_sound.play();
         this.otherDirection = true;
-        console.log("charater x", this.x);
-        console.log("charater y", this.y);
-        // this.throwingBottle = new throwingBottles(
-        //   this.x,
-        //   this.y,
-        //   this.otherDirection
-        // );
+        // console.log("charater x", this.x);
+        // console.log("charater y", this.y);
       }
 
       if (this.world.keyboard.UP && !this.isAboveGround()) {

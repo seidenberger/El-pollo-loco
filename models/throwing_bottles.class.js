@@ -41,6 +41,9 @@ class throwingBottles extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.Images_salsa_bottle_rotation);
+      // console.log("throw this bottle sped y", this.speedY);
+      // console.log("throw this bottle y", this.y);
+      // console.log("throw this bottle x", this.x);
     }, 1000 / 60);
   }
 
@@ -51,29 +54,22 @@ class throwingBottles extends MovableObject {
     this.applayGravity();
     setInterval(() => {
       this.x += 15;
+      // console.log("Updated X:", this.x, "Updated Y:", this.y);
       // debugger;
-      console.log("throw", this.speedY);
+      // console.log("throw this bottle sped y", this.speedY);
+      // console.log("throw this bottle y", this.y);
+      // console.log("throw this bottle x", this.x);
 
       if (!this.isAboveGround()) {
         // debugger;
-        this.stopMovement();
+        // this.stopMovement();
         this.playAnimation(this.Images_salsa_bottle_splash);
       }
     }, 50);
     this.animate();
-    // setTimeout
-    // if (this.isAboveGround()) {
-    //   // this.speedY = 0;
-    //   // this.x = 0;
-    //   this.playAnimation(this.Images_salsa_bottle_splash);
-    // }
+    // console.log();
+    // debugger;
   }
-
-  // Ground() {
-  //   // Diese Methode muss überprüft werden, ob die Flasche den Boden erreicht hat
-  //   // Zum Beispiel:
-  //   return this.y + this.height < 190; // `groundLevel` sollte der Y-Wert des Bodens sein
-  // }
 
   stopMovement() {
     clearInterval(this.movementInterval); // Bewegung stoppen
