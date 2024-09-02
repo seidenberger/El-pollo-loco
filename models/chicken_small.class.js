@@ -20,6 +20,8 @@ class ChickenSmall extends MovableObject {
     left: 5,
     right: 5,
   };
+  // neu
+  isDead = false;
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
@@ -36,12 +38,23 @@ class ChickenSmall extends MovableObject {
       this.moveLeft();
     }, 1000 / 60);
     // chicken_sound.play();
+
     setInterval(() => {
-      this.playAnimation(this.Images_chicken_small);
+      if (this.isDead()) {
+        this.playAnimation(this.Images_chicken_small_dead);
+      } else {
+        this.playAnimation(this.Images_chicken_small);
+      }
     }, 250);
   }
 
+  // chickenSmallDead() {
+  //   this.playAnimation(this.Images_chicken_small_dead);
+  // }
   chickenSmallDead() {
-    this.playAnimation(this.Images_chicken_small_dead);
+    this.isDead = true; // Setze den Status auf tot
+    clearInterval(this.moveInterval); // Stoppe die Bewegungsanimation
+    clearInterval(this.animationInterval); // Stoppe die normale Animation
+    this.playAnimation(this.Images_chicken_small_dead); // Spiele Todesanimation
   }
 }

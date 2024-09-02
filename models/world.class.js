@@ -25,6 +25,7 @@ class World {
     this.checkCollisionWithbottle();
     //check
     this.checkCollisionWithThrwObject();
+    this.playDeathAnimation();
   }
 
   setWorld() {
@@ -57,10 +58,9 @@ class World {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
+          debugger;
           // doppelt
           if (enemy instanceof Chicken) {
-            this.playDeathAnimation(enemy);
-            enemiesToRemove.push(index);
           } else if (enemy instanceof ChickenSmall) {
             this.playDeathAnimation(enemy);
             enemiesToRemove.push(index);
@@ -117,14 +117,19 @@ class World {
           console.log(
             `Kollision! Bottle bei X: ${bottle.x}, Y: ${bottle.y} trifft Enemy bei X: ${enemy.x}, Y: ${enemy.y}, Index: ${index}`
           );
+          this.enemy.energy -= 20;
+          console.log("enemy energy", this.enemy.energy);
+          //   if (enemy instanceof Endboss) {
+          //     this.playDeathAnimation(enemy);
+          //     this.removeEnemy(index);
+          // } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+          //     this.playDeathAnimation(enemy);
+          //     this.removeEnemy(index);
+          // }
+
+          // Optional: Entferne die Flasche nach der Kollision
+          // this.removeBottle(bottle);
         }
-        // if (enemy instanceof Chicken) {
-        //   this.playDeathAnimation(enemy);
-        //   enemiesToRemove.push(index);
-        // } else if (enemy instanceof ChickenSmall) {
-        //   this.playDeathAnimation(enemy);
-        //   enemiesToRemove.push(index);
-        // }
       });
     });
   }

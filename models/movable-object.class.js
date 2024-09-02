@@ -86,9 +86,9 @@ class MovableObject extends DrawabelObject {
     );
   }
 
-  chickenDead() {
-    this.playAnimation(this.Images_chicken_small_dead);
-  }
+  // chickenDead() {
+  //   this.playAnimation(this.Images_chicken_small_dead);
+  // }
 
   hurtSound() {
     hurt_sound.play();
