@@ -27,7 +27,7 @@ class throwingBottles extends MovableObject {
     "img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
-  constructor(x, y) {
+  constructor(x, y, otherDirection) {
     super().loadImage(
       "img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png"
     );
@@ -36,6 +36,7 @@ class throwingBottles extends MovableObject {
     this.x = x;
     this.y = y;
     this.throw();
+    this.otherDirection = otherDirection;
   }
 
   animate() {

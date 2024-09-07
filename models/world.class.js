@@ -6,12 +6,15 @@ class World {
   ctx;
   keyboard;
   camera_x = -100;
+  deadChicken = false;
   statusbarHealth = new StatusbarHealth();
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
   throwabeleObjects = [];
+
   constructor(canvas, keyboard) {
+    // this.enemiesToRemove = [];
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -25,7 +28,7 @@ class World {
     this.checkCollisionWithbottle();
     //check
     this.checkCollisionWithThrwObject();
-    this.playDeathAnimation();
+    // this.playDeathAnimation();
   }
 
   setWorld() {
@@ -58,14 +61,16 @@ class World {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
-          debugger;
-          // doppelt
-          if (enemy instanceof Chicken) {
-          } else if (enemy instanceof ChickenSmall) {
-            this.playDeathAnimation(enemy);
+          console.log("chicken getroffen von oben");
+          if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
             enemiesToRemove.push(index);
+            this.level.enemies.splice(index, 1);
+            console.log("remove enemies ", enemiesToRemove);
           }
         } else {
+          console.log(
+            "Charakter hat einen Gegner getroffen und verliert Energie"
+          );
           this.character.hit();
           this.statusbarHealth.setPercentage(this.character.energy);
         }
@@ -117,18 +122,12 @@ class World {
           console.log(
             `Kollision! Bottle bei X: ${bottle.x}, Y: ${bottle.y} trifft Enemy bei X: ${enemy.x}, Y: ${enemy.y}, Index: ${index}`
           );
-          this.enemy.energy -= 20;
-          console.log("enemy energy", this.enemy.energy);
-          //   if (enemy instanceof Endboss) {
-          //     this.playDeathAnimation(enemy);
-          //     this.removeEnemy(index);
-          // } else if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-          //     this.playDeathAnimation(enemy);
-          //     this.removeEnemy(index);
-          // }
+          debugger;
+          enemy.isDead = true;
+          // console.log("enemy energy", this.enemy.energy);
 
-          // Optional: Entferne die Flasche nach der Kollision
-          // this.removeBottle(bottle);
+          enemy.playAnimation(enemy.Images_chicken_dead);
+          this.level.enemies.splice(index, 1);
         }
       });
     });
@@ -142,26 +141,10 @@ class World {
       });
   }
 
-  playDeathAnimation(enemy) {
-    const deathImage =
-      enemy instanceof ChickenSmall
-        ? enemy.Images_chicken_small_dead[0]
-        : enemy.Images_chicken_normal_dead[0];
-    enemy.img = deathImage[deathImage];
-    // debugger;
-
-    enemy.speed = 0;
-    enemy.speedY = 0;
-
-    setTimeout(() => {
-      this.removeEnemyFromLevel(enemy);
-    }, 1000);
-  }
-
   removeEnemyFromLevel(enemy) {
     const index = this.level.enemies.indexOf(enemy);
     if (index > -1) {
-      this.enemies.splice(index, 1);
+      this.level.enemies.splice(index, 1);
     }
   }
 
