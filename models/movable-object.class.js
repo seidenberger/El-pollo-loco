@@ -52,7 +52,6 @@ class MovableObject extends DrawabelObject {
 
   hit() {
     this.energy -= 5;
-    this.hurtSound();
     if (this.energy < 0) {
       this.energy = 0;
     } else {

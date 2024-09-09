@@ -12,9 +12,10 @@ class World {
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
   throwabeleObjects = [];
+  lastDeadChicken = 0;
 
   constructor(canvas, keyboard) {
-    // this.enemiesToRemove = [];
+    this.enemiesToRemove = [];
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -28,7 +29,7 @@ class World {
     this.checkCollisionWithbottle();
     //check
     this.checkCollisionWithThrwObject();
-    // this.playDeathAnimation();
+    // this.deadChickenPlay();
   }
 
   setWorld() {
@@ -47,6 +48,7 @@ class World {
       this.checkCollisionWithbottle();
       // check
       this.checkCollisionWithThrwObject();
+      this.checkSpliceChicken();
     }, 1000 / 60);
   }
 
@@ -57,26 +59,35 @@ class World {
   }
 
   checkCollisionsEnemy() {
-    const enemiesToRemove = [];
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         if (this.character.speedY < 0 && this.character.isAboveGround()) {
-          console.log("chicken getroffen von oben");
           if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-            enemiesToRemove.push(index);
-            this.level.enemies.splice(index, 1);
-            console.log("remove enemies ", enemiesToRemove);
+            if (!this.deadChicken) {
+              enemy.deadChicken = true;
+              enemy.speed = 0;
+              enemy.playAnimation(enemy.Images_chicken_dead);
+              this.lastDeadChicken = new Date().getTime();
+            } else {
+              this.enemiesToRemove.push(index);
+              console.log("Chicken getroffen und entfernt");
+            }
           }
         } else {
-          console.log(
-            "Charakter hat einen Gegner getroffen und verliert Energie"
-          );
-          this.character.hit();
-          this.statusbarHealth.setPercentage(this.character.energy);
+          if (
+            enemy instanceof Chicken ||
+            enemy instanceof ChickenSmall ||
+            enemy instanceof Endboss
+          ) {
+            if (!enemy.deadChicken) {
+              this.character.hit();
+              this.statusbarHealth.setPercentage(this.character.energy);
+            }
+          }
         }
       }
     });
-    this.removeEnemies(enemiesToRemove);
+    this.removeEnemies(); // Entferne Gegner aus dem Array, die besiegt wurden
   }
 
   checkCollisionWithObject() {
@@ -116,29 +127,55 @@ class World {
   }
 
   checkCollisionWithThrwObject() {
+    let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
     this.throwabeleObjects.forEach((bottle) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
-          console.log(
-            `Kollision! Bottle bei X: ${bottle.x}, Y: ${bottle.y} trifft Enemy bei X: ${enemy.x}, Y: ${enemy.y}, Index: ${index}`
-          );
-          debugger;
-          enemy.isDead = true;
-          // console.log("enemy energy", this.enemy.energy);
+          if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+            this.enemiesToRemove.push(index);
+          } else if (enemy instanceof Endboss) {
+            endboss.hit();
 
-          enemy.playAnimation(enemy.Images_chicken_dead);
-          this.level.enemies.splice(index, 1);
+            console.log("endboss energy", endboss.energy);
+          }
         }
       });
     });
+    this.removeEnemies();
   }
 
-  removeEnemies(enemiesToRemove) {
-    enemiesToRemove
+  // checkSpliceChicken() {
+  //   let timepassed = new Date().getTime() - this.lastDeadChicken;
+  //   timepassed = timepassed / 1000;
+  //   return timepassed < 1;
+  // }
+
+  checkSpliceChicken() {
+    // Durchlaufe alle Feinde und entferne die, die seit mehr als 2 Sekunden tot sind
+    this.level.enemies.forEach((enemy, index) => {
+      if (enemy.deadChicken) {
+        let timePassed = new Date().getTime() - enemy.lastDeadChicken;
+        timePassed = timePassed / 1000; // Umrechnung in Sekunden
+
+        // Entferne das Huhn, wenn mehr als 2 Sekunden vergangen sind
+        if (timePassed >= 2) {
+          this.enemiesToRemove.push(index); // Markiere das Huhn zur Entfernung
+          console.log("Chicken wurde nach 2 Sekunden entfernt.");
+        }
+      }
+    });
+
+    // Entferne die markierten Hühner aus dem Array
+    this.removeEnemies();
+  }
+
+  removeEnemies() {
+    this.enemiesToRemove
       .sort((a, b) => b - a)
       .forEach((index) => {
         this.chickenDead(index);
       });
+    this.enemiesToRemove = [];
   }
 
   removeEnemyFromLevel(enemy) {
@@ -149,7 +186,6 @@ class World {
   }
 
   chickenDead(index) {
-    console.log("Chicken is dead:", this.level.enemies[index]);
     this.level.enemies.splice(index, 1);
   }
 

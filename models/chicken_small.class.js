@@ -19,7 +19,7 @@ class ChickenSmall extends MovableObject {
     right: 5,
   };
   // neu
-  isDead = false;
+  // isDead = false;
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
@@ -40,59 +40,15 @@ class ChickenSmall extends MovableObject {
 
     setInterval(() => {
       if (this.deadChicken) {
-        this.playAnimation(this.Images_chicken_small_dead);
+        // this.playAnimation(this.Images_chicken_dead);
+        this.chickenSmallDead();
       } else {
         this.playAnimation(this.Images_chicken_small);
       }
     }, 250);
   }
 
-  // chickenSmallDead() {
-  //   this.playAnimation(this.Images_chicken_small_dead);
-  // }
   chickenSmallDead() {
-    this.isDead = true; // Setze den Status auf tot
-    clearInterval(this.moveInterval); // Stoppe die Bewegungsanimation
-    clearInterval(this.animationInterval); // Stoppe die normale Animation
-    this.playAnimation(this.Images_chicken_small_dead); // Spiele Todesanimation
+    // this.speed = 0;
   }
 }
-
-// class ChickenSmall extends MovableObject {
-//   constructor() {
-//       super();
-//       this.dead = false; // Standardmäßig lebt das Huhn
-//       this.animate();
-//   }
-
-//   isDead() {
-//       return this.dead;
-//   }
-
-//   die() {
-//       this.deadChicken = true;
-//       setTimeout(() => {
-//           this.remove(); // Entferne das Huhn nach einer bestimmten Zeit oder setze es in einen inaktiven Zustand
-//       }, 1000); // Das Huhn bleibt für 1 Sekunde sichtbar bevor es entfernt wird
-//   }
-
-//   animate() {
-//       this.moveInterval = setInterval(() => {
-//           this.moveLeft();
-//       }, 1000 / 60);
-
-//       this.animationInterval = setInterval(() => {
-//           if (this.isDead()) {
-//               this.playAnimation(this.Images_chicken_small_dead);
-//           } else {
-//               this.playAnimation(this.Images_chicken_small);
-//           }
-//       }, 250);
-//   }
-
-//   hit() {
-//       if (!this.isDead()) {
-//           this.die(); // Töte das Huhn nur, wenn es noch nicht tot ist
-//       }
-//   }
-// }

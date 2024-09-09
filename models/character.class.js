@@ -93,13 +93,6 @@ class Character extends MovableObject {
 
     this.idleStartTime = null;
     this.isIdleState = false;
-    // this.throwingBottle = new throwingBottles(
-    //   this.x,
-    //   this.y,
-    //   this.otherDirection
-    // );
-
-    // this.setupEventListeners();
   }
 
   animate() {
@@ -134,6 +127,7 @@ class Character extends MovableObject {
         this.playAnimation(this.Images_Dead);
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
+        this.hurtSound();
       } else if (this.isAboveGround()) {
         this.playAnimation(this.Images_Jamping);
       } else if (
