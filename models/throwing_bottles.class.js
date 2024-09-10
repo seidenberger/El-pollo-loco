@@ -53,27 +53,11 @@ class throwingBottles extends MovableObject {
     this.y;
     this.speedY = 20;
     this.applayGravity();
+
     setInterval(() => {
       this.x += 15;
-      // console.log("Updated X:", this.x, "Updated Y:", this.y);
-      // debugger;
-      // console.log("throw this bottle sped y", this.speedY);
-      // console.log("throw this bottle y", this.y);
-      // console.log("throw this bottle x", this.x);
-
-      if (!this.isAboveGround()) {
-        // debugger;
-        // this.stopMovement();
-        this.playAnimation(this.Images_salsa_bottle_splash);
-      }
     }, 50);
-    this.animate();
-    // console.log();
-    // debugger;
-  }
 
-  stopMovement() {
-    clearInterval(this.movementInterval); // Bewegung stoppen
-    clearInterval(this.animationInterval); // Rotation stoppen
+    this.animate();
   }
 }

@@ -87,7 +87,6 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Hurt);
     this.loadImages(this.Images_Idle);
     this.loadImages(this.Images_Long_Idle);
-    // this.applayGravitty();
     this.applayGravity();
     this.animate();
 
@@ -137,8 +136,6 @@ class Character extends MovableObject {
       ) {
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
-        // } else if (this.world.keyboard.SPACE || this.world.keyboard.ENTER) {
-        //   this.throwingBottle.throwingBottles();
       } else if (this.isIdle()) {
         this.playAnimation(this.Images_Idle);
       } else {

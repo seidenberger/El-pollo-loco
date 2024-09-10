@@ -1,8 +1,6 @@
 class MovableObject extends DrawabelObject {
   x = 50;
   y = 130;
-
-  // speed = 0.05;
   otherDirection = false;
   speedY = 0;
   acceleration = 4;
@@ -10,7 +8,7 @@ class MovableObject extends DrawabelObject {
   lastHit = 0;
   lastMove = 0;
   energy = 100;
-  // bottle = 0;
+
   bottle = 50;
   coin = 0;
 
@@ -22,7 +20,6 @@ class MovableObject extends DrawabelObject {
   };
   endpiont = 4000;
 
-  // applayGravitty() {
   applayGravity() {
     // debugger;
     setInterval(() => {
@@ -84,10 +81,6 @@ class MovableObject extends DrawabelObject {
       this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     );
   }
-
-  // chickenDead() {
-  //   this.playAnimation(this.Images_chicken_small_dead);
-  // }
 
   hurtSound() {
     hurt_sound.play();
