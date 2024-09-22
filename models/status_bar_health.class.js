@@ -9,7 +9,7 @@ class StatusbarHealth extends DrawabelObject {
   ];
 
   // für was brauch ich  ?
-  percentage = 0;
+  // percentage = 0;
 
   constructor() {
     super();

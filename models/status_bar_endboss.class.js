@@ -15,29 +15,32 @@ class StatusbarEndboss extends MovableObject {
     "img/7_statusbars/2_statusbar_endboss/green/green100.png",
   ];
 
+  // constructor(endboss) {
   constructor() {
     super();
     this.loadImages(this.Images_Statusbar_Endboss);
-    this.x = 510;
     this.y = 5;
-
     this.height = 40;
     this.width = 200;
-    // this.setPercentage(100);
+    this.setPercentage(100);
+  }
 
-    this.setPercentage(80);
+  updatePosition(x) {
+    this.x = x;
   }
 
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.Images_Statusbar_Endboss[this.resolveImageIndex()];
     this.img = this.imageCache[path];
+    console.log("enbdbos y ");
   }
 
   resolveImageIndex() {
     // console.log('Collision with Caracter', this.character.energy)
 
     if (this.percentage == 100) {
+      5;
       return 5;
     } else if (this.percentage > 80) {
       return 4;

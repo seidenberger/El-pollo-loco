@@ -4,6 +4,7 @@ class throwingBottles extends MovableObject {
   speedY = 0;
   x = 0;
   y = 0;
+  isBroken = false;
   offset = {
     top: 10,
     bottom: 5,
@@ -35,8 +36,8 @@ class throwingBottles extends MovableObject {
     this.loadImages(this.Images_salsa_bottle_splash);
     this.x = x;
     this.y = y;
-    this.throw();
     this.otherDirection = otherDirection;
+    this.throw();
   }
 
   animate() {
@@ -49,13 +50,34 @@ class throwingBottles extends MovableObject {
   }
 
   throw() {
-    this.x;
-    this.y;
-    this.speedY = 20;
-    this.applayGravity();
+    // neu
+    if (this.otherDirection !== false) {
+      //otherDirection truh dann mache wurf -
+
+      this.speedY = -10;
+      this.x -= 20;
+      this.applayGravity();
+    } else {
+      this.x; //+ 20;
+      // this.y; //+ 20;
+      this.speedY = 20;
+      console.log("throw rechts x", this.x, "rechts speed y", this.speedY);
+      this.applayGravity();
+    }
+
+    // this.x;
+    // this.y;
+    // this.speedY = 20;
+    // this.applayGravity();
 
     setInterval(() => {
-      this.x += 15;
+      if (this.isBroken) {
+        this.x += 0;
+        this.y += 0;
+        this.speedY += 0;
+      } else {
+        this.x += 15;
+      }
     }, 50);
 
     this.animate();

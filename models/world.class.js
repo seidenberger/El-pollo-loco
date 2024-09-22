@@ -19,7 +19,8 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-
+    // this.level = level; // Das Level, das den Endboss enthält
+    // this.endboss = this.level.endboss;
     this.draw();
     this.setWorld();
     this.checkCollisions();
@@ -28,6 +29,7 @@ class World {
     this.checkCollisionWithbottle();
 
     this.checkCollisionWithThrwObject();
+    this.checkOtherDirectionThrowing();
   }
 
   setWorld() {
@@ -36,6 +38,18 @@ class World {
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
     this.statusbarBottle.world = this;
+    // this.endboss = enemy instanceof Endboss;
+    // this.statusBarEndboss = new StatusbarEndboss(this.endboss);
+  }
+
+  updatStatusEndboss() {
+    // if (enemy instanceof Endboss) {
+    let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
+    if (this.statusbarEndboss && endboss) {
+      let x = endboss.x;
+      this.statusbarEndboss.updatePosition(x);
+      // }
+    }
   }
 
   checkCollisions() {
@@ -46,14 +60,18 @@ class World {
 
       this.checkCollisionWithThrwObject();
       this.checkSpliceChicken();
+      this.checkOtherDirectionThrowing();
+      this.updatStatusEndboss();
     }, 1000 / 60);
   }
 
   checkSlowCollisions() {
     setInterval(() => {
       this.checkThrowObjects();
-    }, 1000);
+    }, 1000 / 10);
   }
+
+  checkOtherDirectionThrowing() {}
 
   checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
@@ -115,7 +133,10 @@ class World {
     if (this.keyboard.SPACE || this.keyboard.ENTER) {
       let bottle = new throwingBottles(
         this.character.x + 50,
-        this.character.y + 50
+        this.character.y + 50,
+        // this.character.x,
+        // this.character.y,
+        this.character.otherDirection
       );
 
       this.throwabeleObjects.push(bottle);
@@ -128,13 +149,19 @@ class World {
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
-          if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+          console.log("Kollision erkannt mit:", enemy);
+          if (
+            (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+            !enemy.enemyIsDead
+          ) {
+            enemy.enemyIsDeadsDead = true;
             this.enemiesToRemove.push(index);
             this.handleBottleCollision(bottle, bottleIndex);
           } else if (enemy instanceof Endboss) {
             endboss.hit();
             this.handleBottleCollision(bottle, bottleIndex);
             console.log("endboss energy", endboss.energy);
+            this.statusbarHealth.setPercentage(endboss.energy);
           }
         }
       });
@@ -146,12 +173,11 @@ class World {
   }
 
   handleBottleCollision(bottle, bottleIndex) {
+    bottle.isBroken = true;
     bottle.playAnimation(bottle.Images_salsa_bottle_splash);
-    this.throwing_bottles.speedY = 0;
-    // this.removeEnemies();
     setTimeout(() => {
       this.throwabeleObjects.splice(bottleIndex, 1);
-    }, 1000 / 60);
+    }, 100);
   }
 
   checkSpliceChicken() {
@@ -197,7 +223,9 @@ class World {
     this.addObjectsToMap(this.level.backgroundObject);
     this.addObjectsToMap(this.level.clouds);
     this.addToMap(this.character);
+    this.addToMap(this.statusbarEndboss);
     this.addObjectsToMap(this.level.enemies);
+
     this.addObjectsToMap(this.level.bottle);
     this.addObjectsToMap(this.level.coin);
     this.addObjectsToMap(this.throwabeleObjects);
@@ -205,7 +233,7 @@ class World {
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
-    this.addToMap(this.statusbarEndboss);
+
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

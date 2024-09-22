@@ -36,12 +36,12 @@ class ChickenSmall extends MovableObject {
 
     setInterval(() => {
       if (this.deadChicken) {
-        this.chickenSmallDead();
+        // this.chickenSmallDead();
       } else {
         this.playAnimation(this.Images_chicken_small);
       }
     }, 250);
   }
 
-  chickenSmallDead() {}
+  // chickenSmallDead() {}
 }

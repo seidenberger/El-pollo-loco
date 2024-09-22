@@ -11,7 +11,7 @@ class MovableObject extends DrawabelObject {
 
   bottle = 50;
   coin = 0;
-
+  enemyIsDead = false;
   offset = {
     top: 0,
     bottom: 0,
@@ -20,12 +20,26 @@ class MovableObject extends DrawabelObject {
   };
   endpiont = 4000;
 
+  // neu
+  // applayGravityLeft() {
+  //   setInterval(() => {
+  //     if (this.isAboveGround() || this.speedY > 0) {
+  //       if (!this.isBroken) {
+  //         this.y += this.speedY;
+  //         this.speedY += this.acceleration;
+  //       }
+  //     }
+  //   }, 1000 / 25);
+  // }
+
   applayGravity() {
     // debugger;
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
-        this.y -= this.speedY;
-        this.speedY -= this.acceleration;
+        if (!this.isBroken) {
+          this.y -= this.speedY;
+          this.speedY -= this.acceleration;
+        }
       }
     }, 1000 / 25);
   }

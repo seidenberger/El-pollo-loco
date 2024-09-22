@@ -65,17 +65,19 @@ class Endboss extends MovableObject {
 
   animate() {
     //   angri_chicken_sound.play();
+
     // setInterval(() => {
     //   this.moveLeft();
     // }, 1000 / 60);
 
     setInterval(() => {
       if (this.isDead()) {
+        // this.currentImage = 0;
         this.playAnimation(this.Images_endboss_dead);
+        // if (this.currentImage == 4);
         // this.playAnimation(this.Images_endboss_walk);
       } else {
         this.playAnimation(this.Images_endboss_walk);
-        // this.playAnimation(this.Images_endboss_dead);
       }
     }, 1000);
   }
