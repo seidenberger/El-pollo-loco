@@ -50,33 +50,21 @@ class throwingBottles extends MovableObject {
   }
 
   throw() {
-    // neu
-    if (this.otherDirection !== false) {
-      //otherDirection truh dann mache wurf -
-
-      this.speedY = -10;
-      this.x -= 20;
-      this.applayGravity();
-    } else {
-      this.x; //+ 20;
-      // this.y; //+ 20;
-      this.speedY = 20;
-      console.log("throw rechts x", this.x, "rechts speed y", this.speedY);
-      this.applayGravity();
-    }
-
-    // this.x;
-    // this.y;
-    // this.speedY = 20;
-    // this.applayGravity();
+    this.otherDirection !== false;
+    this.x;
+    this.speedY = 20;
+    this.applayGravity();
 
     setInterval(() => {
       if (this.isBroken) {
         this.x += 0;
         this.y += 0;
         this.speedY += 0;
-      } else {
+      } else if (this.otherDirection == false) {
         this.x += 15;
+      } else {
+        this.x - 10;
+        this.x -= 15;
       }
     }, 50);
 

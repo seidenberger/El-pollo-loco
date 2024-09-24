@@ -134,13 +134,10 @@ class World {
       let bottle = new throwingBottles(
         this.character.x + 50,
         this.character.y + 50,
-        // this.character.x,
-        // this.character.y,
         this.character.otherDirection
       );
 
       this.throwabeleObjects.push(bottle);
-      // debugger;
     }
   }
 
