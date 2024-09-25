@@ -106,7 +106,6 @@ class World {
   }
 
   checkCollisionWithObject() {
-    // setInterval(() => {
     this.level.coin.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
         this.character.coin += 10;
@@ -114,11 +113,9 @@ class World {
         this.level.coin.splice(index, 1);
       }
     });
-    // }, 100);
   }
 
   checkCollisionWithbottle() {
-    // setInterval(() => {
     this.level.bottle.forEach((bottle, index) => {
       if (this.character.isColliding(bottle)) {
         this.character.bottle += 20;
@@ -126,7 +123,6 @@ class World {
         this.level.bottle.splice(index, 1);
       }
     });
-    // }, 100);
   }
 
   checkThrowObjects() {
@@ -158,7 +154,7 @@ class World {
             endboss.hit();
             this.handleBottleCollision(bottle, bottleIndex);
             console.log("endboss energy", endboss.energy);
-            this.statusbarHealth.setPercentage(endboss.energy);
+            this.statusbarEndboss.setPercentage(endboss.energy);
           }
         }
       });

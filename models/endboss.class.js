@@ -76,6 +76,7 @@ class Endboss extends MovableObject {
         this.playAnimation(this.Images_endboss_dead);
         // if (this.currentImage == 4);
         // this.playAnimation(this.Images_endboss_walk);
+        clearAllIntervals();
       } else {
         this.playAnimation(this.Images_endboss_walk);
       }

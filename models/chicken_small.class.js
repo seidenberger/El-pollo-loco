@@ -32,6 +32,7 @@ class ChickenSmall extends MovableObject {
   animate() {
     setInterval(() => {
       this.moveLeft();
+      console.log("position enemy", this.x);
     }, 1000 / 60);
 
     setInterval(() => {

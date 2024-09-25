@@ -2,6 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let changeAudio = false; //hat der ton wenn gestartet wird ist er aus
+let intervallIds = [];
 
 /**
  * Initializes the canvas and world for the application.
@@ -13,11 +14,13 @@ let changeAudio = false; //hat der ton wenn gestartet wird ist er aus
 
 // function init() {
 function initLevel() {
+  initLevelOne();
   document.getElementById("canvas").classList.remove("hidden");
   document.getElementById("overlay").classList.remove("hidden");
   document.getElementById("start_display").classList.add("hidden");
   canvas = document.getElementById("canvas");
   world = new World(canvas, keyboard);
+
   enableMute();
 
   console.log("my character is", world.character);
@@ -38,6 +41,14 @@ function changeSilently() {
     audioOn.classList.remove("hidden");
     disableMute();
   }
+}
+
+// function stopGame() {
+//   clearInterval(interval);
+// }
+
+function clearAllIntervals() {
+  for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 window.addEventListener("keydown", (event) => {

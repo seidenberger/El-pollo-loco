@@ -3,7 +3,7 @@ let jump_sound = new Audio("./audio/jump.mp3");
 let walking_sound = new Audio("audio/walking.mp3");
 let sleep_sound = new Audio("./audio/sleep.mp3");
 let throw_sound = new Audio("./audio/throw.mp3");
-
+let backgroun_Musik = new Audio("./audio/background.mp3");
 let angri_chicken_sound = new Audio("./audio/angri_chicken.mp3");
 let chicken_sound = new Audio("./audio/chicken.mp3");
 
@@ -15,6 +15,7 @@ function enableMute() {
   throw_sound.muted = true;
   angri_chicken_sound.muted = true;
   chicken_sound.muted = true;
+  backgroun_Musik.muted = true;
 }
 
 function disableMute() {
@@ -25,4 +26,5 @@ function disableMute() {
   throw_sound.muted = false;
   angri_chicken_sound.muted = false;
   chicken_sound.muted = false;
+  backgroun_Musik.muted = false;
 }

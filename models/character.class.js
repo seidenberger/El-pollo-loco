@@ -96,6 +96,7 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
+      // intervallIds.push(interval);
       walking_sound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
         this.moveRight();
@@ -124,6 +125,7 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.isDead()) {
         this.playAnimation(this.Images_Dead);
+        clearAllIntervals();
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
         this.hurtSound();
