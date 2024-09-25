@@ -8,7 +8,7 @@ class Character extends MovableObject {
   longIdle = true;
   world;
   longIdleThreshold = 5000;
-
+  deadAnimationStarted = false;
   offset = {
     top: 100,
     bottom: 10,
@@ -124,8 +124,18 @@ class Character extends MovableObject {
 
     setInterval(() => {
       if (this.isDead()) {
-        this.playAnimation(this.Images_Dead);
-        clearAllIntervals();
+        if (!this.deadAnimationStarted) {
+          this.currentImage = 0;
+          this.deadAnimationStarted = true;
+        }
+        if (this.currentImage < this.Images_Dead) {
+          this.playAnimation(this.Images_Dead);
+          this.currentImage++;
+        } else {
+          clearAllIntervals();
+        }
+        // this.playAnimation(this.Images_Dead);
+        // clearAllIntervals();
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
         this.hurtSound();

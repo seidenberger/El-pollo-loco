@@ -42,6 +42,12 @@ class World {
     // this.statusBarEndboss = new StatusbarEndboss(this.endboss);
   }
 
+  alertEndboss() {
+    if (this.character.x === 3200) {
+      console.log("endboss startet");
+    }
+  }
+
   updatStatusEndboss() {
     // if (enemy instanceof Endboss) {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
@@ -62,6 +68,7 @@ class World {
       this.checkSpliceChicken();
       this.checkOtherDirectionThrowing();
       this.updatStatusEndboss();
+      this.alertEndboss();
     }, 1000 / 60);
   }
 
