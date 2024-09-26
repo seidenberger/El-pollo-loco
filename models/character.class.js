@@ -128,7 +128,7 @@ class Character extends MovableObject {
           this.currentImage = 0;
           this.deadAnimationStarted = true;
         }
-        if (this.currentImage < this.Images_Dead) {
+        if (this.currentImage < this.Images_Dead.length) {
           this.playAnimation(this.Images_Dead);
           this.currentImage++;
         } else {
