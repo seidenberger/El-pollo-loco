@@ -124,18 +124,7 @@ class Character extends MovableObject {
 
     setInterval(() => {
       if (this.isDead()) {
-        if (!this.deadAnimationStarted) {
-          this.currentImage = 0;
-          this.deadAnimationStarted = true;
-        }
-        if (this.currentImage < this.Images_Dead.length) {
-          this.playAnimation(this.Images_Dead);
-          this.currentImage++;
-        } else {
-          clearAllIntervals();
-        }
-        // this.playAnimation(this.Images_Dead);
-        // clearAllIntervals();
+        this.deadAnimatio();
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
         this.hurtSound();
@@ -156,6 +145,19 @@ class Character extends MovableObject {
         sleep_sound.pause();
       }
     }, 60);
+  }
+
+  deadAnimatio() {
+    if (!this.deadAnimationStarted) {
+      this.currentImage = 0;
+      this.deadAnimationStarted = true;
+    }
+    if (this.currentImage < this.Images_Dead.length) {
+      this.playAnimation(this.Images_Dead);
+      this.currentImage++;
+    } else {
+      clearAllIntervals();
+    }
   }
 
   jump() {

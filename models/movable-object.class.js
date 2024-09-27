@@ -9,7 +9,7 @@ class MovableObject extends DrawabelObject {
   lastMove = 0;
   energy = 100;
 
-  bottle = 50;
+  bottle = 0;
   coin = 0;
   enemyIsDead = false;
   offset = {

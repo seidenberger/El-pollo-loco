@@ -124,8 +124,11 @@ class World {
 
   checkCollisionWithbottle() {
     this.level.bottle.forEach((bottle, index) => {
-      if (this.character.isColliding(bottle)) {
+      if (this.character.bottle < 100 && this.character.isColliding(bottle)) {
         this.character.bottle += 20;
+        if (this.character.bottle > 100) {
+          this.character.bottle = 100;
+        }
         this.statusbarBottle.setPercentagebottle(this.character.bottle);
         this.level.bottle.splice(index, 1);
       }
@@ -134,13 +137,20 @@ class World {
 
   checkThrowObjects() {
     if (this.keyboard.SPACE || this.keyboard.ENTER) {
-      let bottle = new throwingBottles(
-        this.character.x + 50,
-        this.character.y + 50,
-        this.character.otherDirection
-      );
+      if (this.character.bottle > 0) {
+        this.character.bottle -= 20;
+        if (this.character.bottle < 0) {
+          this.character.bottle = 0;
+        }
+        this.statusbarBottle.setPercentagebottle(this.character.bottle);
+        let bottle = new throwingBottles(
+          this.character.x + 50,
+          this.character.y + 50,
+          this.character.otherDirection
+        );
 
-      this.throwabeleObjects.push(bottle);
+        this.throwabeleObjects.push(bottle);
+      }
     }
   }
 

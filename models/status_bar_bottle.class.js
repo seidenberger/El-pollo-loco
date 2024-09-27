@@ -22,6 +22,7 @@ class StatusbarBottle extends DrawabelObject {
     this.y = 35;
     this.height = 40;
     this.width = 200;
+    this.setPercentagebottle(this.percentage);
     // this.setPercentage(100);
     // debugger
   }

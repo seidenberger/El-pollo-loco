@@ -3,6 +3,8 @@ class Endboss extends MovableObject {
   width = 200;
   y = 140;
   deadAnimationStarted = false;
+  alertAnimatioStarted = true;
+  alertTime = 0;
   offset = {
     top: 50,
     bottom: 20,
@@ -65,28 +67,32 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.isDead()) {
-        if (!this.deadAnimationStarted) {
-          this.currentImage = 0;
-          this.deadAnimationStarted = true;
-        }
-        if (this.currentImage < this.Images_endboss_dead.length) {
-          this.playAnimation(this.Images_endboss_dead);
-          this.currentImage++;
-        } else {
-          clearAllIntervals();
-        }
+        this.deadAnimation();
       } else if (this.isHurt()) {
         angri_chicken_sound.play();
         this.playAnimation(this.Images_endboss_hurt);
       } else if (this.x < world.character.x + 350) {
-        angri_chicken_sound.play();
-        this.moveLeft();
-        this.playAnimation(this.Images_endboss_attack);
-        this.speed = 4;
+        this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
-        angri_chicken_sound.play();
-        this.playAnimation(this.Images_endboss_alert);
-        this.speed = 0;
+        // neu
+        if (!this.alertAnimatioStarted) {
+          this.alertTime = new Date().getTime();
+          this.alertAnimatioStarted = true;
+        }
+        if (this.isAlert()) {
+          angri_chicken_sound.play();
+          this.playAnimation(this.Images_endboss_alert);
+          this.speed = 0;
+        } else {
+          this.enbossAttack();
+        }
+        // angri_chicken_sound.play();
+        // this.playAnimation(this.Images_endboss_alert);
+        // this.speed = 0;
+
+        // setTimeout(() => {
+        //   this.enbossAttack();
+        // }, 500);
       } else {
         this.playAnimation(this.Images_endboss_walk);
         this.moveLeft();
@@ -94,4 +100,36 @@ class Endboss extends MovableObject {
       }
     }, 1000 / 10);
   }
+
+  deadAnimation() {
+    if (!this.deadAnimationStarted) {
+      this.currentImage = 0;
+      this.deadAnimationStarted = true;
+    }
+    if (this.currentImage < this.Images_endboss_dead.length) {
+      this.playAnimation(this.Images_endboss_dead);
+      this.currentImage++;
+    } else {
+      clearAllIntervals();
+    }
+  }
+
+  enbossAttack() {
+    angri_chicken_sound.play();
+    this.playAnimation(this.Images_endboss_attack);
+    this.moveLeft();
+    this.speed = 4;
+  }
+
+  isAlert() {
+    let timepassed = new Date().getTime() - this.alertTime;
+    timepassed = timepassed / 1000;
+    return timepassed < 2;
+  }
+  // isIdle() {
+  //   let timepassed = new Date().getTime() - this.currentTimeWalking;
+  //   timepassed = timepassed / 1000;
+
+  //   return timepassed < 3;
+  // }
 }
