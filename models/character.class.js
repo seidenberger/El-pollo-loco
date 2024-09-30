@@ -116,7 +116,7 @@ class Character extends MovableObject {
         // console.log("charater y", this.y);
       }
 
-      if (this.world.keyboard.UP && !this.isAboveGround()) {
+      if (this.world.keyboard.W && !this.isAboveGround()) {
         this.jump();
       }
       this.world.camera_x = -this.x + 150;
@@ -132,8 +132,8 @@ class Character extends MovableObject {
         this.playAnimation(this.Images_Jamping);
       } else if (
         this.world.keyboard.D ||
-        this.world.keyboard.A ||
-        this.world.keyboard.W
+        this.world.keyboard.A
+        // this.world.keyboard.W
       ) {
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();

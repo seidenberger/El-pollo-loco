@@ -136,7 +136,7 @@ class World {
   }
 
   checkThrowObjects() {
-    if (this.keyboard.SPACE || this.keyboard.ENTER) {
+    if (this.keyboard.SPACE) {
       if (this.character.bottle > 0) {
         this.character.bottle -= 20;
         if (this.character.bottle < 0) {
@@ -198,7 +198,7 @@ class World {
 
         if (timePassed >= 2) {
           this.enemiesToRemove.push(index);
-          console.log("Chicken wurde nach 2 Sekunden entfernt.");
+          // console.log("Chicken wurde nach 2 Sekunden entfernt.");
         }
       }
     });

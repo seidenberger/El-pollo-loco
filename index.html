@@ -6,11 +6,9 @@
     <title>El pollo loco</title>
      <style>
 @font-face {
-    font-family: 'ga maamli';
-  font-style: normal;
-  font-weight: 400;
-  src: url('./fonts/ga-maamli-v1-latin_latin-ext-regular.woff2') format('woff2'); 
-}
+  font-family: 'zabars';
+  src: url('fonts/zabars.ttf') format('truetype');
+      }  
      </style>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png">
@@ -43,13 +41,14 @@
 
 <body >
     <head>
-        <button class="top-right-box"> [  ] </button>
+        <!-- <button class="top-right-box"> [  ] </button> -->
         <h1 class="gameName" >El pollo loco</h1>
     </head>
 
     <section id="start_display" class="container">
         <img class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
-            <div onclick="initLevel()" class="buttons_start">
+            <div id="play" onclick="initLevel()" class="buttons_start">
+            <!-- <div id="play" onclick="initLevel()" class="buttons_start">Press play for start</div> -->
                 <img class="img " src="./img/10_steering/buttons_symbol/play.png" alt=""></button>
             </div>
     </section>
@@ -67,21 +66,23 @@
                 </div>
             </div>
 
-            <!-- <section class="d_flex play_button">
+            <section class="button_div ">
                 <div class="d_flex">
-                    <div><img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
-                    <div><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
+                    <div id="btnLeft"><img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
+                    <div id="btnRight"><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
                 
                 </div>
 
                 <div class="d_flex">
-                    <div><img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
-                    <div><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
+                    <div id="btnUp"><img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
+                    <div id="btnThrowing"><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
                 </div>
-            </section> -->
+            </section> 
         </div>
 
     </section>
+    <div>press enter for paly //  A for left  // D for right  // W for jump //  space for throwing</div>
+    <!-- <div class="hidden">Turn your Device to play</div> -->
 
 
 </body>

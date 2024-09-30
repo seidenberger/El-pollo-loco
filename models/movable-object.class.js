@@ -20,20 +20,7 @@ class MovableObject extends DrawabelObject {
   };
   endpiont = 4000;
 
-  // neu
-  // applayGravityLeft() {
-  //   setInterval(() => {
-  //     if (this.isAboveGround() || this.speedY > 0) {
-  //       if (!this.isBroken) {
-  //         this.y += this.speedY;
-  //         this.speedY += this.acceleration;
-  //       }
-  //     }
-  //   }, 1000 / 25);
-  // }
-
   applayGravity() {
-    // debugger;
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
         if (!this.isBroken) {

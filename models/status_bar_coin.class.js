@@ -23,8 +23,6 @@ class StatusbarCoin extends DrawabelObject {
 
     this.height = 40;
     this.width = 200;
-
-    this.setPercentageCoin(this.percentage);
   }
 
   setPercentageCoin(percentage) {

@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let changeAudio = false; //hat der ton wenn gestartet wird ist er aus
 let intervallIds = [];
+let gameStarted = false;
 
 /**
  * Initializes the canvas and world for the application.
@@ -14,19 +15,28 @@ let intervallIds = [];
 
 // function init() {
 function initLevel() {
-  initLevelOne();
-  document.getElementById("canvas").classList.remove("hidden");
-  document.getElementById("overlay").classList.remove("hidden");
-  document.getElementById("start_display").classList.add("hidden");
-  canvas = document.getElementById("canvas");
-  world = new World(canvas, keyboard);
-
-  enableMute();
-
-  console.log("my character is", world.character);
-  console.log("my world is", world);
-  console.log(world.level.enemies);
+  if (!gameStarted) {
+    gameStarted = true;
+    initLevelOne();
+    document.getElementById("canvas").classList.remove("hidden");
+    // document.getElementById("containerCanvas").classList.remove("hidden");
+    document.getElementById("overlay").classList.remove("hidden");
+    document.getElementById("start_display").classList.add("hidden");
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard);
+    enableMute();
+    fingerButtonEvent();
+    console.log("my character is", world.character);
+    console.log("my world is", world);
+    console.log(world.level.enemies);
+  }
 }
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" && !gameStarted) {
+    initLevel();
+  }
+});
 
 function changeSilently() {
   let audioOff = document.getElementById("audioOff");
@@ -43,12 +53,59 @@ function changeSilently() {
   }
 }
 
-// function stopGame() {
-//   clearInterval(interval);
-// }
-
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
+  gameStarted = false;
+  document.getElementById("canvas").classList.add("hidden");
+  document.getElementById("overlay").classList.add("hidden");
+
+  document.getElementById("start_display").classList.remove("hidden");
+  // setTimeout((world.character.energy = 0) => {
+  //   if(world.character.energy = 0){
+  //     img/9_intro_outro_screens/game_over/oh no you lost!.png
+  //   }
+  // }, 1000);
+}
+
+function fingerButtonEvent() {
+  document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.A = true;
+  });
+
+  document.getElementById("btnLeft").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.A = false;
+  });
+  document.getElementById("btnRight").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.D = true;
+  });
+
+  document.getElementById("btnRight").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.D = false;
+  });
+
+  document.getElementById("btnUp").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.W = true;
+  });
+
+  document.getElementById("btnUp").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.W = false;
+  });
+
+  document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = true;
+  });
+
+  document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    keyboard.SPACE = false;
+  });
 }
 
 window.addEventListener("keydown", (event) => {
