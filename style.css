@@ -1,4 +1,7 @@
-
+@font-face {
+  font-family: "zabars";
+  src: url('fonts/zabars.ttf') format('truetype');
+} 
 
 body {
   margin: 0;
@@ -11,13 +14,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  font-family: ('zabrars', Arial, Helvetica, sans-serif);
-}
+  font-family: "zabrars", Arial, Helvetica, sans-serif;
+  }
 
 h1 {    
   font-size: 64px;
   letter-spacing: 3px;
-  text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5);
+  /* text-shadow: 4px, 4px, 8px, rgba(0, 0, 0, 0,5); */
 }
 
 .top-right-box {
@@ -53,30 +56,30 @@ h1 {
   align-items: center;
   width: 100%;
   height: 100%;
-  width: 720px; 
-  height: 480px;
   }
 
-  canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+/* #canvas {
 
+} */
+  
 #overlay {
   position: absolute;
-  top: 0;
+  top: 50%;           
+  left: 50%;          
+  transform: translate(-50%, -50%);
+  /* top: +50%;
   left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  }
+  right: -50%;
+  bottom: 0; */
+  width: 680px;
+  height: 460px;
 
-canvas {
-  background-color: black;
-  display: block;
- } 
+
+  }
+  /* .overlay_size {
+    width: 700px;
+    height: 480px;
+  } */
 
 .play_button {
   display: flex;
@@ -114,25 +117,38 @@ canvas {
     display: none;
  }
 
- @media only screen and (max-width: 720px) {
+ #orientationMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 720px) {
     canvas {
       width: 100%;
+    } 
+    #overlay {
+        width: 90%;
+  height: 98%;
     }
- }
+    .start_display_img {
+      width: 100%;
+      height: 100vh;
+    }
 
- @media only screen and (max-height: 480px) {
+} 
+@media only screen and (max-width: 480px) {
     canvas {
       height: 100vh;
     }
-    .hidden {
-      display: none;
-     }
-    
- }
 
- @media (max-width: 950px) {
-    .gameName {
-      display: none;
-    }
   }
+ 
 

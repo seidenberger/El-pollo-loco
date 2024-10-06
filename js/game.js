@@ -1,19 +1,15 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let changeAudio = false; //hat der ton wenn gestartet wird ist er aus
+let changeAudio = false;
 let intervallIds = [];
 let gameStarted = false;
 
-/**
- * Initializes the canvas and world for the application.
- *
- * This function selects a canvas element from the DOM using its ID
- * and then creates a new instance of the World class with the selected
- * canvas and a keyboard object.
- */
+function initStardDisply() {
+  handleMediaChange(mediaQuery);
+  checkOrientationWithMediaQuery();
+}
 
-// function init() {
 function initLevel() {
   if (!gameStarted) {
     gameStarted = true;
@@ -26,6 +22,7 @@ function initLevel() {
     world = new World(canvas, keyboard);
     enableMute();
     fingerButtonEvent();
+
     console.log("my character is", world.character);
     console.log("my world is", world);
     console.log(world.level.enemies);
@@ -66,6 +63,45 @@ function clearAllIntervals() {
   //   }
   // }, 1000);
 }
+
+let mediaQuery = window.matchMedia("(min-width: 750px)");
+
+function handleMediaChange(e) {
+  if (e.matches) {
+    document.getElementById("gameName").classList.remove("hidden");
+    document.getElementById("gameKeys").classList.remove("hidden");
+    console.log("Elemente angezeigt (Breite >= 750px)");
+  } else {
+    document.getElementById("gameName").classList.add("hidden");
+    document.getElementById("gameKeys").classList.add("hidden");
+    console.log("add name min-width: 750px");
+  }
+}
+
+mediaQuery.addEventListener("change", handleMediaChange);
+
+function checkOrientationWithMediaQuery() {
+  let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+  if (isPortrait) {
+    document.getElementById("orientationMessage").classList.remove("hidden");
+    document.getElementById("containerCanvas").classList.add("hidden");
+    document.getElementById("start_display_img").classList.add("hidden");
+  } else {
+    document.getElementById("orientationMessage").classList.add("hidden");
+    document.getElementById("containerCanvas").classList.remove("hidden");
+    document.getElementById("start_display_img").classList.remove("hidden");
+  }
+}
+
+let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
+
+orientationMediaQuery.addEventListener(
+  "change",
+  checkOrientationWithMediaQuery
+);
+
+window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function fingerButtonEvent() {
   document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
