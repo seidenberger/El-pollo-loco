@@ -84,6 +84,6 @@ class MovableObject extends DrawabelObject {
   }
 
   hurtSound() {
-    hurt_sound.play();
+    hurtSound.play();
   }
 }

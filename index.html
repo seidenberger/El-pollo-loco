@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El pollo loco</title>
-     <style>
- 
-     </style>
+
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png">
     <script src="./js/audio.js"></script>
@@ -33,11 +31,11 @@
     <script src="./models/endboss.class.js"></script>
     <!-- <script src="./levels/level1.js"></script> -->
     <script src="./models/throwing_bottles.class.js"></script>
+    <script src="./js/control.js"></script>
     <script src="./js/game.js"></script>
 </head>
 
 <body onload="initStardDisply()">
-         <!-- <button class="top-right-box"> [  ] </button> -->
         <h1 id="gameName" class="gameName hidden " >El pollo loco</h1>
 
 
@@ -46,25 +44,28 @@
         <img id="start_display_img" class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
 
             <div id="play" onclick="initLevel()" class="buttons_start">
-            <!-- <div id="play" onclick="initLevel()" class="buttons_start">Press play for start</div> -->
+            preess Enter for play 
                 <img class="img " src="./img/10_steering/buttons_symbol/play.png" alt=""></button>
                 
             </div>
-            <div id="gameKeys" class="gameName">
-                <div class="help_button">press A for  <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
+            <div id="gameKeys" class=" hidden">
+                <div class="help_button">press A for  
+                    <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
                 <div class="help_button">press D for  <img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
                 <div class="help_button">press W for  <img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
-                <div class="help_button">press space for  <img class="rotate" src="./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png" alt=""></div>
-            <!-- </ul> -->
-        </div>
+                <div class="help_button">press space for  <img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
+            </div>
     </section>
 
     <section id="containerCanvas" class="containerCanvas">
         <canvas class="hidden" width="720px" height="480px" id="canvas">
         </canvas>
         <div class="hidden" id="overlay" >
-            <!-- <div class="hidden" id="overlay" width="720px" height="480px"> -->
-            <!-- <div class="overlay_size"> -->
+            <div>
+                <div id="youWin" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/win/win_2.png" alt=""></div>
+                <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
+            </div>
+            
             <div class="d_j_center">
                 <div role="audioButten" onclick="changeSilently()">
                     <img class="img" src="./img/10_steering/buttons_symbol/audio_off.png" alt="" id="audioOff" > 
@@ -81,17 +82,19 @@
 
                 <div class="d_flex">
                     <div id="btnUp"><img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
-                    <div id="btnUp"><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
+                    <div id="btnThrowing"><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
                 </div>
             </section>
-            <!-- </div> -->
+    
         </div>
      
 
     </section>
-    <!-- <div id="gameKeys" class="gameName">Press enter for paly // press A for left  // press D for right  // press W for jump // press space for throwing</div> -->
+    
     <div  id="orientationMessage" class="hidden">Turn your Device to play</div>
-    <!-- <div id="turn" class="turn">Turn your Device to play</div> -->
+    
+    <footer>
 
+    </footer>
 </body>
 </html>

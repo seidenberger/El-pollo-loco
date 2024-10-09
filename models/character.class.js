@@ -9,6 +9,7 @@ class Character extends MovableObject {
   world;
   longIdleThreshold = 5000;
   deadAnimationStarted = false;
+  isSleepingSoundPlaying = false;
   offset = {
     top: 100,
     bottom: 10,
@@ -97,11 +98,11 @@ class Character extends MovableObject {
   animate() {
     setInterval(() => {
       // intervallIds.push(interval);
-      walking_sound.pause();
+      walkingSound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
-        walking_sound.play();
+        walkingSound.play();
         // console.log("charater x", this.x);
         // console.log("charater y", this.y);
         // console.log('charater y', this.y )
@@ -110,7 +111,7 @@ class Character extends MovableObject {
 
       if (this.world.keyboard.A && this.x > 0) {
         this.moveLeft();
-        walking_sound.play();
+        walkingSound.play();
         this.otherDirection = true;
         // console.log("charater x", this.x);
         // console.log("charater y", this.y);
@@ -124,25 +125,25 @@ class Character extends MovableObject {
 
     setInterval(() => {
       if (this.isDead()) {
+        this.sleepPause();
         this.deadAnimatio();
       } else if (this.isHurt()) {
+        this.sleepPause();
         this.playAnimation(this.Images_Hurt);
         this.hurtSound();
       } else if (this.isAboveGround()) {
+        this.sleepPause();
         this.playAnimation(this.Images_Jamping);
-      } else if (
-        this.world.keyboard.D ||
-        this.world.keyboard.A
-        // this.world.keyboard.W
-      ) {
+      } else if (this.world.keyboard.D || this.world.keyboard.A) {
+        this.sleepPause();
         this.playAnimation(this.Images_Walkin_Pepe);
         this.currentTimeWalking = new Date().getTime();
       } else if (this.isIdle()) {
+        this.sleepPause();
         this.playAnimation(this.Images_Idle);
       } else {
-        sleep_sound.play();
+        this.sleepPlaying();
         this.playAnimation(this.Images_Long_Idle);
-        sleep_sound.pause();
       }
     }, 60);
   }
@@ -156,13 +157,25 @@ class Character extends MovableObject {
       this.playAnimation(this.Images_Dead);
       this.currentImage++;
     } else {
-      clearAllIntervals();
+      gameOver();
     }
   }
 
   jump() {
     this.speedY = 30;
-    jump_sound.play();
+    jumpSound.play();
+  }
+
+  sleepPause() {
+    sleepSound.pause();
+    this.isSleepingSoundPlaying = false;
+  }
+
+  sleepPlaying() {
+    if (!this.isSleepingSoundPlaying) {
+      sleepSound.play();
+      this.isSleepingSoundPlaying = true;
+    }
   }
 
   isIdle() {

@@ -1,30 +1,30 @@
-let hurt_sound = new Audio("./audio/hurt.mp3");
-let jump_sound = new Audio("./audio/jump.mp3");
-let walking_sound = new Audio("audio/walking.mp3");
-let sleep_sound = new Audio("./audio/sleep.mp3");
-let throw_sound = new Audio("./audio/throw.mp3");
-let backgroun_Musik = new Audio("./audio/background.mp3");
-let angri_chicken_sound = new Audio("./audio/angri_chicken.mp3");
-let chicken_sound = new Audio("./audio/chicken.mp3");
+let hurtSound = new Audio("./audio/hurt.mp3");
+let jumpSound = new Audio("./audio/jump.mp3");
+let walkingSound = new Audio("audio/walking.mp3");
+let sleepSound = new Audio("./audio/sleep.mp3");
+let throwSound = new Audio("./audio/throw.mp3");
+let angriChickenSound = new Audio("./audio/angri_chicken.mp3");
+let chickenSound = new Audio("./audio/chicken.mp3");
+let backgrounMusik = new Audio("./audio/background.mp3");
 
 function enableMute() {
-  hurt_sound.muted = true;
-  jump_sound.muted = true;
-  walking_sound.muted = true;
-  sleep_sound.muted = true;
-  throw_sound.muted = true;
-  angri_chicken_sound.muted = true;
-  chicken_sound.muted = true;
-  backgroun_Musik.muted = true;
+  hurtSound.muted = true;
+  jumpSound.muted = true;
+  walkingSound.muted = true;
+  sleepSound.muted = true;
+  throwSound.muted = true;
+  angriChickenSound.muted = true;
+  chickenSound.muted = true;
+  backgrounMusik.muted = true;
 }
 
 function disableMute() {
-  hurt_sound.muted = false;
-  jump_sound.muted = false;
-  walking_sound.muted = false;
-  sleep_sound.muted = false;
-  throw_sound.muted = false;
-  angri_chicken_sound.muted = false;
-  chicken_sound.muted = false;
-  backgroun_Musik.muted = false;
+  hurtSound.muted = false;
+  jumpSound.muted = false;
+  walkingSound.muted = false;
+  sleepSound.muted = false;
+  throwSound.muted = false;
+  angriChickenSound.muted = false;
+  chickenSound.muted = false;
+  backgrounMusik.muted = false;
 }

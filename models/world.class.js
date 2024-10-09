@@ -29,7 +29,7 @@ class World {
     this.checkCollisionWithbottle();
 
     this.checkCollisionWithThrwObject();
-    this.checkOtherDirectionThrowing();
+    // this.checkOtherDirectionThrowing();
   }
 
   setWorld() {
@@ -66,7 +66,7 @@ class World {
 
       this.checkCollisionWithThrwObject();
       this.checkSpliceChicken();
-      this.checkOtherDirectionThrowing();
+      // this.checkOtherDirectionThrowing();
       this.updatStatusEndboss();
       this.alertEndboss();
     }, 1000 / 60);
@@ -77,8 +77,6 @@ class World {
       this.checkThrowObjects();
     }, 1000 / 10);
   }
-
-  checkOtherDirectionThrowing() {}
 
   checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy, index) => {

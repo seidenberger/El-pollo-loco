@@ -20,8 +20,8 @@ class StatusbarBottle extends DrawabelObject {
     this.loadImages(this.Images_Statusbar_bottle);
     this.x = 10;
     this.y = 35;
-    this.height = 20;
-    this.width = 20;
+    this.height = 40;
+    this.width = 200;
     this.setPercentagebottle(this.percentage);
     // this.setPercentage(100);
     // debugger

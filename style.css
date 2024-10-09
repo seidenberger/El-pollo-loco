@@ -1,7 +1,7 @@
-@font-face {
+/* @font-face {
   font-family: "zabars";
   src: url('fonts/zabars.ttf') format('truetype');
-} 
+}  */
 
 body {
   margin: 0;
@@ -14,8 +14,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
-  font-family: "zabrars", Arial, Helvetica, sans-serif;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
   }
+
+  @font-face {
+    font-family: "zabras";
+    src: url("./fonts/zabars.ttf") format("truetype");
+}
 
 h1 {    
   font-size: 64px;
@@ -31,7 +36,11 @@ h1 {
 .start_display_img{
   width: 720px;
   height: 480px;
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .buttons_start {
@@ -80,6 +89,15 @@ h1 {
   width: 680px;
   height: 460px;
   }
+
+.you_win {
+  position: absolute;
+  top: 50%;           
+  left: 50%;          
+  transform: translate(-50%, -50%);
+  width: 680px;
+  height: 460px;
+}
 
 .play_button {
   display: flex;
@@ -149,6 +167,25 @@ h1 {
     canvas {
       height: 100vh;
     }
+    .gameName {
+      display: none;
+    }
+    #gameKeys {
+      display: none;
+    }
+
+  }
+
+  @media only screen and (min-width: 720px) {
+    /* canvas {
+      height: 100vh;
+    } */
+    /* gameName {
+      display: none;
+    } */
+    /* button_div {
+      display: none;
+    } */
 
   }
 

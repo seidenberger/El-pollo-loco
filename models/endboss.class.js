@@ -5,6 +5,7 @@ class Endboss extends MovableObject {
   deadAnimationStarted = false;
   alertAnimatioStarted = true;
   alertTime = 0;
+  isAngriChickenSound = false;
   offset = {
     top: 50,
     bottom: 20,
@@ -67,10 +68,12 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.isDead()) {
+        // this.angriSoundPause();
         this.deadAnimation();
       } else if (this.isHurt()) {
-        angri_chicken_sound.play();
+        this.angriSoundPlay();
         this.playAnimation(this.Images_endboss_hurt);
+        this.isAngriChickenSound = false;
       } else if (this.x < world.character.x + 350) {
         this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
@@ -80,7 +83,7 @@ class Endboss extends MovableObject {
           this.alertAnimatioStarted = true;
         }
         if (this.isAlert()) {
-          angri_chicken_sound.play();
+          // this.angriSoundPlay();
           this.playAnimation(this.Images_endboss_alert);
           this.speed = 0;
         } else {
@@ -94,6 +97,7 @@ class Endboss extends MovableObject {
         //   this.enbossAttack();
         // }, 500);
       } else {
+        this.angriSoundPause();
         this.playAnimation(this.Images_endboss_walk);
         this.moveLeft();
         this.speed = 2;
@@ -110,12 +114,25 @@ class Endboss extends MovableObject {
       this.playAnimation(this.Images_endboss_dead);
       this.currentImage++;
     } else {
-      clearAllIntervals();
+      youWinGamne();
     }
   }
 
+  angriSoundPause() {
+    angriChickenSound.pause();
+    this.isAngriChickenSound = false;
+  }
+
+  angriSoundPlay() {
+    // if (!this.isAngriChickenSound) {
+    angriChickenSound.play();
+    this.isAngriChickenSound = true;
+    console.log("angriSoundPlay()");
+    // }
+  }
+
   enbossAttack() {
-    angri_chicken_sound.play();
+    this.angriSoundPlay();
     this.playAnimation(this.Images_endboss_attack);
     this.moveLeft();
     this.speed = 4;
@@ -126,10 +143,4 @@ class Endboss extends MovableObject {
     timepassed = timepassed / 1000;
     return timepassed < 2;
   }
-  // isIdle() {
-  //   let timepassed = new Date().getTime() - this.currentTimeWalking;
-  //   timepassed = timepassed / 1000;
-
-  //   return timepassed < 3;
-  // }
 }
