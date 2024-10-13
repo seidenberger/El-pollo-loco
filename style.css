@@ -1,9 +1,93 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url('img/5_background/layers/main_background/desert-orange.png');
+  background-position: center;;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  font-family: "zabras", Arial, Helvetica, sans-serif;
+  }
+
+  @font-face {
+    font-family: "zabras";
+    src: url("./fonts/zabars.ttf") format("truetype");
+}
+
+h1 {    
+  font-size: 64px;
+  letter-spacing: 3px;
+}
+
+#start_display  {
+  width: 720px;
+  height: 480px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start_display_img{  
+  height: 100%;
+  width: 100%;
+}
+
+#playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+p {
+  font-size: 24px;
+}
+
+.img {
+  height: 40px;
+  width: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hidden {
+display: none;
+}
+
+.containerCanvas {
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 100%;
+height: 100%;
+}
+
+#gameKeys {
+display: flex;
+justify-content: center;
+gap: 16px;
+}
+
+.help_button {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 16px;
+}
+
+
+
 /* @font-face {
   font-family: "zabars";
   src: url('fonts/zabars.ttf') format('truetype');
 }  */
 
-body {
+/* body {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -33,14 +117,29 @@ h1 {
   margin-right: 20px;
 }
 
-.start_display_img{
+#start_display  {
   width: 720px;
   height: 480px;
   /* position: relative; */
+
+
+
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start_display_img{
+  width: 720px;
+  height: 480px;
+  
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
 }
 
 .buttons_start {
@@ -148,6 +247,20 @@ h1 {
   text-align: center;
 }
 
+.rotate {
+  width: 60px; 
+  animation: rotation 8s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
+}
+
 @media only screen and (max-width: 720px) {
     canvas {
       width: 100%;
@@ -157,7 +270,7 @@ h1 {
         width: 90%;
   height: 98%;
     }
-    .start_display_img {
+    .start_display {
       width: 100%;
       height: 100vh;
     }
@@ -174,32 +287,9 @@ h1 {
       display: none;
     }
 
-  }
+  } */
 
-  @media only screen and (min-width: 720px) {
-    /* canvas {
-      height: 100vh;
-    } */
-    /* gameName {
-      display: none;
-    } */
-    /* button_div {
-      display: none;
-    } */
 
-  }
 
-  .rotate {
-    width: 60px; 
-    animation: rotation 8s infinite linear;
-}
 
-@keyframes rotation {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+ 
