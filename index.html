@@ -10,7 +10,6 @@
     <script src="./js/audio.js"></script>
     <script src="./models/drawabel_object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
-
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken_small.class.js"></script>
     <script src="./models/chicken.class.js"></script>
@@ -19,12 +18,11 @@
     <script src="./models/icon_coin.class.js"></script>
     <script src="./models/background_object.class.js"></script>
     <script src="./models/status_bar_coin.class.js"></script>
-    <script src="./models/status_bar_health.class.js"></script>o
+    <script src="./models/status_bar_health.class.js"></script>
     <script src="./models/status_bar_bottle.class.js"></script>
     <script src="./models/status_bar_endboss.class.js"></script>    
     <script src="./levels/level1.js"></script>
-    <script src="./models/level.class.js"></script>
-    
+    <script src="./models/level.class.js"></script>    
     <script src="./models/world.class.js"></script>    
     <script src="./models/keyboard.class.js"></script>
     <!-- <script src="./models/level.class.js"></script> -->
@@ -35,61 +33,54 @@
     <script src="./js/game.js"></script>
 </head>
 
-<body onload="initStardDisply()">
-        <h1 id="gameName" class="gameName hidden " >El pollo loco</h1>
+<body onload="initStartDisplay()">
+    <h1 id="gameName" class="gameName" >El pollo loco</h1>
 
 
-    <section id="start_display" class="container">
-        
+    <section id="start_display">        
         <img id="start_display_img" class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
-
-            <div id="play" onclick="initLevel()" class="play_button">
-            preess Enter for play 
-                <img class="img " src="./img/10_steering/buttons_symbol/play.png" alt=""></button>
-                
+            <div id="playButton" onclick="initLevel()">
+                <p>preess Enter for play</p>
             </div>
-    </section>
-            <div id="gameKeys"  class=" hidden">
+            <div id="gameKeys"  class="hidden">
                 <div class="help_button">press A for  
                     <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
                 <div class="help_button">press D for  <img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
                 <div class="help_button">press W for  <img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
                 <div class="help_button">press space for  <img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
             </div>
-    <!-- </section> -->
+    </section>
 
-    <section id="containerCanvas" class="containerCanvas">
-        <canvas class="hidden" width="720px" height="480px" id="canvas">
+
+    <section id="containerCanvas" class="containerCanvas" style="display: none;">
+        <canvas  width="720px" height="480px" id="canvas">
         </canvas>
-        <div class="hidden" id="overlay" >
+    </section>
+
+
+    <section id="overlay" class="hidden">
+        <div>
             <div>
                 <div id="youWin" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/win/win_2.png" alt=""></div>
                 <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
-            </div>
-            
+            </div>            
             <div class="d_j_center">
                 <div role="audioButten" onclick="changeSilently()">
                     <img class="img" src="./img/10_steering/buttons_symbol/audio_off.png" alt="" id="audioOff" > 
                     <img class="img hidden" src="./img/10_steering/buttons_symbol/audio_on.png" alt="" id="audioOn" >
                 </div>
             </div>
-
-            <section class="button_div ">
+            <div class="button_div">
                 <div class="d_flex">
                     <div id="btnLeft"><img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
-                    <div id="btnRight"><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
-                
+                    <div id="btnRight"><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>                
                 </div>
-
                 <div class="d_flex">
                     <div id="btnUp"><img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
                     <div id="btnThrowing"><img class="img" src="./img/10_steering/buttons_symbol/throwing.png" alt=""></div>
                 </div>
-            </section>
-    
-        </div>
-     
-
+            </div>    
+        </div>  
     </section>
     
     <div  id="orientationMessage" class="hidden">Turn your Device to play</div>
