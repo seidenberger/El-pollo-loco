@@ -32,8 +32,8 @@ function initLevel() {
     // document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("containerCanvas").style.display = "flex";
     document.getElementById("canvas").classList.remove("hidden");
-    // document.getElementById("overlay").classList.remove("hidden");
-    document.getElementById("start_display").classList.add("hidden");
+    document.getElementById("buttonDiv").classList.add("hidden");
+    document.getElementById("startDisplay").classList.add("hidden");
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     enableMute();
@@ -76,7 +76,7 @@ function stopGame() {
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("overlay").classList.add("hidden");
   document.getElementById("containerCanvas").style.display = "none";
-  document.getElementById("start_display").classList.remove("hidden");
+  document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
 }
@@ -121,22 +121,100 @@ function checkOrientationWithMediaQuery() {
   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
   if (isPortrait) {
+    console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
     document.getElementById("orientationMessage").classList.remove("hidden");
-    // document.getElementById("containerCanvas").style.display = "flex";
+    document.getElementById("containerCanvas").style.display = "none";
+    document.getElementById("startDisplay").style.display = "none";
     document.getElementById("playButton").classList.add("hidden");
     document.getElementById("gameName").classList.add("hidden");
     // gameName;
     // play;
-    document.getElementById("start_display_img").classList.add("hidden");
+    // document.getElementById("startDisplayImg").classList.add("hidden");
+    document.getElementById("gameKeys").classList.remove("hidden");
+    document.getElementById("overlay").classList.add("hidden");
   } else {
-    document.getElementById("orientationMessage").classList.add("hidden");
-    // document.getElementById("containerCanvas").style.display = "flex";
-    document.getElementById("playButton").classList.remove("hidden");
-    document.getElementById("start_display_img").classList.remove("hidden");
-    document.getElementById("gameName").classList.add("hidden");
-    document.getElementById("gameKeys").classList.add("hidden");
+    //   console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+
+    //   // Blende die Nachricht für Porträt-Ausrichtung aus
+    //   document.getElementById("orientationMessage").classList.add("hidden");
+
+    //   // Wenn das Spiel noch nicht gestartet ist, zeige den Startbildschirm
+    //   if (!gameStarted) {
+    //     document.getElementById("playButton").classList.remove("hidden");
+    //     document.getElementById("startDisplayImg").classList.remove("hidden");
+    //     document.getElementById("gameName").classList.remove("hidden");
+    //   }
+
+    //   // Wenn das Spiel gestartet ist, zeige das Canvas und blende die Steuerungstasten ein
+    //   if (gameStarted) {
+    //     document.getElementById("containerCanvas").style.display = "block"; // Canvas anzeigen
+    //     document.getElementById("gameKeys").classList.remove("hidden"); // Steuerungstasten anzeigen
+    //   } else {
+    //     document.getElementById("gameKeys").classList.add("hidden"); // Steuerungstasten ausblenden, wenn das Spiel nicht gestartet ist
+    //   }
+    // }
+
+    // else {
+
+    if (gameStarted) {
+      document.getElementById("containerCanvas").style.display = "flex"; // Canvas anzeigen
+      // document.getElementById("gameKeys").classList.remove("hidden"); // Steuerungstasten anzeigen
+      document.getElementById("orientationMessage").classList.add("hidden");
+      document.getElementById("gameKeys").classList.remove("hidden");
+      document.getElementById("overlay").classList.remove("hidden");
+    } else {
+      console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+      document.getElementById("orientationMessage").classList.add("hidden");
+      // document.getElementById("containerCanvas").style.display = "flex";
+      document.getElementById("playButton").classList.remove("hidden");
+      document.getElementById("startDisplayImg").classList.remove("hidden");
+      document.getElementById("gameName").classList.add("hidden");
+      document.getElementById("gameKeys").classList.remove("hidden");
+    }
   }
 }
+
+// neu
+// function checkOrientationWithMediaQuery() {
+//   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+
+//   if (isPortrait) {
+//     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+
+//     // Zeige die Nachricht für Porträt-Ausrichtung
+//     document.getElementById("orientationMessage").classList.remove("hidden");
+
+//     // Blende das Canvas und die Game Keys aus, wenn im Portrait-Modus
+//     document.getElementById("containerCanvas").style.display = "none";
+//     document.getElementById("startDisplay").style.display = "none";
+//     document.getElementById("playButton").classList.add("hidden");
+//     document.getElementById("gameName").classList.add("hidden");
+
+//     // Nur wenn das Spiel läuft, zeige die Steuerungstasten an
+//     if (gameStarted) {
+//       document.getElementById("gameKeys").classList.remove("hidden");
+//     }
+
+//   } else {
+//     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+
+//     // Blende die Nachricht für Porträt-Ausrichtung aus
+//     document.getElementById("orientationMessage").classList.add("hidden");
+
+//     // Wenn das Spiel noch nicht gestartet ist, zeige den Startbildschirm
+//     if (!gameStarted) {
+//       document.getElementById("playButton").classList.remove("hidden");
+//       document.getElementById("startDisplayImg").classList.remove("hidden");
+//       document.getElementById("gameName").classList.remove("hidden");
+//     }
+
+//     // Wenn das Spiel gestartet ist, zeige das Canvas und blende die Steuerungstasten ein
+//     if (gameStarted) {
+//       document.getElementById("containerCanvas").style.display = "block"; // Canvas anzeigen
+//       document.getElementById("gameKeys").classList.remove("hidden"); // Steuerungstasten anzeigen
+//     } else {
+//       document.getElementById("gameKeys").classList.add("hidden"); // Steuerungstasten ausblenden, wenn das Spiel nicht gestartet ist
+//     }
 
 let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
 
