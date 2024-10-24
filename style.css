@@ -66,7 +66,7 @@ justify-content: center;
 align-items: center;
 width: 100%;
 height: 100%;
-z-index: 1;
+/* z-index: 1; */
 }
 
 #playButton:hover {
@@ -115,6 +115,19 @@ gap: 16px;
     gap: 30px;
     } 
 
+@media (min-width: 900px) {
+  #buttonDiv {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  #gameKeys {
+    display: none;
+  }
+}
+
+
 @media only screen and (max-width: 720px) {
   canvas {
     width: 100%;
@@ -124,24 +137,15 @@ gap: 16px;
     width: 90%;
     height: 98%;
   }
+  #gameKeys {
+    display: none;
+  }
   .start_display {
     width: 100%;
     height: 100vh;
   }
 
 } 
-
-/* @media (min-height: 700px) { 
-  .gameName {
-    display: none;
-  }
-} */
-
-/* @media (max-height: 699px){
-  .gameName {
-    display: none;
-  }
-} */
 
 @media only screen and (max-width: 480px) {
   canvas {
@@ -153,9 +157,36 @@ gap: 16px;
   #gameKeys {
     display: none;
   }
-  .button_div {
+  /* .button_div {
+    display: block;
+  } */
+}
+
+@media (orientation: portrait) {
+  #overlay {
+display: none;
+  }
+  #startDisplay {
+    display: none;
+  }
+  #orientationMessage {
     display: block;
   }
+  #gameName {
+    display: none;
+  }
+  /* #containerCanvas {
+
+  } */
+}
+
+@media (orientation: landscape) {
+  #gameName {
+    display: none;
+  }
+  /* canvas {
+    height: 100vh;
+  } */
 }
 
 /* @font-face {
