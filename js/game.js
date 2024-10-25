@@ -96,43 +96,43 @@ function gameOver() {
   }, 3000);
 }
 
-// function checkOrientationWithMediaQuery() {
-//   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+function checkOrientationWithMediaQuery() {
+  let isPortrait = window.matchMedia("(orientation: portrait)").matches;
 
-//   if (isPortrait) {
-//     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-//     document.getElementById("orientationMessage").classList.remove("hidden");
-//     document.getElementById("containerCanvas").classList.add("hidden");
-//     // document.getElementById("containerCanvas").style.display = "none";
-//     document.getElementById("startDisplay").style.display = "none";
-//     document.getElementById("overlay").classList.add("hidden");
-//     document.getElementById("gameName").classList.add("hidden");
-//     document.getElementById("gameKeys").classList.remove("hidden");
-//   } else {
-//     if (gameStarted) {
-//       document.getElementById("containerCanvas").style.display = "flex";
-//       document.getElementById("orientationMessage").classList.add("hidden");
-//       document.getElementById("gameKeys").classList.remove("hidden");
-//     } else {
-//       console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-//       document.getElementById("orientationMessage").classList.add("hidden");
-//       document.getElementById("containerCanvas").classList.remove("hidden");
-//       document.getElementById("overlay").classList.remove("hidden");
-//       document.getElementById("startDisplayImg").classList.remove("hidden");
-//       document.getElementById("gameName").classList.add("hidden");
-//       document.getElementById("gameKeys").classList.remove("hidden");
-//     }
-//   }
-// }
+  if (isPortrait) {
+    console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+    document.getElementById("orientationMessage").classList.remove("hidden");
+    document.getElementById("containerCanvas").classList.add("hidden");
+    document.getElementById("containerCanvas").style.display = "none";
+    document.getElementById("startDisplay").style.display = "none";
+    // document.getElementById("overlay").classList.add("hidden");
+    document.getElementById("gameName").classList.add("hidden");
+    document.getElementById("gameKeys").classList.remove("hidden");
+  } else {
+    if (gameStarted) {
+      document.getElementById("containerCanvas").style.display = "flex";
+      document.getElementById("orientationMessage").classList.add("hidden");
+      document.getElementById("gameKeys").classList.remove("hidden");
+    } else {
+      console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+      document.getElementById("orientationMessage").classList.add("hidden");
+      document.getElementById("containerCanvas").style.display = "flex";
+      // document.getElementById("overlay").classList.remove("hidden");
+      document.getElementById("startDisplay").style.display = "block";
+      document.getElementById("gameName").classList.add("hidden");
+      document.getElementById("gameKeys").classList.remove("hidden");
+    }
+  }
+}
 
-// let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
+let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
 
-// orientationMediaQuery.addEventListener(
-//   "change",
-//   checkOrientationWithMediaQuery
-// );
+orientationMediaQuery.addEventListener(
+  "change",
+  checkOrientationWithMediaQuery
+);
 
-// window.addEventListener("load", checkOrientationWithMediaQuery);
+window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function fingerButtonEvent() {
   document.getElementById("playButton").addEventListener("touchstart", (e) => {

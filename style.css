@@ -12,6 +12,12 @@ body {
   font-family: "zabras", Arial, Helvetica, sans-serif;
   }
 
+  /* section {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+  } */
+
   @font-face {
     font-family: "zabras";
     src: url("./fonts/zabars.ttf") format("truetype");
