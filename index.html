@@ -32,7 +32,7 @@
 
 <body onload="initStartDisplay()">
     <h1 id="gameName" class="gameName" >El pollo loco</h1>
-    <section id="startDisplay">        
+    <section id="startDisplay" class="start_end">        
         <img id="startDisplayImg" class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
             <div id="gameKeys"  class="hidden">
                 <div class="help_button">press A for  <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
@@ -43,15 +43,17 @@
     </section>
 
 
-    <section id="containerCanvas" class="containerCanvas" style="display: none;">
+    <section id="containerCanvas" class="containerCanvas">
         <canvas  width="720px" height="480px" id="canvas">
+           
         </canvas>
+
     </section>
 
 
     <section id="overlay">
         <div>
-            <div id="playButton" onclick="initLevel()">
+            <div id="playButton" onclick="initLevel()" class="button_center">
                 <p>preess Enter for play</p>
             </div>
             <div class="d_j_center">
@@ -71,13 +73,21 @@
                 </div>
             </div>  
             <div>
-                <div id="youWin" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/win/win_2.png" alt=""></div>
-                <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
+                <!-- <div id="youWin" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/win/win_2.png" alt=""></div> -->
+                <!-- <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div> -->
+                <!-- <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/game over.png" alt=""></div> -->
+                <!-- <div id="gameOver" class="you_win"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/you lost.png" alt=""></div> -->
+                <!-- <div id="gameOver" class="you_win hidden"><img class="start_display_img" src="./img/9_intro_outro_screens/game_over/game over!.png" alt=""></div> -->
             </div>     
         </div>  
     </section>
+
+    <!-- <div>
+        <div id="youWin" class="you_win start_display_img hidden"><img  src="./img/9_intro_outro_screens/win/win_2.png" alt=""></div>
+        <div id="gameOver" class="you_win start_display_img hidden"><img  src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
+    </div> -->
     
-    <div  id="orientationMessage" class="hidden">Turn your Device to play</div>
+    <div  id="orientationMessage" class="button_center hidden">Turn your Device to play</div>
     
     <footer>
 

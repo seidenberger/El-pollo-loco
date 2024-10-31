@@ -19,15 +19,36 @@ function initStartDisplayButten() {
   });
 }
 
+// function initLevel() {
+//   if (!gameStarted) {
+//     gameStarted = true;
+//     initLevelOne();
+//     document.getElementById("containerCanvas").style.display = "flex";
+//     document.getElementById("canvas").classList.remove("hidden");
+//     document.getElementById("playButton").classList.add("hidden");
+//     document.getElementById("startDisplay").classList.add("hidden");
+
+//     canvas = document.getElementById("canvas");
+//     world = new World(canvas, keyboard);
+//     enableMute();
+//     fingerButtonEvent();
+
+//     console.log("my character is", world.character);
+//     console.log("my world is", world);
+//     console.log(world.level.enemies);
+//   }
+// }
+
 function initLevel() {
   if (!gameStarted) {
     gameStarted = true;
     initLevelOne();
-    document.getElementById("containerCanvas").style.display = "flex";
+    document.getElementById("containerCanvas").classList.remove("hidden");
+    // document.getElementById("containerCanvas").style.display = "flex";
     document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("playButton").classList.add("hidden");
     document.getElementById("startDisplay").classList.add("hidden");
-
+    // document.getElementById("buttonDiv").classList.add("hidden");
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     enableMute();
@@ -68,11 +89,13 @@ function clearAllIntervals() {
 function stopGame() {
   gameStarted = false;
   document.getElementById("canvas").classList.add("hidden");
-  document.getElementById("containerCanvas").style.display = "none";
+  document.getElementById("containerCanvas").classList.add("hidden");
+  // document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("playButton").classList.remove("hidden");
   // document.getElementById("buttonDiv").classList.remove("hidden");
 }
 
@@ -83,7 +106,7 @@ function youWinGamne() {
     setTimeout(() => {
       stopGame();
     }, 2000);
-  }, 3000);
+  }, 1000);
 }
 
 function gameOver() {
@@ -93,34 +116,38 @@ function gameOver() {
     setTimeout(() => {
       stopGame();
     }, 2000);
-  }, 3000);
+  }, 1000);
 }
 
 function checkOrientationWithMediaQuery() {
   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+  console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+
+  let canvasContainer = document.getElementById("containerCanvas");
+  let orientationMessage = document.getElementById("orientationMessage");
+  let gameName = document.getElementById("gameName");
+  let gameKeys = document.getElementById("gameKeys");
 
   if (isPortrait) {
     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-    document.getElementById("orientationMessage").classList.remove("hidden");
-    document.getElementById("containerCanvas").classList.add("hidden");
-    document.getElementById("containerCanvas").style.display = "none";
-    document.getElementById("startDisplay").style.display = "none";
-    // document.getElementById("overlay").classList.add("hidden");
-    document.getElementById("gameName").classList.add("hidden");
-    document.getElementById("gameKeys").classList.remove("hidden");
+    orientationMessage.classList.remove("hidden");
+    // containerCanvas.classList.add("hidden");
+    canvasContainer.classList.add("invisible");
+    gameName.classList.add("hidden");
+    gameKeys.classList.remove("hidden");
   } else {
     if (gameStarted) {
-      document.getElementById("containerCanvas").style.display = "flex";
-      document.getElementById("orientationMessage").classList.add("hidden");
-      document.getElementById("gameKeys").classList.remove("hidden");
+      // containerCanvas.classList.remove("hidden");
+      canvasContainer.classList.remove("invisible");
+      orientationMessage.classList.add("hidden");
+      gameKeys.classList.remove("hidden");
     } else {
       console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-      document.getElementById("orientationMessage").classList.add("hidden");
-      document.getElementById("containerCanvas").style.display = "flex";
-      // document.getElementById("overlay").classList.remove("hidden");
-      document.getElementById("startDisplay").style.display = "block";
-      document.getElementById("gameName").classList.add("hidden");
-      document.getElementById("gameKeys").classList.remove("hidden");
+      orientationMessage.classList.add("hidden");
+      // containerCanvas.classList.remove("hidden");
+      canvasContainer.classList.remove("invisible");
+      gameName.classList.add("hidden");
+      gameKeys.classList.remove("hidden");
     }
   }
 }
