@@ -12,9 +12,9 @@ body {
   font-family: "zabras", Arial, Helvetica, sans-serif;
   }
 
-  @font-face {
-    font-family: "zabras";
-    src: url("./fonts/zabars.ttf") format("truetype");
+@font-face {
+  font-family: "zabras";
+  src: url("./fonts/zabars.ttf") format("truetype");
 }
 
 h1 {    
@@ -49,19 +49,9 @@ h1 {
   object-fit: cover;
 }
 
-#youWin, #gameOver {
-  /* position: absolute;
-  top: 0;
-  left: 0; */
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 #playButton {
-
   z-index: 10;
   cursor: pointer;
   text-shadow: 3px 3px 2px #333;
@@ -86,15 +76,12 @@ p {
 }
 
 .start_win_img {
-  /* position: absolute; */
-  /* display: flex; */
   width: 100%;
-height: 100%;
-  
+  height: 100%;  
 }
 
 .hidden {
-display: none;
+  display: none;
 }
 
 .invisible {
@@ -104,13 +91,12 @@ display: none;
 }
 
 .containerCanvas {
-position: relative;
-display: flex;
-justify-content: center;
-align-items: center;
-width: 100%;
-height: 100%;
-/* z-index: 1; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 #playButton:hover {
@@ -119,61 +105,91 @@ height: 100%;
 }
 
 #gameKeys {
-display: flex;
-justify-content: center;
-gap: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 .help_button {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
-
 
 
 #overlay {
   position: absolute;
-  top: 50%;           
-  left: 50%;          
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   width: 680px;
   height: 460px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .d_j_center {
   display: flex;
   justify-content: center;
 }
-/* 
+
 .button_div {
-  position: absolute;  
-  bottom: 10px;        
+  position: absolute;
+  bottom: 10px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
-  
-  } */
-
-.button_div {
-    display: flex;
-    justify-content: space-between;
-    width: 100%; /* Füllt die gesamte Breite */
-    max-width: 720px; /* Optional: Maximalbreite */
 }
 
-  .game_over_text {
-    width: 720px;
-    height: 480px;
-    background-color: rgba(255, 255, 255, 0.5);
-  }
+/* #youWin, #gameOver {
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 680px;
+  height: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+} */
 
-  .d_flex {
-    display: flex;
-    gap: 30px;
-    } 
+/* #youWin, #gameOver {
+
+} */
+
+
+
+.play_end {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 720px;
+  height: 480px;
+  
+}
+
+.play_end_sequence {
+  width: 100%; 
+  height: 100%; 
+  object-fit: contain; 
+}
+
+.game_over_text {
+  width: 720px;
+  height: 480px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.d_flex {
+  display: flex;
+  gap: 30px;
+} 
 
 
 

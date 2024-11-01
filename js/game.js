@@ -101,22 +101,23 @@ function stopGame() {
 
 function youWinGamne() {
   clearAllIntervals();
+  // setTimeout(() => {
+  document.getElementById("youWin").classList.remove("hidden");
   setTimeout(() => {
-    document.getElementById("youWin").classList.remove("hidden");
-    setTimeout(() => {
-      stopGame();
-    }, 2000);
-  }, 1000);
+    stopGame();
+  }, 2000);
+  // }, 1000);
 }
 
 function gameOver() {
   clearAllIntervals();
+  // setTimeout(() => {
+
+  document.getElementById("gameOver").classList.remove("hidden");
   setTimeout(() => {
-    document.getElementById("gameOver").classList.remove("hidden");
-    setTimeout(() => {
-      stopGame();
-    }, 2000);
-  }, 1000);
+    stopGame();
+  }, 2000);
+  // }, 1000);
 }
 
 function checkOrientationWithMediaQuery() {
