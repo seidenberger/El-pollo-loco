@@ -64,9 +64,11 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
-p {
+p, span {
   font-size: 24px;
 }
+
+
 
 .img {
   height: 40px;
@@ -145,25 +147,6 @@ p {
   justify-content: space-between;
 }
 
-/* #youWin, #gameOver {
-  object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 680px;
-  height: 460px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-} */
-
-/* #youWin, #gameOver {
-
-} */
-
-
 
 .play_end {
   display: flex;
@@ -178,6 +161,10 @@ p {
   width: 100%; 
   height: 100%; 
   object-fit: contain; 
+}
+
+#gameOver {
+  filter: brightness(1.5);
 }
 
 .game_over_text {
@@ -225,6 +212,12 @@ p {
 
 } 
 
+@media only screen and (max-width: 500px) {
+  canvas {
+    height: 100vh;
+  } 
+}
+
 @media only screen and (max-width: 480px) {
   canvas {
     height: 100vh;
@@ -235,9 +228,10 @@ p {
   #gameKeys {
     display: none;
   }
-  /* .button_div {
-    display: block;
-  } */
+  footer {
+    display: flex;
+    gap: 80px;
+  }
 }
 
 @media (orientation: portrait) {

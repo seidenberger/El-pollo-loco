@@ -19,36 +19,17 @@ function initStartDisplayButten() {
   });
 }
 
-// function initLevel() {
-//   if (!gameStarted) {
-//     gameStarted = true;
-//     initLevelOne();
-//     document.getElementById("containerCanvas").style.display = "flex";
-//     document.getElementById("canvas").classList.remove("hidden");
-//     document.getElementById("playButton").classList.add("hidden");
-//     document.getElementById("startDisplay").classList.add("hidden");
-
-//     canvas = document.getElementById("canvas");
-//     world = new World(canvas, keyboard);
-//     enableMute();
-//     fingerButtonEvent();
-
-//     console.log("my character is", world.character);
-//     console.log("my world is", world);
-//     console.log(world.level.enemies);
-//   }
-// }
-
 function initLevel() {
   if (!gameStarted) {
     gameStarted = true;
     initLevelOne();
     document.getElementById("containerCanvas").classList.remove("hidden");
-    // document.getElementById("containerCanvas").style.display = "flex";
+
     document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("playButton").classList.add("hidden");
     document.getElementById("startDisplay").classList.add("hidden");
-    // document.getElementById("buttonDiv").classList.add("hidden");
+
+    // document.getElementById("footer").classList.add("hidden");
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     enableMute();
@@ -90,13 +71,14 @@ function stopGame() {
   gameStarted = false;
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
-  // document.getElementById("containerCanvas").classList.add("hidden");
+
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("buttonDiv").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
-  // document.getElementById("buttonDiv").classList.remove("hidden");
+
+  // document.getElementById("footer").classList.remove("hidden");
 }
 
 function youWinGamne() {
@@ -120,47 +102,47 @@ function gameOver() {
   // }, 1000);
 }
 
-function checkOrientationWithMediaQuery() {
-  let isPortrait = window.matchMedia("(orientation: portrait)").matches;
-  console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+// function checkOrientationWithMediaQuery() {
+//   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
+//   console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
 
-  let canvasContainer = document.getElementById("containerCanvas");
-  let orientationMessage = document.getElementById("orientationMessage");
-  let gameName = document.getElementById("gameName");
-  let gameKeys = document.getElementById("gameKeys");
+//   let canvasContainer = document.getElementById("containerCanvas");
+//   let orientationMessage = document.getElementById("orientationMessage");
+//   let gameName = document.getElementById("gameName");
+//   let gameKeys = document.getElementById("gameKeys");
 
-  if (isPortrait) {
-    console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-    orientationMessage.classList.remove("hidden");
-    // containerCanvas.classList.add("hidden");
-    canvasContainer.classList.add("invisible");
-    gameName.classList.add("hidden");
-    gameKeys.classList.remove("hidden");
-  } else {
-    if (gameStarted) {
-      // containerCanvas.classList.remove("hidden");
-      canvasContainer.classList.remove("invisible");
-      orientationMessage.classList.add("hidden");
-      gameKeys.classList.remove("hidden");
-    } else {
-      console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-      orientationMessage.classList.add("hidden");
-      // containerCanvas.classList.remove("hidden");
-      canvasContainer.classList.remove("invisible");
-      gameName.classList.add("hidden");
-      gameKeys.classList.remove("hidden");
-    }
-  }
-}
+//   if (isPortrait) {
+//     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+//     orientationMessage.classList.remove("hidden");
+//     // containerCanvas.classList.add("hidden");
+//     canvasContainer.classList.add("invisible");
+//     gameName.classList.add("hidden");
+//     gameKeys.classList.remove("hidden");
+//   } else {
+//     if (gameStarted) {
+//       // containerCanvas.classList.remove("hidden");
+//       canvasContainer.classList.remove("invisible");
+//       orientationMessage.classList.add("hidden");
+//       gameKeys.classList.remove("hidden");
+//     } else {
+//       console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+//       orientationMessage.classList.add("hidden");
+//       // containerCanvas.classList.remove("hidden");
+//       canvasContainer.classList.remove("invisible");
+//       gameName.classList.add("hidden");
+//       gameKeys.classList.remove("hidden");
+//     }
+//   }
+// }
 
-let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
+// let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
 
-orientationMediaQuery.addEventListener(
-  "change",
-  checkOrientationWithMediaQuery
-);
+// orientationMediaQuery.addEventListener(
+//   "change",
+//   checkOrientationWithMediaQuery
+// );
 
-window.addEventListener("load", checkOrientationWithMediaQuery);
+// window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function fingerButtonEvent() {
   document.getElementById("playButton").addEventListener("touchstart", (e) => {
