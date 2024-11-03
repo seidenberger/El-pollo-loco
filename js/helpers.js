@@ -27,6 +27,7 @@ function checkOrientationWithMediaQuery() {
       canvasContainer.classList.remove("invisible");
       gameName.classList.add("hidden");
       gameKeys.classList.remove("hidden");
+      footerShowOverlay();
     }
   }
 }

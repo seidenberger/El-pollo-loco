@@ -6,18 +6,20 @@ let intervallIds = [];
 let gameStarted = false;
 
 function initStartDisplay() {
-  initStartDisplayButten();
-  document.getElementById("buttonDiv").classList.add("hidden");
-  // checkOrientationWithMediaQuery();
+  footerShowDestop();
+  // footerShow();
+  //   initStartDisplayButten();
+  //   document.getElementById("buttonDiv").classList.add("hidden");
+  //   // checkOrientationWithMediaQuery();
 }
 
-function initStartDisplayButten() {
-  document.getElementById("playButton").addEventListener("click", initLevel);
-  document.getElementById("playButton").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    initLevel();
-  });
-}
+// function initStartDisplayButten() {
+//   document.getElementById("playButton").addEventListener("click", initLevel);
+//   document.getElementById("playButton").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     initLevel();
+//   });
+// }
 
 function initLevel() {
   if (!gameStarted) {
@@ -68,6 +70,7 @@ function clearAllIntervals() {
 }
 
 function stopGame() {
+  footerShow();
   gameStarted = false;
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");

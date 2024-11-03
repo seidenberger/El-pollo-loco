@@ -178,7 +178,10 @@ p, span {
   gap: 30px;
 } 
 
-
+footer {
+  display: flex;
+  gap: 30px;
+}
 
 @media (min-width: 900px) {
   #buttonDiv {
