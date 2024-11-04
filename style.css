@@ -250,16 +250,18 @@ display: none;
   #gameName {
     display: none;
   }
-  /* #containerCanvas {
-
-  } */
+  #destopFooter {
+    display: none;
+  }
 }
 
 @media (orientation: landscape) {
   #gameName {
     display: none;
   }
-
+  #destopFooter {
+    display: none;
+  }
 
 } 
 @media only screen and (max-width: 480px) {

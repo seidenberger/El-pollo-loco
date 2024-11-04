@@ -1,3 +1,5 @@
+// let keepOverlayFooter = false;
+
 function checkOrientationWithMediaQuery() {
   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
   console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
@@ -14,7 +16,10 @@ function checkOrientationWithMediaQuery() {
     canvasContainer.classList.add("invisible");
     gameName.classList.add("hidden");
     gameKeys.classList.remove("hidden");
+
+    // keepOverlayFooter = false;
   } else {
+    // keepOverlayFooter = trhe;
     if (gameStarted) {
       // containerCanvas.classList.remove("hidden");
       canvasContainer.classList.remove("invisible");
@@ -40,3 +45,20 @@ orientationMediaQuery.addEventListener(
 );
 
 window.addEventListener("load", checkOrientationWithMediaQuery);
+
+function impressum() {
+  showImpressumDataPrivacy();
+}
+
+function dataPrivacy() {
+  showImpressumDataPrivacy();
+}
+
+function showImpressumDataPrivacy() {
+  let startDisplay = document.getElementById("startDisplay");
+  let containerCanvas = document.getElementById("containerCanvas");
+  let overlay = document.getElementById("overlay");
+  startDisplay.classList.add("hidden");
+  containerCanvas.classList.add("hidden");
+  overlay.classList.add("hidden");
+}

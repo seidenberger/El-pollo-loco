@@ -1,6 +1,12 @@
-let keyboard = new Keyboard();
-
 function fingerButtonEvent() {
+  document.getElementById("playButton").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    initLevel();
+  });
+  document.getElementById("playButton").addEventListener("touchend", (e) => {
+    e.preventDefault();
+    // console.log("Touch beendet auf dem Play-Button.");
+  });
   document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
     e.preventDefault();
     keyboard.A = true;
@@ -65,10 +71,6 @@ window.addEventListener("keydown", (event) => {
   if (event.keyCode == 32) {
     keyboard.SPACE = true;
   }
-
-  if (event.keyCode == 13) {
-    keyboard.ENTER = true;
-  }
 });
 
 window.addEventListener("keyup", (e) => {
@@ -94,9 +96,5 @@ window.addEventListener("keyup", (e) => {
 
   if (event.keyCode == 32) {
     keyboard.SPACE = false;
-  }
-
-  if (event.keyCode == 13) {
-    keyboard.ENTER = false;
   }
 });

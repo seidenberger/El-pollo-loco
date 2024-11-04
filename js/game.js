@@ -7,36 +7,21 @@ let gameStarted = false;
 
 function initStartDisplay() {
   footerShowDestop();
-  // footerShow();
-  //   initStartDisplayButten();
-  //   document.getElementById("buttonDiv").classList.add("hidden");
-  //   // checkOrientationWithMediaQuery();
 }
-
-// function initStartDisplayButten() {
-//   document.getElementById("playButton").addEventListener("click", initLevel);
-//   document.getElementById("playButton").addEventListener("touchstart", (e) => {
-//     e.preventDefault();
-//     initLevel();
-//   });
-// }
 
 function initLevel() {
   if (!gameStarted) {
     gameStarted = true;
     initLevelOne();
     document.getElementById("containerCanvas").classList.remove("hidden");
-
     document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("playButton").classList.add("hidden");
     document.getElementById("startDisplay").classList.add("hidden");
-
-    // document.getElementById("footer").classList.add("hidden");
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     enableMute();
     fingerButtonEvent();
-
+    footerShow();
     console.log("my character is", world.character);
     console.log("my world is", world);
     console.log(world.level.enemies);
@@ -70,180 +55,131 @@ function clearAllIntervals() {
 }
 
 function stopGame() {
-  footerShow();
+  footerShowOverlay();
   gameStarted = false;
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
-
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("buttonDiv").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
-
-  // document.getElementById("footer").classList.remove("hidden");
 }
 
 function youWinGamne() {
   clearAllIntervals();
-  // setTimeout(() => {
   document.getElementById("youWin").classList.remove("hidden");
   setTimeout(() => {
     stopGame();
   }, 2000);
-  // }, 1000);
 }
 
 function gameOver() {
   clearAllIntervals();
-  // setTimeout(() => {
 
   document.getElementById("gameOver").classList.remove("hidden");
   setTimeout(() => {
     stopGame();
   }, 2000);
-  // }, 1000);
 }
 
-// function checkOrientationWithMediaQuery() {
-//   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
-//   console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+// function fingerButtonEvent() {
+//   document.getElementById("playButton").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     initLevel();
+//   });
+//   document.getElementById("playButton").addEventListener("touchend", (e) => {
+//     e.preventDefault();
+//     // console.log("Touch beendet auf dem Play-Button.");
+//   });
+//   document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     keyboard.A = true;
+//   });
 
-//   let canvasContainer = document.getElementById("containerCanvas");
-//   let orientationMessage = document.getElementById("orientationMessage");
-//   let gameName = document.getElementById("gameName");
-//   let gameKeys = document.getElementById("gameKeys");
+//   document.getElementById("btnLeft").addEventListener("touchend", (e) => {
+//     e.preventDefault();
+//     keyboard.A = false;
+//   });
+//   document.getElementById("btnRight").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     keyboard.D = true;
+//   });
 
-//   if (isPortrait) {
-//     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-//     orientationMessage.classList.remove("hidden");
-//     // containerCanvas.classList.add("hidden");
-//     canvasContainer.classList.add("invisible");
-//     gameName.classList.add("hidden");
-//     gameKeys.classList.remove("hidden");
-//   } else {
-//     if (gameStarted) {
-//       // containerCanvas.classList.remove("hidden");
-//       canvasContainer.classList.remove("invisible");
-//       orientationMessage.classList.add("hidden");
-//       gameKeys.classList.remove("hidden");
-//     } else {
-//       console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-//       orientationMessage.classList.add("hidden");
-//       // containerCanvas.classList.remove("hidden");
-//       canvasContainer.classList.remove("invisible");
-//       gameName.classList.add("hidden");
-//       gameKeys.classList.remove("hidden");
-//     }
-//   }
+//   document.getElementById("btnRight").addEventListener("touchend", (e) => {
+//     e.preventDefault();
+//     keyboard.D = false;
+//   });
+
+//   document.getElementById("btnUp").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     keyboard.W = true;
+//   });
+
+//   document.getElementById("btnUp").addEventListener("touchend", (e) => {
+//     e.preventDefault();
+//     keyboard.W = false;
+//   });
+
+//   document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
+//     e.preventDefault();
+//     keyboard.SPACE = true;
+//   });
+
+//   document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
+//     e.preventDefault();
+//     keyboard.SPACE = false;
+//   });
 // }
 
-// let orientationMediaQuery = window.matchMedia("(orientation: portrait)");
+// window.addEventListener("keydown", (event) => {
+//   if (event.keyCode == 39 || event.keyCode == 68) {
+//     keyboard.RIGHT = true;
+//     keyboard.D = true;
+//   }
 
-// orientationMediaQuery.addEventListener(
-//   "change",
-//   checkOrientationWithMediaQuery
-// );
+//   if (event.keyCode == 38 || event.keyCode == 87) {
+//     keyboard.UP = true;
+//     keyboard.W = true;
+//   }
 
-// window.addEventListener("load", checkOrientationWithMediaQuery);
+//   if (event.keyCode == 37 || event.keyCode == 65) {
+//     keyboard.LEFT = true;
+//     keyboard.A = true;
+//   }
 
-function fingerButtonEvent() {
-  document.getElementById("playButton").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    initLevel();
-  });
-  document.getElementById("playButton").addEventListener("touchend", (e) => {
-    e.preventDefault();
-    console.log("Touch beendet auf dem Play-Button.");
-  });
-  document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.A = true;
-  });
+//   if (event.keyCode == 40 || event.keyCode == 83) {
+//     keyboard.DOWN = true;
+//     keyboard.S = true;
+//   }
 
-  document.getElementById("btnLeft").addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.A = false;
-  });
-  document.getElementById("btnRight").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.D = true;
-  });
+//   if (event.keyCode == 32) {
+//     keyboard.SPACE = true;
+//   }
+// });
 
-  document.getElementById("btnRight").addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.D = false;
-  });
+// window.addEventListener("keyup", (e) => {
+//   if (e.keyCode == 39 || e.keyCode == 68) {
+//     keyboard.RIGHT = false;
+//     keyboard.D = false;
+//   }
 
-  document.getElementById("btnUp").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.W = true;
-  });
+//   if (event.keyCode == 38 || event.keyCode == 87) {
+//     keyboard.UP = false;
+//     keyboard.W = false;
+//   }
 
-  document.getElementById("btnUp").addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.W = false;
-  });
+//   if (event.keyCode == 37 || event.keyCode == 65) {
+//     keyboard.LEFT = false;
+//     keyboard.A = false;
+//   }
 
-  document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-    keyboard.SPACE = true;
-  });
+//   if (event.keyCode == 40 || event.keyCode == 83) {
+//     keyboard.DOWN = false;
+//     keyboard.S = false;
+//   }
 
-  document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
-    e.preventDefault();
-    keyboard.SPACE = false;
-  });
-}
-
-window.addEventListener("keydown", (event) => {
-  if (event.keyCode == 39 || event.keyCode == 68) {
-    keyboard.RIGHT = true;
-    keyboard.D = true;
-  }
-
-  if (event.keyCode == 38 || event.keyCode == 87) {
-    keyboard.UP = true;
-    keyboard.W = true;
-  }
-
-  if (event.keyCode == 37 || event.keyCode == 65) {
-    keyboard.LEFT = true;
-    keyboard.A = true;
-  }
-
-  if (event.keyCode == 40 || event.keyCode == 83) {
-    keyboard.DOWN = true;
-    keyboard.S = true;
-  }
-
-  if (event.keyCode == 32) {
-    keyboard.SPACE = true;
-  }
-});
-
-window.addEventListener("keyup", (e) => {
-  if (e.keyCode == 39 || e.keyCode == 68) {
-    keyboard.RIGHT = false;
-    keyboard.D = false;
-  }
-
-  if (event.keyCode == 38 || event.keyCode == 87) {
-    keyboard.UP = false;
-    keyboard.W = false;
-  }
-
-  if (event.keyCode == 37 || event.keyCode == 65) {
-    keyboard.LEFT = false;
-    keyboard.A = false;
-  }
-
-  if (event.keyCode == 40 || event.keyCode == 83) {
-    keyboard.DOWN = false;
-    keyboard.S = false;
-  }
-
-  if (event.keyCode == 32) {
-    keyboard.SPACE = false;
-  }
-});
+//   if (event.keyCode == 32) {
+//     keyboard.SPACE = false;
+//   }
+// });
