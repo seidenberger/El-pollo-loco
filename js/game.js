@@ -6,7 +6,7 @@ let intervallIds = [];
 let gameStarted = false;
 
 function initStartDisplay() {
-  footerShowDestop();
+  // footerShowDestop();
 }
 
 function initLevel() {
@@ -17,6 +17,7 @@ function initLevel() {
     document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("playButton").classList.add("hidden");
     document.getElementById("startDisplay").classList.add("hidden");
+    document.getElementById("overlayFooter").innerHTML = "";
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard);
     enableMute();
@@ -25,6 +26,11 @@ function initLevel() {
     console.log("my character is", world.character);
     console.log("my world is", world);
     console.log(world.level.enemies);
+
+    // neu #
+    // buttonDiv entfernen
+
+    // document.getElementById("buttonDiv").classList.add("hidden");
   }
 }
 

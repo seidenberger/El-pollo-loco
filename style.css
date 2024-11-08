@@ -86,6 +86,10 @@ p, span {
   display: none;
 }
 
+.hidden_imp {
+  display: none !important;
+}
+
 .invisible {
   visibility: hidden;
   position: absolute;
@@ -101,7 +105,7 @@ p, span {
   height: 100%;
 }
 
-#playButton:hover {
+.button:hover {
   cursor: pointer;
   text-shadow: 3px 3px 2px #333 
 }

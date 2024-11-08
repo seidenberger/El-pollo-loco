@@ -45,6 +45,36 @@ function fingerButtonEvent() {
     e.preventDefault();
     keyboard.SPACE = false;
   });
+
+  // neu
+
+  document.getElementById("btnBack").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+  });
+
+  document.getElementById("btnBack").addEventListener("touchend", (e) => {
+    e.preventDefault();
+  });
+
+  // document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
+  //   e.preventDefault();
+  //   keyboard.SPACE = true;
+  // });
+
+  // document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
+  //   e.preventDefault();
+  //   keyboard.SPACE = false;
+  // });
+
+  // document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
+  //   e.preventDefault();
+  //   keyboard.SPACE = true;
+  // });
+
+  // document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
+  //   e.preventDefault();
+  //   keyboard.SPACE = false;
+  // });
 }
 
 window.addEventListener("keydown", (event) => {

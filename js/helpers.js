@@ -48,10 +48,12 @@ window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function impressum() {
   showImpressumDataPrivacy();
+  backShow();
 }
 
 function dataPrivacy() {
   showImpressumDataPrivacy();
+  backShow();
 }
 
 function showImpressumDataPrivacy() {
@@ -59,6 +61,17 @@ function showImpressumDataPrivacy() {
   let containerCanvas = document.getElementById("containerCanvas");
   let overlay = document.getElementById("overlay");
   startDisplay.classList.add("hidden");
-  containerCanvas.classList.add("hidden");
-  overlay.classList.add("hidden");
+  containerCanvas.classList.add("hidden_imp");
+  overlay.classList.add("hidden_imp");
+}
+
+function backToMain() {
+  let startDisplay = document.getElementById("startDisplay");
+  let containerCanvas = document.getElementById("containerCanvas");
+  let overlay = document.getElementById("overlay");
+  let back = document.getElementById("back");
+  back.innerHTML = "";
+  startDisplay.classList.remove("hidden");
+  containerCanvas.classList.remove("hidden_imp");
+  overlay.classList.remove("hidden_imp");
 }
