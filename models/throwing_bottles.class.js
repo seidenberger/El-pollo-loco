@@ -5,6 +5,7 @@ class throwingBottles extends MovableObject {
   x = 0;
   y = 0;
   isBroken = false;
+  throwSoundPlaying = false;
   offset = {
     top: 10,
     bottom: 5,
@@ -54,12 +55,15 @@ class throwingBottles extends MovableObject {
     this.x;
     this.speedY = 20;
     this.applayGravity();
+    this.throwSound();
 
     setInterval(() => {
       if (this.isBroken) {
         this.x += 0;
         this.y += 0;
         this.speedY += 0;
+
+        this.throwSoundplay();
       } else if (this.otherDirection == false) {
         this.x += 15;
       } else {
@@ -69,5 +73,17 @@ class throwingBottles extends MovableObject {
     }, 50);
 
     this.animate();
+  }
+
+  throwSoundplay() {
+    if (!this.throwSoundPlaying) {
+      throwSound.play();
+      this.throwSoundPlaying = true;
+    }
+  }
+
+  throwSound() {
+    throwSound.pause();
+    this.throwSoundPlaying = false;
   }
 }

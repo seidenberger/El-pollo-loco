@@ -157,7 +157,7 @@ class World {
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
-          console.log("Kollision erkannt mit:", enemy);
+          // console.log("Kollision erkannt mit:", enemy);
           if (
             (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
             !enemy.enemyIsDead

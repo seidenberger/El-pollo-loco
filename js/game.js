@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let changeAudio = false;
+let changeAudio = true;
 let intervallIds = [];
 let gameStarted = false;
 
@@ -14,6 +14,7 @@ function initLevel() {
   if (!gameStarted) {
     gameStarted = true;
     initLevelOne();
+    backGroundMusicPlaying();
     document.getElementById("containerCanvas").classList.remove("hidden");
     document.getElementById("canvas").classList.remove("hidden");
     document.getElementById("playButton").classList.add("hidden");
@@ -22,21 +23,20 @@ function initLevel() {
     canvas = document.getElementById("canvas");
     document.getElementById("audioButten").classList.remove("hidden_imp");
     world = new World(canvas, keyboard);
-    enableMute();
+    // disableMute();
     fingerButtonEvent();
     footerShow();
-    console.log("my character is", world.character);
-    console.log("my world is", world);
-    console.log(world.level.enemies);
-    backGroundMusicPlaying();
+    // console.log("my character is", world.character);
+    // console.log("my world is", world);
+    // console.log(world.level.enemies);
   }
 }
 
 function backGroundMusicPlaying() {
-  if (!backGroundMusicPlaying) {
-    backgrounMusik.play();
-    backGroundMusicPlaying = true;
-  }
+  // if (!backGroundMusicPlaying) {
+  backgrounMusik.play();
+  // backGroundMusicPlaying = true;
+  // }
 }
 
 document.addEventListener("keydown", function (event) {
@@ -61,7 +61,7 @@ function changeSilently() {
 }
 
 function clearAllIntervals() {
-  console.log("world", world);
+  // console.log("world", world);
 
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
