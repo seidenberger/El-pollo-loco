@@ -2,7 +2,7 @@
 
 function checkOrientationWithMediaQuery() {
   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
-  console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+  // console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
 
   let canvasContainer = document.getElementById("containerCanvas");
   let orientationMessage = document.getElementById("orientationMessage");
@@ -26,7 +26,7 @@ function checkOrientationWithMediaQuery() {
       orientationMessage.classList.add("hidden");
       gameKeys.classList.remove("hidden");
     } else {
-      console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
+      // console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
       orientationMessage.classList.add("hidden");
       // containerCanvas.classList.remove("hidden");
       canvasContainer.classList.remove("invisible");

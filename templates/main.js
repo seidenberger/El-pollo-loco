@@ -5,10 +5,10 @@ function footerShowOverlay() {
   overlayFooter.innerHTML += /*html*/ `
         <footer>
         <span>
-        <a href="./footer/impressum_theo_seidenberger_developerakademie_net_de.pdf"  onclick="impressum()" class="d_flex button">Impressum></a>
+        <a href="./footer/impressum_theo_seidenberger_developerakademie_net_de.pdf"  onclick="impressum()" class="d_flex button">Impressum</a>
         </span>
         <span>
-        <a href="./footer/datenschutzerklaerung_theo_seidenberger_developerakademie_net_de.pdf"  onclick="dataPrivacy()" class="d_flex button">Data Privacy></a>
+        <a href="./footer/datenschutzerklaerung_theo_seidenberger_developerakademie_net_de.pdf"  onclick="dataPrivacy()" class="d_flex button">Data Privacy</a>
         </span>
 
     `;

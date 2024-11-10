@@ -7,6 +7,7 @@ let gameStarted = false;
 
 function initStartDisplay() {
   // footerShowDestop();
+  document.getElementById("audioButten").classList.add("hidden_imp");
 }
 
 function initLevel() {
@@ -19,6 +20,7 @@ function initLevel() {
     document.getElementById("startDisplay").classList.add("hidden");
     document.getElementById("overlayFooter").innerHTML = "";
     canvas = document.getElementById("canvas");
+    document.getElementById("audioButten").classList.remove("hidden_imp");
     world = new World(canvas, keyboard);
     enableMute();
     fingerButtonEvent();
@@ -26,11 +28,14 @@ function initLevel() {
     console.log("my character is", world.character);
     console.log("my world is", world);
     console.log(world.level.enemies);
+    backGroundMusicPlaying();
+  }
+}
 
-    // neu #
-    // buttonDiv entfernen
-
-    // document.getElementById("buttonDiv").classList.add("hidden");
+function backGroundMusicPlaying() {
+  if (!backGroundMusicPlaying) {
+    backgrounMusik.play();
+    backGroundMusicPlaying = true;
   }
 }
 
@@ -57,12 +62,14 @@ function changeSilently() {
 
 function clearAllIntervals() {
   console.log("world", world);
+
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
 function stopGame() {
   footerShowOverlay();
   gameStarted = false;
+  enableMute();
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
@@ -70,6 +77,7 @@ function stopGame() {
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("buttonDiv").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
+  document.getElementById("audioButten").classList.add("hidden_imp");
 }
 
 function youWinGamne() {

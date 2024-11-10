@@ -68,7 +68,6 @@ class Endboss extends MovableObject {
   animate() {
     setInterval(() => {
       if (this.isDead()) {
-        // this.angriSoundPause();
         this.deadAnimation();
       } else if (this.isHurt()) {
         this.angriSoundPlay();
@@ -77,25 +76,16 @@ class Endboss extends MovableObject {
       } else if (this.x < world.character.x + 350) {
         this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
-        // neu
         if (!this.alertAnimatioStarted) {
           this.alertTime = new Date().getTime();
           this.alertAnimatioStarted = true;
         }
         if (this.isAlert()) {
-          // this.angriSoundPlay();
           this.playAnimation(this.Images_endboss_alert);
           this.speed = 0;
         } else {
           this.enbossAttack();
         }
-        // angri_chicken_sound.play();
-        // this.playAnimation(this.Images_endboss_alert);
-        // this.speed = 0;
-
-        // setTimeout(() => {
-        //   this.enbossAttack();
-        // }, 500);
       } else {
         this.angriSoundPause();
         this.playAnimation(this.Images_endboss_walk);
@@ -124,11 +114,9 @@ class Endboss extends MovableObject {
   }
 
   angriSoundPlay() {
-    // if (!this.isAngriChickenSound) {
     angriChickenSound.play();
     this.isAngriChickenSound = true;
-    console.log("angriSoundPlay()");
-    // }
+    // console.log("angriSoundPlay()");
   }
 
   enbossAttack() {

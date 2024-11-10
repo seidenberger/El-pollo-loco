@@ -44,7 +44,7 @@ class World {
 
   alertEndboss() {
     if (this.character.x === 3200) {
-      console.log("endboss startet");
+      // console.log("endboss startet");
     }
   }
 
@@ -168,7 +168,7 @@ class World {
           } else if (enemy instanceof Endboss) {
             endboss.hit();
             this.handleBottleCollision(bottle, bottleIndex);
-            console.log("endboss energy", endboss.energy);
+            // console.log("endboss energy", endboss.energy);
             this.statusbarEndboss.setPercentage(endboss.energy);
           }
         }

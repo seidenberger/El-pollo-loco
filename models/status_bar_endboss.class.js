@@ -33,7 +33,7 @@ class StatusbarEndboss extends MovableObject {
     this.percentage = percentage;
     let path = this.Images_Statusbar_Endboss[this.resolveImageIndex()];
     this.img = this.imageCache[path];
-    console.log("enbdbos y ");
+    // console.log("enbdbos y ");
   }
 
   resolveImageIndex() {
