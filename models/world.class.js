@@ -19,17 +19,13 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-    // this.level = level; // Das Level, das den Endboss enthält
-    // this.endboss = this.level.endboss;
     this.draw();
     this.setWorld();
     this.checkCollisions();
     this.checkSlowCollisions();
     this.checkCollisionWithObject();
     this.checkCollisionWithbottle();
-
     this.checkCollisionWithThrwObject();
-    // this.checkOtherDirectionThrowing();
   }
 
   setWorld() {
@@ -38,23 +34,18 @@ class World {
     this.statusbarBottle.world = this;
     this.statusbarCoin.world = this;
     this.statusbarBottle.world = this;
-    // this.endboss = enemy instanceof Endboss;
-    // this.statusBarEndboss = new StatusbarEndboss(this.endboss);
   }
 
   alertEndboss() {
     if (this.character.x === 3200) {
-      // console.log("endboss startet");
     }
   }
 
   updatStatusEndboss() {
-    // if (enemy instanceof Endboss) {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
     if (this.statusbarEndboss && endboss) {
       let x = endboss.x;
       this.statusbarEndboss.updatePosition(x);
-      // }
     }
   }
 
@@ -63,10 +54,8 @@ class World {
       this.checkCollisionsEnemy();
       this.checkCollisionWithObject();
       this.checkCollisionWithbottle();
-
       this.checkCollisionWithThrwObject();
       this.checkSpliceChicken();
-      // this.checkOtherDirectionThrowing();
       this.updatStatusEndboss();
       this.alertEndboss();
     }, 1000 / 60);
@@ -90,7 +79,6 @@ class World {
               this.lastDeadChicken = new Date().getTime();
             } else {
               this.enemiesToRemove.push(index);
-              console.log("Chicken getroffen und entfernt");
             }
           }
         } else {
@@ -157,7 +145,6 @@ class World {
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
-          // console.log("Kollision erkannt mit:", enemy);
           if (
             (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
             !enemy.enemyIsDead
@@ -168,7 +155,6 @@ class World {
           } else if (enemy instanceof Endboss) {
             endboss.hit();
             this.handleBottleCollision(bottle, bottleIndex);
-            // console.log("endboss energy", endboss.energy);
             this.statusbarEndboss.setPercentage(endboss.energy);
           }
         }
@@ -196,7 +182,6 @@ class World {
 
         if (timePassed >= 2) {
           this.enemiesToRemove.push(index);
-          // console.log("Chicken wurde nach 2 Sekunden entfernt.");
         }
       }
     });

@@ -1,9 +1,5 @@
-// let keepOverlayFooter = false;
-
 function checkOrientationWithMediaQuery() {
   let isPortrait = window.matchMedia("(orientation: portrait)").matches;
-  // console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
-
   let canvasContainer = document.getElementById("containerCanvas");
   let orientationMessage = document.getElementById("orientationMessage");
   let gameName = document.getElementById("gameName");
@@ -12,23 +8,16 @@ function checkOrientationWithMediaQuery() {
   if (isPortrait) {
     console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
     orientationMessage.classList.remove("hidden");
-    // containerCanvas.classList.add("hidden");
     canvasContainer.classList.add("invisible");
     gameName.classList.add("hidden");
     gameKeys.classList.remove("hidden");
-
-    // keepOverlayFooter = false;
   } else {
-    // keepOverlayFooter = trhe;
     if (gameStarted) {
-      // containerCanvas.classList.remove("hidden");
       canvasContainer.classList.remove("invisible");
       orientationMessage.classList.add("hidden");
       gameKeys.classList.remove("hidden");
     } else {
-      // console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
       orientationMessage.classList.add("hidden");
-      // containerCanvas.classList.remove("hidden");
       canvasContainer.classList.remove("invisible");
       gameName.classList.add("hidden");
       gameKeys.classList.remove("hidden");
@@ -48,12 +37,10 @@ window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function impressum() {
   showImpressumDataPrivacy();
-  backShow();
 }
 
 function dataPrivacy() {
   showImpressumDataPrivacy();
-  backShow();
 }
 
 function showImpressumDataPrivacy() {
@@ -63,15 +50,4 @@ function showImpressumDataPrivacy() {
   startDisplay.classList.add("hidden");
   containerCanvas.classList.add("hidden_imp");
   overlay.classList.add("hidden_imp");
-}
-
-function backToMain() {
-  let startDisplay = document.getElementById("startDisplay");
-  let containerCanvas = document.getElementById("containerCanvas");
-  let overlay = document.getElementById("overlay");
-  let back = document.getElementById("back");
-  back.innerHTML = "";
-  startDisplay.classList.remove("hidden");
-  containerCanvas.classList.remove("hidden_imp");
-  overlay.classList.remove("hidden_imp");
 }

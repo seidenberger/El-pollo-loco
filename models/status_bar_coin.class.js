@@ -8,19 +8,15 @@ class StatusbarCoin extends DrawabelObject {
     "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/100.png",
   ];
 
-  // für was brauch ich  ?
   percentage = 0;
 
   constructor() {
     super().loadImage(
       "img/7_statusbars/1_statusbar/1_statusbar_coin/blue/0.png"
     );
-    // super();
-    // debugger
     this.loadImages(this.Images_Statusbar_Coin);
     this.x = 10;
     this.y = 70;
-
     this.height = 40;
     this.width = 200;
   }
@@ -32,8 +28,6 @@ class StatusbarCoin extends DrawabelObject {
   }
 
   resolveImageIndex() {
-    // console.log('Collision with Caracter', this.character.energy)
-
     if (this.percentage == 100) {
       return 5;
     } else if (this.percentage > 80) {

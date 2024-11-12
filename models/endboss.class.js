@@ -116,7 +116,6 @@ class Endboss extends MovableObject {
   angriSoundPlay() {
     angriChickenSound.play();
     this.isAngriChickenSound = true;
-    // console.log("angriSoundPlay()");
   }
 
   enbossAttack() {

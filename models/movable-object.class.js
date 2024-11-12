@@ -4,11 +4,9 @@ class MovableObject extends DrawabelObject {
   otherDirection = false;
   speedY = 0;
   acceleration = 4;
-
   lastHit = 0;
   lastMove = 0;
   energy = 100;
-
   bottle = 0;
   coin = 0;
   enemyIsDead = false;
@@ -36,7 +34,6 @@ class MovableObject extends DrawabelObject {
       return true;
     } else {
       return this.y < 190;
-      // console.log("fall", this.y);
     }
   }
 

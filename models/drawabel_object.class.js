@@ -1,9 +1,6 @@
 class DrawabelObject {
   x = 50;
   y = 270;
-
-  // height = 150;
-  // width = 100;
   img;
   imageCache = {};
   currentImage = 0;
@@ -40,10 +37,6 @@ class DrawabelObject {
     }
   }
 
-  /**
-   *
-   * @param {array} array -['img/image1.png', 'img/image1.png', ...]
-   */
   loadImages(array) {
     array.forEach((path) => {
       let img = new Image();

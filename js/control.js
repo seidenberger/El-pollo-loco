@@ -5,7 +5,6 @@ function fingerButtonEvent() {
   });
   document.getElementById("playButton").addEventListener("touchend", (e) => {
     e.preventDefault();
-    // console.log("Touch beendet auf dem Play-Button.");
   });
   document.getElementById("btnLeft").addEventListener("touchstart", (e) => {
     e.preventDefault();
@@ -48,32 +47,12 @@ function fingerButtonEvent() {
 
   // neu
 
-  document.getElementById("btnBack").addEventListener("touchstart", (e) => {
-    e.preventDefault();
-  });
-
-  document.getElementById("btnBack").addEventListener("touchend", (e) => {
-    e.preventDefault();
-  });
-
-  // document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
+  // document.getElementById("btnBack").addEventListener("touchstart", (e) => {
   //   e.preventDefault();
-  //   keyboard.SPACE = true;
   // });
 
-  // document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
+  // document.getElementById("btnBack").addEventListener("touchend", (e) => {
   //   e.preventDefault();
-  //   keyboard.SPACE = false;
-  // });
-
-  // document.getElementById("btnThrowing").addEventListener("touchstart", (e) => {
-  //   e.preventDefault();
-  //   keyboard.SPACE = true;
-  // });
-
-  // document.getElementById("btnThrowing").addEventListener("touchend", (e) => {
-  //   e.preventDefault();
-  //   keyboard.SPACE = false;
   // });
 }
 

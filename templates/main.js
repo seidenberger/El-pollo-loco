@@ -14,14 +14,6 @@ function footerShowOverlay() {
     `;
 }
 
-function backShow() {
-  let back = document.getElementById("back");
-  back.innerHTML = "";
-  back.innerHTML += /*html*/ `
-  <div id="btnBack" class="d_j_center" onclick="backToMain()"><h2 class="button">back</h2></div>
-`;
-}
-
 function footerShow() {
   let destopFooter = document.getElementById("destopFooter");
   let overlayFooter = document.getElementById("overlayFooter");

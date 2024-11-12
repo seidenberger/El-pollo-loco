@@ -8,15 +8,11 @@ class StatusbarHealth extends DrawabelObject {
     "img/7_statusbars/1_statusbar/2_statusbar_health/green/100.png",
   ];
 
-  // für was brauch ich  ?
-  // percentage = 0;
-
   constructor() {
     super();
     this.loadImages(this.Images_Statusbar_health);
     this.x = 10;
     this.y = 0;
-
     this.height = 40;
     this.width = 200;
     this.setPercentage(100);
@@ -29,8 +25,6 @@ class StatusbarHealth extends DrawabelObject {
   }
 
   resolveImageIndex() {
-    // console.log('Collision with Caracter', this.character.energy)
-
     if (this.percentage == 100) {
       return 5;
     } else if (this.percentage > 80) {
