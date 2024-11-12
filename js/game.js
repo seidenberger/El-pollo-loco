@@ -14,14 +14,9 @@ function initLevel() {
     gameStarted = true;
     initLevelOne();
     backGroundMusicPlaying();
-    document.getElementById("containerCanvas").classList.remove("hidden");
-    document.getElementById("canvas").classList.remove("hidden");
-    document.getElementById("playButton").classList.add("hidden");
-    document.getElementById("startDisplay").classList.add("hidden");
-    document.getElementById("overlayFooter").innerHTML = "";
-    canvas = document.getElementById("canvas");
-    document.getElementById("audioButten").classList.remove("hidden_imp");
-    world = new World(canvas, keyboard);
+    showGameElements();
+    setupCanvas();
+    initializeWorld();
     fingerButtonEvent();
     // footerShow();
   }
@@ -29,6 +24,23 @@ function initLevel() {
 
 function backGroundMusicPlaying() {
   backgrounMusik.play();
+}
+
+function showGameElements() {
+  document.getElementById("containerCanvas").classList.remove("hidden");
+  document.getElementById("canvas").classList.remove("hidden");
+  document.getElementById("playButton").classList.add("hidden");
+  document.getElementById("startDisplay").classList.add("hidden");
+  document.getElementById("overlayFooter").innerHTML = "";
+  document.getElementById("audioButten").classList.remove("hidden_imp");
+}
+
+function setupCanvas() {
+  canvas = document.getElementById("canvas");
+}
+
+function initializeWorld() {
+  world = new World(canvas, keyboard);
 }
 
 document.addEventListener("keydown", function (event) {
@@ -57,9 +69,13 @@ function clearAllIntervals() {
 }
 
 function stopGame() {
-  footerShowOverlay();
   gameStarted = false;
+  footerShowOverlay();
   enableMute();
+  stopGameElements();
+}
+
+function stopGameElements() {
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
@@ -72,6 +88,10 @@ function stopGame() {
 
 function youWinGamne() {
   clearAllIntervals();
+  youWinTime();
+}
+
+function youWinTime() {
   document.getElementById("youWin").classList.remove("hidden");
   setTimeout(() => {
     stopGame();
@@ -80,7 +100,10 @@ function youWinGamne() {
 
 function gameOver() {
   clearAllIntervals();
+  gameOverTime();
+}
 
+function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
   setTimeout(() => {
     stopGame();
