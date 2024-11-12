@@ -1,6 +1,4 @@
 class Character extends MovableObject {
-  // x = 50;
-  // y = 130;
   height = 240;
   width = 120;
   speed = 5;
@@ -97,24 +95,17 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
-      // intervallIds.push(interval);
       walkingSound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
         this.moveRight();
         this.otherDirection = false;
         walkingSound.play();
-        // console.log("charater x", this.x);
-        // console.log("charater y", this.y);
-        // console.log('charater y', this.y )
-        // this.throwingBottle.updatePosition(this.x, this.y, this.otherDirection);
       }
 
       if (this.world.keyboard.A && this.x > 0) {
         this.moveLeft();
         walkingSound.play();
         this.otherDirection = true;
-        // console.log("charater x", this.x);
-        // console.log("charater y", this.y);
       }
 
       if (this.world.keyboard.W && !this.isAboveGround()) {
