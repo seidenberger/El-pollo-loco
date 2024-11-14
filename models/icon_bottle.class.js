@@ -1,10 +1,8 @@
 class Bottle extends MovableObject {
   y = 370;
   x = 250;
-
   height = 50;
   width = 70;
-
   offset = {
     top: 10,
     bottom: 5,

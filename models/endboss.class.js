@@ -77,12 +77,11 @@ class Endboss extends MovableObject {
         this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
         if (!this.alertAnimatioStarted) {
-          this.alertTime = new Date().getTime();
-          this.alertAnimatioStarted = true;
+          this.alertEndboss();
         }
         if (this.isAlert()) {
           this.playAnimation(this.Images_endboss_alert);
-          this.speed = 0;
+          this.speedStop();
         } else {
           this.enbossAttack();
         }
@@ -90,19 +89,19 @@ class Endboss extends MovableObject {
         this.angriSoundPause();
         this.playAnimation(this.Images_endboss_walk);
         this.moveLeft();
-        this.speed = 2;
+        this.speedslow();
+        // this.speed = 2;
       }
     }, 1000 / 10);
   }
 
   deadAnimation() {
     if (!this.deadAnimationStarted) {
-      this.currentImage = 0;
-      this.deadAnimationStarted = true;
+      this.playDeadAnimation();
     }
     if (this.currentImage < this.Images_endboss_dead.length) {
       this.playAnimation(this.Images_endboss_dead);
-      this.currentImage++;
+      this.incrementCurrentImage();
     } else {
       youWinGamne();
     }
@@ -129,5 +128,18 @@ class Endboss extends MovableObject {
     let timepassed = new Date().getTime() - this.alertTime;
     timepassed = timepassed / 1000;
     return timepassed < 2;
+  }
+
+  alertEndboss() {
+    this.alertTime = new Date().getTime();
+    this.alertAnimatioStarted = true;
+  }
+
+  speedStop() {
+    this.speed = 0;
+  }
+
+  speedslow() {
+    this.speed = 2;
   }
 }

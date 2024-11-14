@@ -88,7 +88,6 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Long_Idle);
     this.applayGravity();
     this.animate();
-
     this.idleStartTime = null;
     this.isIdleState = false;
   }
@@ -98,8 +97,8 @@ class Character extends MovableObject {
       walkingSound.pause();
       if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
         this.moveRight();
-        this.otherDirection = false;
         walkingSound.play();
+        this.otherDirection = false;
       }
 
       if (this.world.keyboard.A && this.x > 0) {
@@ -128,7 +127,7 @@ class Character extends MovableObject {
       } else if (this.world.keyboard.D || this.world.keyboard.A) {
         this.sleepPause();
         this.playAnimation(this.Images_Walkin_Pepe);
-        this.currentTimeWalking = new Date().getTime();
+        this.timeWalking();
       } else if (this.isIdle()) {
         this.sleepPause();
         this.playAnimation(this.Images_Idle);
@@ -141,19 +140,18 @@ class Character extends MovableObject {
 
   deadAnimatio() {
     if (!this.deadAnimationStarted) {
-      this.currentImage = 0;
-      this.deadAnimationStarted = true;
+      this.playDeadAnimation();
     }
     if (this.currentImage < this.Images_Dead.length) {
       this.playAnimation(this.Images_Dead);
-      this.currentImage++;
+      this.incrementCurrentImage();
     } else {
       gameOver();
     }
   }
 
   jump() {
-    this.speedY = 30;
+    this.speedToJump();
     jumpSound.play();
   }
 
@@ -172,7 +170,14 @@ class Character extends MovableObject {
   isIdle() {
     let timepassed = new Date().getTime() - this.currentTimeWalking;
     timepassed = timepassed / 1000;
-
     return timepassed < 3;
+  }
+
+  timeWalking() {
+    this.currentTimeWalking = new Date().getTime();
+  }
+
+  speedToJump() {
+    this.speedY = 30;
   }
 }

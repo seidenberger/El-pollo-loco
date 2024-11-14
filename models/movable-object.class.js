@@ -68,7 +68,7 @@ class MovableObject extends DrawabelObject {
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
-    this.currentImage++;
+    this.incrementCurrentImage();
   }
 
   isColliding(mo) {
@@ -82,5 +82,10 @@ class MovableObject extends DrawabelObject {
 
   hurtSound() {
     hurtSound.play();
+  }
+
+  playDeadAnimation() {
+    this.currentImage = 0;
+    this.deadAnimationStarted = true;
   }
 }

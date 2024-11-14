@@ -6,7 +6,6 @@ function checkOrientationWithMediaQuery() {
   let gameKeys = document.getElementById("gameKeys");
 
   if (isPortrait) {
-    console.log("Ausrichtung: " + (isPortrait ? "Portrait" : "Landscape"));
     orientationMessage.classList.remove("hidden");
     canvasContainer.classList.add("invisible");
     gameName.classList.add("hidden");
