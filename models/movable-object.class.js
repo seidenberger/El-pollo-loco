@@ -22,8 +22,8 @@ class MovableObject extends DrawabelObject {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
         if (!this.isBroken) {
-          this.y -= this.speedY;
-          this.speedY -= this.acceleration;
+          this.minusSpeedY();
+          this.minusAcceleration();
         }
       }
     }, 1000 / 25);
@@ -46,9 +46,9 @@ class MovableObject extends DrawabelObject {
   }
 
   hit() {
-    this.energy -= 5;
+    this.hitEenergyMinusFive();
     if (this.energy < 0) {
-      this.energy = 0;
+      this.energyZero();
     } else {
       this.lastHit = new Date().getTime();
     }
@@ -88,20 +88,19 @@ class MovableObject extends DrawabelObject {
     this.currentImage = 0;
     this.deadAnimationStarted = true;
   }
+  minusSpeedY() {
+    this.y -= this.speedY;
+  }
 
-  // statusbarPercent() {
-  //   if (this.percentage == 100) {
-  //     return 5;
-  //   } else if (this.percentage > 80) {
-  //     return 4;
-  //   } else if (this.percentage > 60) {
-  //     return 3;
-  //   } else if (this.percentage > 40) {
-  //     return 2;
-  //   } else if (this.percentage > 20) {
-  //     return 1;
-  //   } else {
-  //     return 0;
-  //   }
-  // }
+  minusAcceleration() {
+    this.speedY -= this.acceleration;
+  }
+
+  hitEenergyMinusFive() {
+    this.energy -= 5;
+  }
+
+  energyZero() {
+    this.energy = 0;
+  }
 }
