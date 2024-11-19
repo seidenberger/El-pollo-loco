@@ -60,8 +60,8 @@ class Endboss extends MovableObject {
     this.loadImages(this.Images_endboss_attack);
     this.loadImages(this.Images_endboss_hurt);
     this.loadImages(this.Images_endboss_dead);
-    this.speed = 0;
-    this.x = 3600;
+    this.speedStop();
+    this.endbossPoint();
     this.animate();
   }
 
@@ -90,7 +90,6 @@ class Endboss extends MovableObject {
         this.playAnimation(this.Images_endboss_walk);
         this.moveLeft();
         this.speedslow();
-        // this.speed = 2;
       }
     }, 1000 / 10);
   }
@@ -121,7 +120,7 @@ class Endboss extends MovableObject {
     this.angriSoundPlay();
     this.playAnimation(this.Images_endboss_attack);
     this.moveLeft();
-    this.speed = 4;
+    this.speedfast();
   }
 
   isAlert() {
@@ -141,5 +140,13 @@ class Endboss extends MovableObject {
 
   speedslow() {
     this.speed = 2;
+  }
+
+  speedfast() {
+    this.speed = 4;
+  }
+
+  endbossPoint() {
+    this.x = 3600;
   }
 }
