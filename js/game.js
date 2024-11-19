@@ -18,7 +18,7 @@ function initLevel() {
     setupCanvas();
     initializeWorld();
     fingerButtonEvent();
-    // footerShow();
+    footerShow();
   }
 }
 
@@ -65,6 +65,8 @@ function changeSilently() {
 }
 
 function clearAllIntervals() {
+  console.log("world", world);
+
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 

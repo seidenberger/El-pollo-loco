@@ -20,3 +20,11 @@ function footerShow() {
   destopFooter.innerHTML = "";
   overlayFooter.innerHTML = "";
 }
+
+function backShow() {
+  let back = document.getElementById("back");
+  back.innerHTML = "";
+  back.innerHTML += /*html*/ `
+  <div id="btnBack" class="d_j_center" onclick="backToMain()"><h2 class="button">back</h2></div>
+`;
+}

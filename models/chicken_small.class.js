@@ -17,11 +17,13 @@ class ChickenSmall extends MovableObject {
 
   constructor() {
     super().loadImage("img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
+    this.deadChicken = false;
     this.loadImages(this.Images_chicken_small);
     this.loadImages(this.Images_chicken_dead);
+    // this.positionCanvas();
     this.x = 300 + Math.random() * 700;
     this.speed = 0.07 + Math.random() * 0.5;
-    this.deadChicken = false;
+
     this.animate();
   }
 
@@ -36,5 +38,9 @@ class ChickenSmall extends MovableObject {
         this.playAnimation(this.Images_chicken_small);
       }
     }, 250);
+  }
+
+  positionCanvas() {
+    this.x = 300 + Math.random() * 700;
   }
 }

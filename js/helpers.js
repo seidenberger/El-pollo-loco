@@ -36,10 +36,12 @@ window.addEventListener("load", checkOrientationWithMediaQuery);
 
 function impressum() {
   showImpressumDataPrivacy();
+  backShow();
 }
 
 function dataPrivacy() {
   showImpressumDataPrivacy();
+  backShow();
 }
 
 function showImpressumDataPrivacy() {
