@@ -17,7 +17,7 @@ function footerShowOverlay() {
 function footerShow() {
   let destopFooter = document.getElementById("destopFooter");
   let overlayFooter = document.getElementById("overlayFooter");
-  destopFooter.innerHTML = "";
+  // destopFooter.innerHTML = "";
   overlayFooter.innerHTML = "";
 }
 

@@ -22,6 +22,37 @@ function initLevel() {
   }
 }
 
+// neu
+
+// function initLevel() {
+//   if (!gameStarted) {
+//     gameStarted = true;
+
+//     const imagePaths = ["image1.png", "image2.png", "image3.png"]; // Deine Bildpfade
+//     loadImages(array);
+
+//     imageLoader
+//       .loadImages(imagePaths)
+//       .then(() => {
+//         console.log("Alle Bilder wurden geladen, Spiel startet jetzt...");
+//         startGame(); // Starte das Spiel hier
+//       })
+//       .catch((error) => {
+//         console.error("Ein Fehler ist aufgetreten:", error);
+//       });
+//   }
+// }
+
+// function startGame() {
+//   initLevelOne();
+//   backGroundMusicPlaying();
+//   showGameElements();
+//   setupCanvas();
+//   initializeWorld();
+//   fingerButtonEvent();
+//   footerShow();
+// }
+
 function backGroundMusicPlaying() {
   backgrounMusik.play();
 }

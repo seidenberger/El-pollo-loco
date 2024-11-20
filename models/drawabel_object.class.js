@@ -4,6 +4,9 @@ class DrawabelObject {
   img;
   imageCache = {};
   currentImage = 0;
+  // neu
+  totalImages = 0;
+  imagesLoaded = 0;
 
   /**
    * Loads an image from the specified path and assigns it to the `img` property.
@@ -48,17 +51,68 @@ class DrawabelObject {
     }
   }
 
-  /**
-   * Loads multiple images and caches them in the `imageCache` object.
-   *
-   * @param {string[]} array - An array of image paths to be loaded.
-   */
+  // loadImages(array) {
+  //   array.forEach((path) => {
+  //     let img = new Image();
+  //     img.src = path;
+  //     this.imageCache[path] = img;
+  //   });
+  // }
+
+  // neu
+  // loadImages(array) {
+  //   array.forEach((path) => {
+  //     // totalImages++;
+  //     let img = new Image();
+  //     img.src = path;
+  //     this.imageCache[path] = img;
+  //     this.img.onload = () => {
+  //       imagesLoaded++;
+  //       console.log(this.imagesLoaded + "imeges loded: ", this.img.src);
+  //       // loded = true;
+  //     };
+  //   });
+  // }
+
+  // neu
   loadImages(array) {
-    array.forEach((path) => {
-      let img = new Image();
-      img.src = path;
-      this.imageCache[path] = img;
+    let loadedCount = 0;
+    // let totalCount = array.length;
+
+    let loadPromises = array.map((path) => {
+      return new Promise((resolve, reject) => {
+        let img = new Image();
+        img.src = path;
+
+        img.onload = () => {
+          loadedCount++;
+          // console.log(`Fortschritt: ${loadedCount}/${totalCount}`);
+          resolve();
+        };
+
+        img.onerror = () => {
+          reject(`Fehler beim Laden des Bildes: ${path}`);
+        };
+
+        this.imageCache[path] = img;
+      });
     });
+
+    //   return Promise.all(loadPromises);
+    // }
+
+    return Promise.all(loadPromises).then(() => {
+      // console.log("Alle Bilder erfolgreich geladen.");
+      if (typeof onComplete === "function") {
+        onComplete();
+      }
+    });
+    // .catch((error) => {
+    //   console.error(
+    //     "Ein Fehler ist beim Laden der Bilder aufgetreten:",
+    //     error
+    //   );
+    // });
   }
 
   /**
