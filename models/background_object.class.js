@@ -16,15 +16,6 @@ class BackObject extends MovableObject {
   }
 
   /**
-   * Sets the horizontal position (x-coordinate) of the object.
-   *
-   * @param {number} x - The horizontal position to assign to the object.
-   */
-  // horizontalPosition(x) {
-  //   this.x = x;
-  // }
-
-  /**
    * Sets the vertical position (y-coordinate) of the object based on its height.
    * The vertical position is calculated as `480 - this.height`, which places the object
    * at the bottom of the screen or container.
