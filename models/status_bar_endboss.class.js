@@ -17,10 +17,6 @@ class StatusbarEndboss extends MovableObject {
     this.setPercentage(100);
   }
 
-  updatePosition(x) {
-    this.x = x;
-  }
-
   setPercentage(percentage) {
     this.percentage = percentage;
     let path = this.Images_Statusbar_Endboss[this.resolveImageIndex()];

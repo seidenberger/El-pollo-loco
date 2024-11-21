@@ -45,7 +45,7 @@ class World {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
     if (this.statusbarEndboss && endboss) {
       let x = endboss.x;
-      this.statusbarEndboss.updatePosition(x);
+      this.statusbarEndboss.horizontalPosition(x);
     }
   }
 

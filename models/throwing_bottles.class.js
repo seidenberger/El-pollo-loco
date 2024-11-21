@@ -35,8 +35,8 @@ class throwingBottles extends MovableObject {
     );
     this.loadImages(this.Images_salsa_bottle_rotation);
     this.loadImages(this.Images_salsa_bottle_splash);
-    this.x = x;
-    this.y = y;
+    this.horizontalPosition(x);
+    this.verticalPosition(y);
     this.otherDirection = otherDirection;
     this.throw();
   }

@@ -103,4 +103,17 @@ class MovableObject extends DrawabelObject {
   energyZero() {
     this.energy = 0;
   }
+
+  /**
+   * Sets the horizontal position (x-coordinate) of the object.
+   *
+   * @param {number} x - The horizontal position to assign to the object.
+   */
+  horizontalPosition(x) {
+    this.x = x;
+  }
+
+  verticalPosition(y) {
+    this.y = y;
+  }
 }

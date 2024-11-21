@@ -78,6 +78,13 @@ class Character extends MovableObject {
     "img/2_character_pepe/5_dead/D-57.png",
   ];
 
+  /**
+   * Initializes an instance of the object with multiple images and applies gravity and animations.
+   * The constructor loads different sets of images for various actions (e.g., walking, jumping, idle, etc.),
+   * applies gravity, and starts the animation for the object.
+   *
+   * @constructor
+   */
   constructor() {
     super().loadImage(this.Images_Walkin_Pepe[0]);
     this.loadImages(this.Images_Walkin_Pepe);
@@ -92,6 +99,13 @@ class Character extends MovableObject {
     this.isIdleState = false;
   }
 
+  /**
+   * Controls the animations and movement of the object based on keyboard input and state.
+   * This method handles various actions such as walking, jumping, and playing specific animations
+   * depending on whether the object is idle, hurt, dead, or jumping.
+   *
+   * It also updates the camera position and manages the timing for animations and sound effects.
+   */
   animate() {
     setInterval(() => {
       walkingSound.pause();
@@ -138,6 +152,11 @@ class Character extends MovableObject {
     }, 60);
   }
 
+  /**
+   * Handles the animation sequence for when the object is dead.
+   * This method checks if the death animation has started, and if not, it initiates it.
+   * Then, it plays the death animation frames. Once all frames are played, it triggers the game over state.
+   */
   deadAnimatio() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -150,16 +169,28 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Initiates the jumping action by adjusting the object's speed and playing the jump sound.
+   * This method is called when the object is triggered to jump (e.g., via keyboard input).
+   */
   jump() {
     this.speedToJump();
     jumpSound.play();
   }
 
+  /**
+   * Pauses the sleep sound and sets the `isSleepingSoundPlaying` flag to false.
+   * This method is called when the object is put into a "sleeping" state or when the sleep sound should be stopped.
+   */
   sleepPause() {
     sleepSound.pause();
     this.isSleepingSoundPlaying = false;
   }
 
+  /**
+   * Plays the sleep sound if it's not already playing and sets the `isSleepingSoundPlaying` flag to true.
+   * This method is called when the object enters a "sleeping" state and the sleep sound should be played.
+   */
   sleepPlaying() {
     if (!this.isSleepingSoundPlaying) {
       sleepSound.play();
@@ -167,16 +198,30 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the object is in an idle state based on the time elapsed since the last movement.
+   * The object is considered idle if less than 3 seconds have passed since the last recorded movement.
+   *
+   * @returns {boolean} `true` if the object is idle (time passed < 3 seconds), `false` otherwise.
+   */
   isIdle() {
     let timepassed = new Date().getTime() - this.currentTimeWalking;
     timepassed = timepassed / 1000;
     return timepassed < 3;
   }
 
+  /**
+   * Records the current time as the last time the object was walking.
+   * This method updates the `currentTimeWalking` property to the current timestamp.
+   */
   timeWalking() {
     this.currentTimeWalking = new Date().getTime();
   }
 
+  /**
+   * Sets the vertical speed for the jump.
+   * This method adjusts the `speedY` property to control the object's upward movement when jumping.
+   */
   speedToJump() {
     this.speedY = 30;
   }
