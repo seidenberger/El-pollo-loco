@@ -1,3 +1,10 @@
+/**
+ * Dynamically updates the inner HTML of the "overlayFooter" element
+ * to display a footer with links to Impressum and Data Privacy documents.
+ *
+ * The footer includes two clickable buttons that trigger respective
+ * actions when clicked.
+ */
 function footerShowOverlay() {
   let overlayFooter = document.getElementById("overlayFooter");
   overlayFooter.innerHTML = "";
@@ -14,13 +21,22 @@ function footerShowOverlay() {
     `;
 }
 
+/**
+ * Clears the content of the "overlayFooter" element by setting its innerHTML to an empty string.
+ *
+ * This function is useful for resetting or hiding the footer content dynamically.
+ */
 function footerShow() {
-  let destopFooter = document.getElementById("destopFooter");
   let overlayFooter = document.getElementById("overlayFooter");
-  // destopFooter.innerHTML = "";
   overlayFooter.innerHTML = "";
 }
 
+/**
+ * Dynamically updates the "back" element to display a button for navigating back to the main screen.
+ *
+ * The function clears the existing content of the "back" element and inserts a new clickable button
+ * with the text "back". Clicking the button triggers the `backToMain` function.
+ */
 function backShow() {
   let back = document.getElementById("back");
   back.innerHTML = "";

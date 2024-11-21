@@ -1,3 +1,11 @@
+/**
+ * Sets up touch event listeners for mobile game controls.
+ *
+ * This function adds event listeners for the touchstart and touchend events on various
+ * buttons like the "playButton", directional buttons (left, right, up), and the "throwing" button.
+ * When the user touches the buttons, it updates the `keyboard` object to simulate key presses,
+ * allowing the game to respond to mobile input.
+ */
 function fingerButtonEvent() {
   document.getElementById("playButton").addEventListener("touchstart", (e) => {
     e.preventDefault();
@@ -44,18 +52,15 @@ function fingerButtonEvent() {
     e.preventDefault();
     keyboard.SPACE = false;
   });
-
-  // neu
-
-  // document.getElementById("btnBack").addEventListener("touchstart", (e) => {
-  //   e.preventDefault();
-  // });
-
-  // document.getElementById("btnBack").addEventListener("touchend", (e) => {
-  //   e.preventDefault();
-  // });
 }
 
+/**
+ * Listens for keydown events to simulate keyboard input for game controls.
+ *
+ * This function listens for specific key presses (arrow keys and WASD keys) and updates
+ * the `keyboard` object to reflect which keys are pressed. This allows the game to respond
+ * to both physical keyboard input (e.g., arrow keys) and alternative keys (e.g., WASD).
+ */
 window.addEventListener("keydown", (event) => {
   if (event.keyCode == 39 || event.keyCode == 68) {
     keyboard.RIGHT = true;
@@ -82,6 +87,13 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
+/**
+ * Listens for keyup events to stop simulating key presses for game controls.
+ *
+ * This function listens for specific key releases (arrow keys and WASD keys) and updates
+ * the `keyboard` object to reflect that the keys are no longer pressed. This allows the game
+ * to stop responding to input once the user releases the keys.
+ */
 window.addEventListener("keyup", (e) => {
   if (e.keyCode == 39 || e.keyCode == 68) {
     keyboard.RIGHT = false;
