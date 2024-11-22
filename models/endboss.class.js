@@ -95,16 +95,7 @@ class Endboss extends MovableObject {
       } else if (this.x < world.character.x + 350) {
         this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
-        // this.alertAndAtteckEndboss();
-        // if (!this.alertAnimatioStarted) {
-        //   this.alertEndboss();
-        // }
-        // if (this.isAlert()) {
-        //   this.playAnimation(this.Images_endboss_alert);
-        //   this.speedStop();
-        // } else {
-        //   this.enbossAttack();
-        // }
+        this.alertAndAtteckEndboss();
       } else {
         this.angriSoundPause();
         this.playAnimation(this.Images_endboss_walk);
@@ -166,7 +157,6 @@ class Endboss extends MovableObject {
    * and stops the Endboss's movement. Otherwise, it initiates the attack behavior.
    */
   alertAndAtteckEndboss() {
-    this.alertAndAtteckEndboss();
     if (!this.alertAnimatioStarted) {
       this.alertEndboss();
     }

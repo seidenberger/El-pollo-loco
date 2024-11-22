@@ -67,35 +67,108 @@ class World {
     }, 1000 / 10);
   }
 
+  // checkCollisionsEnemy() {
+  //   this.level.enemies.forEach((enemy, index) => {
+  //     if (this.character.isColliding(enemy)) {
+  //       if (this.character.speedY < 0 && this.character.isAboveGround()) {
+  //         this.deadChicken(enemy, index);
+  //         if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+  //         if (!this.deadChicken) {
+
+  //           enemy.deadChicken = true;
+  //           enemy.speed = 0;
+  //           enemy.playAnimation(enemy.Images_chicken_dead);
+  //           this.lastDeadChicken = new Date().getTime();
+  //         } else {
+  //           this.enemiesToRemove.push(index);
+  //         }
+  //         }
+  //       } else {
+  //         if (
+  //           enemy instanceof Chicken ||
+  //           enemy instanceof ChickenSmall ||
+  //           enemy instanceof Endboss
+  //         ) {
+  //           if (!enemy.deadChicken) {
+  //             this.character.hit();
+  //             this.statusbarHealth.setPercentage(this.character.energy);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   });
+  //   this.removeEnemies();
+  // }
+
   checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
-        if (this.character.speedY < 0 && this.character.isAboveGround()) {
-          if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-            if (!this.deadChicken) {
-              enemy.deadChicken = true;
-              enemy.speed = 0;
-              enemy.playAnimation(enemy.Images_chicken_dead);
-              this.lastDeadChicken = new Date().getTime();
-            } else {
-              this.enemiesToRemove.push(index);
-            }
-          }
-        } else {
-          if (
-            enemy instanceof Chicken ||
-            enemy instanceof ChickenSmall ||
-            enemy instanceof Endboss
-          ) {
-            if (!enemy.deadChicken) {
-              this.character.hit();
-              this.statusbarHealth.setPercentage(this.character.energy);
-            }
-          }
-        }
+        this.handleCollision(enemy, index);
       }
     });
+
     this.removeEnemies();
+  }
+
+  handleCollision(enemy, index) {
+    if (this.isCharacterJumpingAndAboveGround()) {
+      this.handleDeadChicken(enemy, index);
+    } else {
+      this.handleCharacterHit(enemy);
+    }
+  }
+
+  isCharacterJumpingAndAboveGround() {
+    return this.character.speedY < 0 && this.character.isAboveGround();
+  }
+
+  handleDeadChicken(enemy, index) {
+    if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+      if (!this.deadChicken) {
+        this.killChicken(enemy);
+      } else {
+        this.enemiesToRemove.push(index);
+      }
+    }
+  }
+
+  killChicken(enemy) {
+    enemy.deadChicken = true;
+    enemy.speed = 0;
+    enemy.playAnimation(enemy.Images_chicken_dead);
+    this.lastDeadChicken = new Date().getTime();
+  }
+
+  handleCharacterHit(enemy) {
+    if (this.isEnemyDangerous(enemy)) {
+      if (!enemy.deadChicken) {
+        this.character.hit();
+        this.statusbarHealth.setPercentage(this.character.energy);
+      }
+    }
+  }
+
+  isEnemyDangerous(enemy) {
+    return (
+      enemy instanceof Chicken ||
+      enemy instanceof ChickenSmall ||
+      enemy instanceof Endboss
+    );
+  }
+
+  // ende
+
+  handleCharacterHit(enemy) {
+    if (
+      enemy instanceof Chicken ||
+      enemy instanceof ChickenSmall ||
+      enemy instanceof Endboss
+    ) {
+      if (!enemy.deadChicken) {
+        this.character.hit();
+        this.statusbarHealth.setPercentage(this.character.energy);
+      }
+    }
   }
 
   checkCollisionWithObject() {
@@ -141,22 +214,23 @@ class World {
   }
 
   checkCollisionWithThrwObject() {
-    let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
+    // let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
-          if (
-            (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
-            !enemy.enemyIsDead
-          ) {
-            enemy.enemyIsDeadsDead = true;
-            this.enemiesToRemove.push(index);
-            this.handleBottleCollision(bottle, bottleIndex);
-          } else if (enemy instanceof Endboss) {
-            endboss.hit();
-            this.handleBottleCollision(bottle, bottleIndex);
-            this.statusbarEndboss.setPercentage(endboss.energy);
-          }
+          this.enemyIsDad(enemy, index, bottle, bottleIndex);
+          // if (
+          //   (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+          //   !enemy.enemyIsDead
+          // ) {
+          //   enemy.enemyIsDeadsDead = true;
+          //   this.enemiesToRemove.push(index);
+          //   this.handleBottleCollision(bottle, bottleIndex);
+          // } else if (enemy instanceof Endboss) {
+          //   endboss.hit();
+          //   this.handleBottleCollision(bottle, bottleIndex);
+          //   this.statusbarEndboss.setPercentage(endboss.energy);
+          // }
         }
       });
       if (!bottle.isAboveGround()) {
@@ -257,5 +331,34 @@ class World {
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();
+  }
+
+  deadChicken(enemy, index) {
+    if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
+      if (!this.deadChicken) {
+        enemy.deadChicken = true;
+        enemy.speed = 0;
+        enemy.playAnimation(enemy.Images_chicken_dead);
+        this.lastDeadChicken = new Date().getTime();
+      } else {
+        this.enemiesToRemove.push(index);
+      }
+    }
+  }
+
+  enemyIsDad(enemy, index, bottle, bottleIndex) {
+    let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
+    if (
+      (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+      !enemy.enemyIsDead
+    ) {
+      enemy.enemyIsDeadsDead = true;
+      this.enemiesToRemove.push(index);
+      this.handleBottleCollision(bottle, bottleIndex);
+    } else if (enemy instanceof Endboss) {
+      endboss.hit();
+      this.handleBottleCollision(bottle, bottleIndex);
+      this.statusbarEndboss.setPercentage(endboss.energy);
+    }
   }
 }
