@@ -52,6 +52,15 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
 
+  /**
+   * Initializes an instance of the Endboss class and sets up its animations, states, and behaviors.
+   *
+   * This constructor:
+   * - Loads the Endboss's animation images for walking, alert, attack, hurt, and death.
+   * - Stops the Endboss's movement speed.
+   * - Sets the initial points or state for the Endboss.
+   * - Starts the Endboss's animation loop.
+   */
   constructor() {
     super().loadImage(this.Images_endboss_walk[0]);
     this.loadImages(this.Images_endboss_walk);
@@ -64,6 +73,17 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animates the Endboss based on its current state and proximity to the character.
+   *
+   * This method repeatedly checks the Endboss's state and updates its animation or actions accordingly:
+   * - If the Endboss is dead, it triggers the death animation.
+   * - If the Endboss is hurt, it plays the hurt animation and angry sound.
+   * - If the Endboss is within a certain distance of the character, it performs an attack.
+   * - If none of the above conditions are met, it walks towards the character while playing a walking animation.
+   *
+   * The function runs continuously at a frequency of 10 frames per second.
+   */
   animate() {
     setInterval(() => {
       if (this.isDead()) {
@@ -75,15 +95,16 @@ class Endboss extends MovableObject {
       } else if (this.x < world.character.x + 350) {
         this.enbossAttack();
       } else if (this.x < world.character.x + 450) {
-        if (!this.alertAnimatioStarted) {
-          this.alertEndboss();
-        }
-        if (this.isAlert()) {
-          this.playAnimation(this.Images_endboss_alert);
-          this.speedStop();
-        } else {
-          this.enbossAttack();
-        }
+        // this.alertAndAtteckEndboss();
+        // if (!this.alertAnimatioStarted) {
+        //   this.alertEndboss();
+        // }
+        // if (this.isAlert()) {
+        //   this.playAnimation(this.Images_endboss_alert);
+        //   this.speedStop();
+        // } else {
+        //   this.enbossAttack();
+        // }
       } else {
         this.angriSoundPause();
         this.playAnimation(this.Images_endboss_walk);
@@ -93,6 +114,15 @@ class Endboss extends MovableObject {
     }, 1000 / 10);
   }
 
+  /**
+   * Executes the death animation sequence for the Endboss.
+   *
+   * This method checks if the death animation has already started. If not, it
+   * begins the animation. It cycles through the death animation images until
+   * the sequence is complete, then triggers the "You Win" game state.
+   *
+   * @method
+   */
   deadAnimation() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -105,16 +135,55 @@ class Endboss extends MovableObject {
     }
   }
 
+  /**
+   * Plays the "angry chicken" sound effect and updates the sound state.
+   *
+   * This method starts the playback of the angry chicken sound effect and sets
+   * the `isAngriChickenSound` property to `true` to indicate that the sound
+   * is currently playing.
+   */
   angriSoundPause() {
     angriChickenSound.pause();
     this.isAngriChickenSound = false;
   }
 
+  /**
+   * Plays the "angry chicken" sound effect and updates the sound state to indicate that it is playing.
+   *
+   * This method triggers the playback of the angry chicken sound and sets the
+   * `isAngriChickenSound` property to `true` to reflect that the sound is currently active.
+   */
   angriSoundPlay() {
     angriChickenSound.play();
     this.isAngriChickenSound = true;
   }
 
+  /**
+   * Manages the alert and attack sequence for the Endboss.
+   *
+   * This method first triggers the alert and attack behavior. If the alert animation hasn't started,
+   * it begins the alert sequence. If the Endboss is in the alert state, it plays the alert animation
+   * and stops the Endboss's movement. Otherwise, it initiates the attack behavior.
+   */
+  alertAndAtteckEndboss() {
+    this.alertAndAtteckEndboss();
+    if (!this.alertAnimatioStarted) {
+      this.alertEndboss();
+    }
+    if (this.isAlert()) {
+      this.playAnimation(this.Images_endboss_alert);
+      this.speedStop();
+    } else {
+      this.enbossAttack();
+    }
+  }
+
+  /**
+   * Triggers the Endboss attack behavior.
+   *
+   * This method plays the angry sound effect, starts the attack animation for the Endboss,
+   * moves the Endboss to the left, and increases its movement speed for the attack phase.
+   */
   enbossAttack() {
     this.angriSoundPlay();
     this.playAnimation(this.Images_endboss_attack);
@@ -122,29 +191,65 @@ class Endboss extends MovableObject {
     this.speedfast();
   }
 
+  /**
+   * Checks if the Endboss is still in the alert state.
+   *
+   * This method calculates the time elapsed since the alert state was triggered and returns `true`
+   * if the time elapsed is less than 2 seconds, indicating that the Endboss is still in the alert state.
+   *
+   * @returns {boolean} `true` if the Endboss is in the alert state, `false` otherwise.
+   */
   isAlert() {
     let timepassed = new Date().getTime() - this.alertTime;
     timepassed = timepassed / 1000;
     return timepassed < 2;
   }
 
+  /**
+   * Triggers the alert state for the Endboss.
+   *
+   * This method records the current time as the start of the alert state and sets the
+   * `alertAnimatioStarted` flag to `true`, indicating that the alert animation has started.
+   */
   alertEndboss() {
     this.alertTime = new Date().getTime();
     this.alertAnimatioStarted = true;
   }
 
+  /**
+   * Stops the Endboss's movement by setting its speed to zero.
+   *
+   * This method effectively halts the Endboss's movement by setting the `speed` property
+   * to `0`, stopping any movement or animation that relies on speed.
+   */
   speedStop() {
     this.speed = 0;
   }
 
+  /**
+   * Slows down the Endboss by setting its speed to a lower value.
+   *
+   * This method sets the Endboss's speed to `2`, reducing its movement speed to a slower pace.
+   */
   speedslow() {
     this.speed = 2;
   }
 
+  /**
+   * Increases the Endboss's movement speed.
+   *
+   * This method sets the Endboss's speed to `4`, making it move faster during certain actions or states.
+   */
   speedfast() {
     this.speed = 4;
   }
 
+  /**
+   * Sets the initial position of the Endboss.
+   *
+   * This method assigns the value `3600` to the `x` property, setting the Endboss's initial
+   * position along the x-axis, which likely corresponds to its starting location in the game world.
+   */
   endbossPoint() {
     this.x = 3600;
   }

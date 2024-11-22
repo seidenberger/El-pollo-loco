@@ -15,6 +15,15 @@ class Bottle extends MovableObject {
     "img/6_salsa_bottle/2_salsa_bottle_on_ground.png",
   ];
 
+  /**
+   * Initializes an instance of the Salsa Bottle object.
+   *
+   * This constructor:
+   * - Loads the image for the Salsa Bottle on the ground.
+   * - Loads the images for the Salsa Bottle's animation.
+   * - Sets a random initial position along the x-axis within a specific range.
+   * - Starts the animation loop for the Salsa Bottle.
+   */
   constructor() {
     super().loadImage("img/6_salsa_bottle/1_salsa_bottle_on_ground.png");
     this.loadImages(this.Images_salsa_bottle);
@@ -23,6 +32,13 @@ class Bottle extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Starts the animation loop for the Salsa Bottle.
+   *
+   * This method uses `setInterval` to repeatedly play the Salsa Bottle's animation
+   * at a specified interval (every 0.5 seconds). The animation is played using the
+   * images stored in the `Images_salsa_bottle` array.
+   */
   animate() {
     setInterval(() => {
       this.playAnimation(this.Images_salsa_bottle);
