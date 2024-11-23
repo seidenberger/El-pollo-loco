@@ -67,46 +67,12 @@ class World {
     }, 1000 / 10);
   }
 
-  // checkCollisionsEnemy() {
-  //   this.level.enemies.forEach((enemy, index) => {
-  //     if (this.character.isColliding(enemy)) {
-  //       if (this.character.speedY < 0 && this.character.isAboveGround()) {
-  //         this.deadChicken(enemy, index);
-  //         if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
-  //         if (!this.deadChicken) {
-
-  //           enemy.deadChicken = true;
-  //           enemy.speed = 0;
-  //           enemy.playAnimation(enemy.Images_chicken_dead);
-  //           this.lastDeadChicken = new Date().getTime();
-  //         } else {
-  //           this.enemiesToRemove.push(index);
-  //         }
-  //         }
-  //       } else {
-  //         if (
-  //           enemy instanceof Chicken ||
-  //           enemy instanceof ChickenSmall ||
-  //           enemy instanceof Endboss
-  //         ) {
-  //           if (!enemy.deadChicken) {
-  //             this.character.hit();
-  //             this.statusbarHealth.setPercentage(this.character.energy);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   });
-  //   this.removeEnemies();
-  // }
-
   checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
       if (this.character.isColliding(enemy)) {
         this.handleCollision(enemy, index);
       }
     });
-
     this.removeEnemies();
   }
 
@@ -134,7 +100,7 @@ class World {
 
   killChicken(enemy) {
     enemy.deadChicken = true;
-    enemy.speed = 0;
+    this.enemySpeedZero(enemy);
     enemy.playAnimation(enemy.Images_chicken_dead);
     this.lastDeadChicken = new Date().getTime();
   }
@@ -156,8 +122,6 @@ class World {
     );
   }
 
-  // ende
-
   handleCharacterHit(enemy) {
     if (
       enemy instanceof Chicken ||
@@ -174,7 +138,8 @@ class World {
   checkCollisionWithObject() {
     this.level.coin.forEach((coin, index) => {
       if (this.character.isColliding(coin)) {
-        this.character.coin += 10;
+        this.countHigh();
+        // this.character.coin += 10;
         this.statusbarCoin.setPercentageCoin(this.character.coin);
         this.level.coin.splice(index, 1);
       }
@@ -214,23 +179,10 @@ class World {
   }
 
   checkCollisionWithThrwObject() {
-    // let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
       this.level.enemies.forEach((enemy, index) => {
         if (bottle.isColliding(enemy)) {
           this.enemyIsDad(enemy, index, bottle, bottleIndex);
-          // if (
-          //   (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
-          //   !enemy.enemyIsDead
-          // ) {
-          //   enemy.enemyIsDeadsDead = true;
-          //   this.enemiesToRemove.push(index);
-          //   this.handleBottleCollision(bottle, bottleIndex);
-          // } else if (enemy instanceof Endboss) {
-          //   endboss.hit();
-          //   this.handleBottleCollision(bottle, bottleIndex);
-          //   this.statusbarEndboss.setPercentage(endboss.energy);
-          // }
         }
       });
       if (!bottle.isAboveGround()) {
@@ -336,10 +288,12 @@ class World {
   deadChicken(enemy, index) {
     if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
       if (!this.deadChicken) {
-        enemy.deadChicken = true;
-        enemy.speed = 0;
-        enemy.playAnimation(enemy.Images_chicken_dead);
-        this.lastDeadChicken = new Date().getTime();
+        killChicken(enemy);
+        // enemy.deadChicken = true;
+        // this.enemySpeedZero(enemy);
+        // // enemy.speed = 0;
+        // enemy.playAnimation(enemy.Images_chicken_dead);
+        // this.lastDeadChicken = new Date().getTime();
       } else {
         this.enemiesToRemove.push(index);
       }
@@ -360,5 +314,13 @@ class World {
       this.handleBottleCollision(bottle, bottleIndex);
       this.statusbarEndboss.setPercentage(endboss.energy);
     }
+  }
+
+  enemySpeedZero(enemy) {
+    enemy.speed = 0;
+  }
+
+  countHigh() {
+    this.character.coin += 10;
   }
 }
