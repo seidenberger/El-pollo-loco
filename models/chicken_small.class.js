@@ -44,15 +44,28 @@ class ChickenSmall extends MovableObject {
    */
   animate() {
     setInterval(() => {
-      this.moveLeft();
+      this.moveChickenSmall();
+      // this.moveLeft();
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.deadChicken) {
-      } else {
-        this.playAnimation(this.Images_chicken_small);
-      }
+      this.playChickenSmall();
+      // if (this.deadChicken) {
+      // } else {
+      //   this.playAnimation(this.Images_chicken_small);
+      // }
     }, 250);
+  }
+
+  moveChickenSmall() {
+    this.moveLeft();
+  }
+
+  playChickenSmall() {
+    if (this.deadChicken) {
+    } else {
+      this.playAnimation(this.Images_chicken_small);
+    }
   }
 
   /**

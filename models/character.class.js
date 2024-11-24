@@ -107,49 +107,52 @@ class Character extends MovableObject {
    * It also updates the camera position and manages the timing for animations and sound effects.
    */
   animate() {
-    setInterval(() => {
-      walkingSound.pause();
-      if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-        this.moveRight();
-        walkingSound.play();
-        this.otherDirection = false;
-      }
+    setInterval(() => this.moveCharacter(), 100 / 60);
+    setInterval(() => this.playCharacter(), 60);
+  }
 
-      if (this.world.keyboard.A && this.x > 0) {
-        this.moveLeft();
-        walkingSound.play();
-        this.otherDirection = true;
-      }
+  moveCharacter() {
+    walkingSound.pause();
+    if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
+      this.moveRight();
+      walkingSound.play();
+      this.otherDirection = false;
+    }
 
-      if (this.world.keyboard.W && !this.isAboveGround()) {
-        this.jump();
-      }
-      this.world.camera_x = -this.x + 150;
-    }, 100 / 60);
+    if (this.world.keyboard.A && this.x > 0) {
+      this.moveLeft();
+      walkingSound.play();
+      this.otherDirection = true;
+    }
 
-    setInterval(() => {
-      if (this.isDead()) {
-        this.sleepPause();
-        this.deadAnimatio();
-      } else if (this.isHurt()) {
-        this.sleepPause();
-        this.playAnimation(this.Images_Hurt);
-        this.hurtSound();
-      } else if (this.isAboveGround()) {
-        this.sleepPause();
-        this.playAnimation(this.Images_Jamping);
-      } else if (this.world.keyboard.D || this.world.keyboard.A) {
-        this.sleepPause();
-        this.playAnimation(this.Images_Walkin_Pepe);
-        this.timeWalking();
-      } else if (this.isIdle()) {
-        this.sleepPause();
-        this.playAnimation(this.Images_Idle);
-      } else {
-        this.sleepPlaying();
-        this.playAnimation(this.Images_Long_Idle);
-      }
-    }, 60);
+    if (this.world.keyboard.W && !this.isAboveGround()) {
+      this.jump();
+    }
+    this.world.camera_x = -this.x + 150;
+  }
+
+  playCharacter() {
+    if (this.isDead()) {
+      this.sleepPause();
+      this.deadAnimatio();
+    } else if (this.isHurt()) {
+      this.sleepPause();
+      this.playAnimation(this.Images_Hurt);
+      this.hurtSound();
+    } else if (this.isAboveGround()) {
+      this.sleepPause();
+      this.playAnimation(this.Images_Jamping);
+    } else if (this.world.keyboard.D || this.world.keyboard.A) {
+      this.sleepPause();
+      this.playAnimation(this.Images_Walkin_Pepe);
+      this.timeWalking();
+    } else if (this.isIdle()) {
+      this.sleepPause();
+      this.playAnimation(this.Images_Idle);
+    } else {
+      this.sleepPlaying();
+      this.playAnimation(this.Images_Long_Idle);
+    }
   }
 
   /**

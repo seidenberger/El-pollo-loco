@@ -33,6 +33,8 @@ function initLevel() {
     initializeWorld();
     fingerButtonEvent();
     footerShow();
+    disableMute();
+    disableMuteButten();
   }
 }
 
@@ -100,17 +102,13 @@ document.addEventListener("keydown", function (event) {
  * to indicate whether the audio is muted or unmuted. It also calls `enableMute`
  * to mute the audio or `disableMute` to unmute it, depending on the state.
  */
-function changeSilently() {
-  let audioOff = document.getElementById("audioOff");
-  let audioOn = document.getElementById("audioOn");
+function toggleMuteState() {
   changeAudio = !changeAudio;
   if (changeAudio) {
-    audioOff.classList.remove("hidden");
-    audioOn.classList.add("hidden");
+    enableMuteButten();
     enableMute();
   } else {
-    audioOff.classList.add("hidden");
-    audioOn.classList.remove("hidden");
+    disableMuteButten();
     disableMute();
   }
 }
@@ -202,4 +200,27 @@ function gameOverTime() {
   setTimeout(() => {
     stopGame();
   }, 2000);
+}
+
+/**
+ * Displays the "audio off" icon and hides the "audio on" icon.
+ *
+ * This function manipulates the DOM elements with IDs "audioOff" and "audioOn"
+ * by toggling the "hidden" class. It ensures that the "audioOff" element becomes
+ * visible and the "audioOn" element is hidden.
+ */
+function enableMuteButten() {
+  document.getElementById("audioOff").classList.remove("hidden");
+  document.getElementById("audioOn").classList.add("hidden");
+}
+
+/**
+ * Disables the mute state visually by toggling the audio button icons.
+ *
+ * This function hides the "audioOff" icon and shows the "audioOn" icon
+ * by manipulating their CSS classes. It is typically called when unmuting audio.
+ */
+function disableMuteButten() {
+  document.getElementById("audioOff").classList.add("hidden");
+  document.getElementById("audioOn").classList.remove("hidden");
 }
