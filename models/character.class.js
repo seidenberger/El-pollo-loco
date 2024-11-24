@@ -100,52 +100,119 @@ class Character extends MovableObject {
   }
 
   /**
-   * Controls the animations and movement of the object based on keyboard input and state.
-   * This method handles various actions such as walking, jumping, and playing specific animations
-   * depending on whether the object is idle, hurt, dead, or jumping.
+   * Starts the animation loop for the character.
    *
-   * It also updates the camera position and manages the timing for animations and sound effects.
+   * This method sets up two intervals:
+   * 1. Calls `moveCharacter` approximately 60 times per second to update the character's position.
+   * 2. Calls `playCharacter` once every 60 milliseconds to update the character's animation state.
    */
   animate() {
     setInterval(() => this.moveCharacter(), 100 / 60);
     setInterval(() => this.playCharacter(), 60);
   }
 
+  /**
+   * Updates the character's movement and adjusts the camera position.
+   *
+   * This method handles the character's movement by checking its ability to move
+   * in specific directions (right, left, or jumping) and then applying the corresponding
+   * actions. Additionally, it pauses the walking sound effect and updates the camera
+   * position based on the character's current location.
+   */
   moveCharacter() {
     walkingSound.pause();
-    if (this.world.keyboard.D && this.x < this.world.level.level_end_x) {
-      this.moveRight();
-      walkingSound.play();
-      this.otherDirection = false;
-    }
-
-    if (this.world.keyboard.A && this.x > 0) {
-      this.moveLeft();
-      walkingSound.play();
-      this.otherDirection = true;
-    }
-
-    if (this.world.keyboard.W && !this.isAboveGround()) {
-      this.jump();
-    }
+    if (this.canMoveRight()) this.moveRight();
+    if (this.canMoveLeft()) this.moveLeft();
+    if (this.canJump()) this.jump();
     this.world.camera_x = -this.x + 150;
   }
 
+  /**
+   * Checks if the character can move to the right.
+   *
+   * This method determines whether the character is allowed to move to the right
+   * based on the current keyboard input and the character's position within the level boundaries.
+   *
+   * @returns {boolean} Returns `true` if the "D" key is pressed and the character's
+   * x-coordinate is less than the level's end boundary; otherwise, `false`.
+   */
+  canMoveRight() {
+    return this.world.keyboard.D && this.x < this.world.level.level_end_x;
+  }
+
+  /**
+   * Moves the character to the right, plays a sound, and updates its direction.
+   *
+   * This method moves the character to the right by invoking the `moveRight` method
+   * of the parent class. Additionally, it plays a walking sound effect and sets the
+   * `otherDirection` property to `false`, ensuring the character faces to the right.
+   */
+  moveRight() {
+    super.moveRight();
+    walkingSound.play();
+    this.otherDirection = false;
+  }
+
+  /**
+   * Checks if the character can move to the left.
+   *
+   * This method determines whether the character is allowed to move to the left
+   * based on the current keyboard input and the character's position within the level boundaries.
+   *
+   * @returns {boolean} Returns `true` if the "A" key is pressed and the character's
+   * x-coordinate is greater than 0; otherwise, `false`.
+   */
+  canMoveLeft() {
+    return this.world.keyboard.A && this.x > 0;
+  }
+
+  /**
+   * Moves the character to the left, plays a sound, and updates its direction.
+   *
+   * This method moves the character to the left by invoking the `moveLeft` method
+   * of the parent class. Additionally, it plays the walking sound effect and sets the
+   * `otherDirection` property to `true`, ensuring the character faces to the left.
+   */
+  moveLeft() {
+    super.moveLeft();
+    walkingSound.play();
+    this.otherDirection = true;
+  }
+
+  /**
+   * Checks if the character can jump.
+   *
+   * This method checks whether the character is allowed to jump by verifying if the "W" key is pressed
+   * and if the character is not currently above the ground (i.e., not already jumping or falling).
+   *
+   * @returns {boolean} Returns `true` if the "W" key is pressed and the character is not above the ground; otherwise, `false`.
+   */
+  canJump() {
+    return this.world.keyboard.W && !this.isAboveGround();
+  }
+
+  /**
+   * Plays the appropriate animation or sound based on the character's state.
+   *
+   * This method checks the character's current state and triggers the corresponding actions:
+   * - If the character is dead, it plays the death animation and pauses the character.
+   * - If the character is hurt, it plays the hurt animation.
+   * - If the character is above the ground, it pauses and plays the jumping animation.
+   * - If the "D" or "A" keys are pressed, it plays the walking animation.
+   * - If the character is idle, it pauses and plays the idle animation.
+   * - Otherwise, it plays the long idle animation.
+   */
   playCharacter() {
     if (this.isDead()) {
       this.sleepPause();
       this.deadAnimatio();
     } else if (this.isHurt()) {
-      this.sleepPause();
-      this.playAnimation(this.Images_Hurt);
-      this.hurtSound();
+      this.playHurt();
     } else if (this.isAboveGround()) {
       this.sleepPause();
       this.playAnimation(this.Images_Jamping);
     } else if (this.world.keyboard.D || this.world.keyboard.A) {
-      this.sleepPause();
-      this.playAnimation(this.Images_Walkin_Pepe);
-      this.timeWalking();
+      this.playWalking();
     } else if (this.isIdle()) {
       this.sleepPause();
       this.playAnimation(this.Images_Idle);
@@ -153,6 +220,31 @@ class Character extends MovableObject {
       this.sleepPlaying();
       this.playAnimation(this.Images_Long_Idle);
     }
+  }
+
+  /**
+   * Plays the walking animation and updates the walking state.
+   *
+   * This method pauses the character (if necessary), then plays the walking animation.
+   * Additionally, it triggers the walking timer to track how long the character has been walking.
+   */
+  playWalking() {
+    this.sleepPause();
+    this.playAnimation(this.Images_Walkin_Pepe);
+    this.timeWalking();
+  }
+
+  /**
+   * Plays the hurt animation and sound when the character is hurt.
+   *
+   * This method pauses the character (if necessary), then plays the hurt animation
+   * using the provided images. Additionally, it triggers the hurt sound effect to
+   * indicate that the character has been injured.
+   */
+  playHurt() {
+    this.sleepPause();
+    this.playAnimation(this.Images_Hurt);
+    this.hurtSound();
   }
 
   /**

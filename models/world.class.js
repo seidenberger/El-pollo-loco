@@ -320,7 +320,6 @@ class World {
           this.character.y + 50,
           this.character.otherDirection
         );
-
         this.throwabeleObjects.push(bottle);
       }
     }

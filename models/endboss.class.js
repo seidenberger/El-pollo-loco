@@ -74,35 +74,44 @@ class Endboss extends MovableObject {
   }
 
   /**
-   * Animates the Endboss based on its current state and proximity to the character.
+   * Starts the animation loop for the endboss.
    *
-   * This method repeatedly checks the Endboss's state and updates its animation or actions accordingly:
-   * - If the Endboss is dead, it triggers the death animation.
-   * - If the Endboss is hurt, it plays the hurt animation and angry sound.
-   * - If the Endboss is within a certain distance of the character, it performs an attack.
-   * - If none of the above conditions are met, it walks towards the character while playing a walking animation.
-   *
-   * The function runs continuously at a frequency of 10 frames per second.
+   * This method initiates an interval that repeatedly calls the `playEndboss` method
+   * to update and animate the endboss at a fixed interval, effectively creating
+   * the animation loop. The interval is set to call the `playEndboss` method every
+   * 1/10th of a second (100 milliseconds).
    */
   animate() {
-    setInterval(() => {
-      if (this.isDead()) {
-        this.deadAnimation();
-      } else if (this.isHurt()) {
-        this.angriSoundPlay();
-        this.playAnimation(this.Images_endboss_hurt);
-        this.isAngriChickenSound = false;
-      } else if (this.x < world.character.x + 350) {
-        this.enbossAttack();
-      } else if (this.x < world.character.x + 450) {
-        this.alertAndAtteckEndboss();
-      } else {
-        this.angriSoundPause();
-        this.playAnimation(this.Images_endboss_walk);
-        this.moveLeft();
-        this.speedslow();
-      }
-    }, 1000 / 10);
+    setInterval(() => this.playEndboss(), 1000 / 10);
+  }
+
+  /**
+   * Controls the behavior and animations of the endboss based on its current state.
+   *
+   * This method checks the endboss's current state and performs the appropriate actions:
+   * - If the endboss is dead, it plays the death animation.
+   * - If the endboss is hurt, it plays the hurt animation, triggers the angry sound, and disables the angry chicken sound flag.
+   * - If the endboss is within range to attack the character, it initiates the attack.
+   * - If the endboss is in a close range to the character, it issues an alert and prepares to attack.
+   * - If none of the above conditions are met, it plays the walking animation, moves left, and slows down its speed.
+   */
+  playEndboss() {
+    if (this.isDead()) {
+      this.deadAnimation();
+    } else if (this.isHurt()) {
+      this.angriSoundPlay();
+      this.playAnimation(this.Images_endboss_hurt);
+      this.isAngriChickenSound = false;
+    } else if (this.x < world.character.x + 350) {
+      this.enbossAttack();
+    } else if (this.x < world.character.x + 450) {
+      this.alertAndAtteckEndboss();
+    } else {
+      this.angriSoundPause();
+      this.playAnimation(this.Images_endboss_walk);
+      this.moveLeft();
+      this.speedslow();
+    }
   }
 
   /**

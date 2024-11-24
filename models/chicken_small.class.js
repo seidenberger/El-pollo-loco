@@ -36,31 +36,25 @@ class ChickenSmall extends MovableObject {
   }
 
   /**
-   * Controls the chicken's movement and animation.
+   * Starts the animation loop for character movement and small chicken animation.
    *
-   * This method manages the chicken's leftward movement at a constant rate and ensures the
-   * correct animation is played based on the chicken's state. If the chicken is not dead,
-   * it continuously plays the small chicken animation.
+   * This method sets up two intervals:
+   * - One interval calls `moveLeft()` every 1/60th of a second (approximately 16.67 milliseconds),
+   *   which allows the character to move left at a frame rate of 60 FPS.
+   * - The second interval calls `playChickenSmall()` every 250 milliseconds to update the chicken's small animation.
    */
   animate() {
-    setInterval(() => {
-      this.moveChickenSmall();
-      // this.moveLeft();
-    }, 1000 / 60);
-
-    setInterval(() => {
-      this.playChickenSmall();
-      // if (this.deadChicken) {
-      // } else {
-      //   this.playAnimation(this.Images_chicken_small);
-      // }
-    }, 250);
+    setInterval(() => this.moveLeft(), 1000 / 60);
+    setInterval(() => this.playChickenSmall(), 250);
   }
 
-  moveChickenSmall() {
-    this.moveLeft();
-  }
-
+  /**
+   * Plays the small chicken animation if the chicken is alive.
+   *
+   * This method checks if the chicken is dead. If the chicken is alive (i.e., `deadChicken` is false),
+   * it plays the small chicken animation using the provided images. If the chicken is dead,
+   * no animation is played.
+   */
   playChickenSmall() {
     if (this.deadChicken) {
     } else {
