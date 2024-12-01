@@ -129,7 +129,7 @@ class Endboss extends MovableObject {
       this.playAnimation(this.Images_endboss_dead);
       this.incrementCurrentImage();
     } else {
-      youWinGamne();
+      // youWinGamne();
     }
   }
 

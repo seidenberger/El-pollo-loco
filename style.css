@@ -75,7 +75,12 @@ p, span {
   font-size: 24px;
 }
 
-
+.imgplay {
+  height: 60px;
+  width: 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .img {
   height: 40px;

@@ -257,9 +257,15 @@ class Character extends MovableObject {
       this.incrementCurrentImage();
     } else {
       // this.stopPlay();
-      gameOver();
+      // gameOver();
       // this.clerScreen();
+      this.triggerGameOver();
     }
+  }
+
+  triggerGameOver() {
+    const endScreen = new EndScreen(this.context);
+    endScreen.showEndScreen(false); // false für "Game Over"
   }
 
   /**
