@@ -185,8 +185,8 @@ function youWinTime() {
  * which likely manages the "Game Over" state or animation.
  */
 function gameOver() {
-  clearAllIntervals();
-  gameOverTime();
+  // clearAllIntervals();
+  // gameOverTime();
 }
 
 /**

@@ -215,6 +215,7 @@ class MovableObject extends DrawabelObject {
    */
   hitEenergyMinusFive() {
     this.energy -= 5;
+    console.log();
   }
 
   /**

@@ -30,6 +30,10 @@ class World {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+
+    // nau
+    this.running = true;
+
     this.draw();
     this.setWorld();
     this.checkCollisions();
@@ -455,9 +459,34 @@ class World {
    *
    * @returns {void}
    */
+  // draw() {
+  //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  //   this.ctx.translate(this.camera_x, 0);
+  //   this.addObjectsToMap(this.level.backgroundObject);
+  //   this.addObjectsToMap(this.level.clouds);
+  //   this.addToMap(this.character);
+  //   this.addToMap(this.statusbarEndboss);
+  //   this.addObjectsToMap(this.level.enemies);
+  //   this.addObjectsToMap(this.level.bottle);
+  //   this.addObjectsToMap(this.level.coin);
+  //   this.addObjectsToMap(this.throwabeleObjects);
+  //   this.ctx.translate(-this.camera_x, 0);
+  //   this.addToMap(this.statusbarHealth);
+  //   this.addToMap(this.statusbarBottle);
+  //   this.addToMap(this.statusbarCoin);
+  //   let self = this;
+  //   requestAnimationFrame(function () {
+  //     self.draw();
+  //   });
+  // }
+
+  // neu
   draw() {
+    if (!this.running) return; // Beenden, falls das Spiel gestoppt ist
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
+
+    // Elemente zeichnen
     this.addObjectsToMap(this.level.backgroundObject);
     this.addObjectsToMap(this.level.clouds);
     this.addToMap(this.character);
@@ -470,6 +499,7 @@ class World {
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
+
     let self = this;
     requestAnimationFrame(function () {
       self.draw();
@@ -666,5 +696,12 @@ class World {
    */
   maxBottles() {
     this.character.bottle = 100;
+  }
+
+  // neu
+  stopPlay() {
+    this.running = false; // Stoppt die Zeichenschleife
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Löscht das Canvas
+    console.log("Spiel beendet!");
   }
 }

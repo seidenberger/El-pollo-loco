@@ -85,8 +85,9 @@ class Character extends MovableObject {
    *
    * @constructor
    */
-  constructor() {
+  constructor(ctx) {
     super().loadImage(this.Images_Walkin_Pepe[0]);
+    this.context = ctx;
     this.loadImages(this.Images_Walkin_Pepe);
     this.loadImages(this.Images_Dead);
     this.loadImages(this.Images_Jamping);
@@ -108,7 +109,7 @@ class Character extends MovableObject {
    */
   animate() {
     setInterval(() => this.moveCharacter(), 100 / 60);
-    setInterval(() => this.playCharacter(), 60);
+    setInterval(() => this.playCharacter(), 100);
   }
 
   /**
@@ -247,11 +248,6 @@ class Character extends MovableObject {
     this.hurtSound();
   }
 
-  /**
-   * Handles the animation sequence for when the object is dead.
-   * This method checks if the death animation has started, and if not, it initiates it.
-   * Then, it plays the death animation frames. Once all frames are played, it triggers the game over state.
-   */
   deadAnimatio() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -260,7 +256,9 @@ class Character extends MovableObject {
       this.playAnimation(this.Images_Dead);
       this.incrementCurrentImage();
     } else {
+      // this.stopPlay();
       gameOver();
+      // this.clerScreen();
     }
   }
 

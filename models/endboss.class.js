@@ -120,8 +120,6 @@ class Endboss extends MovableObject {
    * This method checks if the death animation has already started. If not, it
    * begins the animation. It cycles through the death animation images until
    * the sequence is complete, then triggers the "You Win" game state.
-   *
-   * @method
    */
   deadAnimation() {
     if (!this.deadAnimationStarted) {
@@ -171,7 +169,7 @@ class Endboss extends MovableObject {
     }
     if (this.isAlert()) {
       this.playAnimation(this.Images_endboss_alert);
-      this.speedStop();
+      // this.speedStop();
     } else {
       this.enbossAttack();
     }
@@ -231,7 +229,7 @@ class Endboss extends MovableObject {
    * This method sets the Endboss's speed to `2`, reducing its movement speed to a slower pace.
    */
   speedslow() {
-    this.speed = 2;
+    this.speed = 4;
   }
 
   /**
@@ -240,7 +238,7 @@ class Endboss extends MovableObject {
    * This method sets the Endboss's speed to `4`, making it move faster during certain actions or states.
    */
   speedfast() {
-    this.speed = 4;
+    this.speed = 8;
   }
 
   /**
