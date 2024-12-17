@@ -42,6 +42,8 @@ class DrawabelObject {
       this instanceof Coin ||
       this instanceof Bottle ||
       this instanceof throwingBottles
+      // ||
+      // this instanceof EndScreen
     ) {
       ctx.beginPath();
       ctx.stroke();
@@ -92,5 +94,13 @@ class DrawabelObject {
    */
   incrementCurrentImage() {
     this.currentImage++;
+  }
+
+  playAnimation(images) {
+    // console.log()
+    let i = this.currentImage % images.length;
+    let path = images[i];
+    this.img = this.imageCache[path];
+    this.incrementCurrentImage();
   }
 }

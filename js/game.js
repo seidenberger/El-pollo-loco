@@ -25,6 +25,9 @@ function initStartDisplay() {
  */
 function initLevel() {
   if (!gameStarted) {
+    // neu
+    world = null;
+
     gameStarted = true;
     initLevelOne();
     backGroundMusicPlaying();
@@ -35,6 +38,7 @@ function initLevel() {
     footerShow();
     disableMute();
     disableMuteButten();
+    gameStarted = false;
   }
 }
 
@@ -60,6 +64,7 @@ function showGameElements() {
   document.getElementById("startDisplay").classList.add("hidden");
   document.getElementById("overlayFooter").innerHTML = "";
   document.getElementById("audioButten").classList.remove("hidden_imp");
+  document.getElementById("relodeHome").classList.add("hidden");
 }
 
 /**
@@ -123,17 +128,12 @@ function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-/**
- * Stops the game and resets relevant elements and states.
- *
- * This function sets the `gameStarted` flag to `false`, shows the footer overlay,
- * mutes the audio, and stops the game elements by calling various helper functions.
- */
 function stopGame() {
   gameStarted = false;
-  footerShowOverlay();
+  // footerShowOverlay();
   enableMute();
-  stopGameElements();
+  document.getElementById("relodeHome").classList.remove("hidden");
+  // stopGameElements();
 }
 
 /**
@@ -154,15 +154,10 @@ function stopGameElements() {
   document.getElementById("audioButten").classList.add("hidden_imp");
 }
 
-/**
- * Handles actions when the player wins the game.
- *
- * This function clears all active intervals and triggers the `youWinTime` function,
- * which likely manages the "You Win" state or animation.
- */
-function youWinGamne() {
+function youWinGame() {
   clearAllIntervals();
   youWinTime();
+  document.getElementById("relodeHome").classList.remove("hidden");
 }
 
 /**
@@ -173,20 +168,14 @@ function youWinGamne() {
  */
 function youWinTime() {
   document.getElementById("youWin").classList.remove("hidden");
-  setTimeout(() => {
-    stopGame();
-  }, 2000);
+  // setTimeout(() => {
+  stopGame();
+  // }, 2000);
 }
 
-/**
- * Handles actions when the game is over.
- *
- * This function clears all active intervals and triggers the `gameOverTime` function,
- * which likely manages the "Game Over" state or animation.
- */
 function gameOver() {
-  // clearAllIntervals();
-  // gameOverTime();
+  clearAllIntervals();
+  gameOverTime();
 }
 
 /**
@@ -197,9 +186,9 @@ function gameOver() {
  */
 function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
-  setTimeout(() => {
-    stopGame();
-  }, 2000);
+  // setTimeout(() => {
+  stopGame();
+  // }, 2000);
 }
 
 /**

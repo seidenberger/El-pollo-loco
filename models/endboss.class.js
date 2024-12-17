@@ -3,6 +3,7 @@ class Endboss extends MovableObject {
   width = 200;
   y = 140;
   deadAnimationStarted = false;
+  deadAnimationEndEndboss = false;
   alertAnimatioStarted = true;
   alertTime = 0;
   isAngriChickenSound = false;
@@ -61,8 +62,9 @@ class Endboss extends MovableObject {
    * - Sets the initial points or state for the Endboss.
    * - Starts the Endboss's animation loop.
    */
-  constructor() {
+  constructor(endScreen) {
     super().loadImage(this.Images_endboss_walk[0]);
+    this.endScreen = endScreen;
     this.loadImages(this.Images_endboss_walk);
     this.loadImages(this.Images_endboss_alert);
     this.loadImages(this.Images_endboss_attack);
@@ -97,6 +99,7 @@ class Endboss extends MovableObject {
    */
   playEndboss() {
     if (this.isDead()) {
+      console.log(typeof this.playAnimation);
       this.deadAnimation();
     } else if (this.isHurt()) {
       this.angriSoundPlay();
@@ -114,13 +117,6 @@ class Endboss extends MovableObject {
     }
   }
 
-  /**
-   * Executes the death animation sequence for the Endboss.
-   *
-   * This method checks if the death animation has already started. If not, it
-   * begins the animation. It cycles through the death animation images until
-   * the sequence is complete, then triggers the "You Win" game state.
-   */
   deadAnimation() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -129,7 +125,11 @@ class Endboss extends MovableObject {
       this.playAnimation(this.Images_endboss_dead);
       this.incrementCurrentImage();
     } else {
-      // youWinGamne();
+      // this.endScreen.youWinGame();
+      // this.endScreen.youWinGame();
+
+      this.deadAnimationEndEndboss = true;
+      // console.log("win");
     }
   }
 

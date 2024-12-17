@@ -131,12 +131,13 @@ class MovableObject extends DrawabelObject {
    *
    * @param {Array<string>} images An array of image paths representing the animation sequence.
    */
-  playAnimation(images) {
-    let i = this.currentImage % images.length;
-    let path = images[i];
-    this.img = this.imageCache[path];
-    this.incrementCurrentImage();
-  }
+  // console.log()
+  // playAnimation(images) {
+  //   let i = this.currentImage % images.length;
+  //   let path = images[i];
+  //   this.img = this.imageCache[path];
+  //   this.incrementCurrentImage();
+  // }
 
   /**
    * Checks if the current object is colliding with another object.

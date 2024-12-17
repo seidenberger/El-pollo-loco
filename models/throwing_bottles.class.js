@@ -61,7 +61,7 @@ class throwingBottles extends MovableObject {
   animate() {
     setInterval(() => {
       this.playAnimation(this.Images_salsa_bottle_rotation);
-    }, 1000 / 60);
+    }, 700 / 60);
   }
 
   /**

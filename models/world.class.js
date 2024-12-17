@@ -11,6 +11,7 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
+  // endScreen = new EndScreen();
   throwabeleObjects = [];
   lastDeadChicken = 0;
 
@@ -104,7 +105,22 @@ class World {
       this.checkSpliceChicken();
       this.updatStatusEndboss();
       this.alertEndboss();
+      this.checkGameStatus();
+      // console.log(neu);
     }, 1000 / 60);
+  }
+
+  checkGameStatus() {
+    // ?''
+    let endBoss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
+    // console.log(endBoss);
+    if (endBoss.deadAnimationEndEndboss) {
+      // this.endScreen.youWinGame();
+      youWinGame();
+    } else if (this.character.deadAnimationEndCharacter) {
+      // this.endScreen.youLostGame();
+      gameOver();
+    }
   }
 
   /**
@@ -220,22 +236,16 @@ class World {
     }
   }
 
-  /**
-   * Checks if the given enemy is considered dangerous to the character.
-   *
-   * An enemy is considered dangerous if it is an instance of `Chicken`, `ChickenSmall`, or `Endboss`.
-   * This method helps determine whether the enemy can inflict damage to the character.
-   *
-   * @param {Object} enemy - The enemy to check if it is dangerous.
-   * @returns {boolean} Returns `true` if the enemy is considered dangerous, `false` otherwise.
-   */
-  isEnemyDangerous(enemy) {
-    return (
-      enemy instanceof Chicken ||
-      enemy instanceof ChickenSmall ||
-      enemy instanceof Endboss
-    );
-  }
+  // entfernt funktionmiert
+
+  // isEnemyDangerous(enemy) {
+  //   return (
+  //     enemy instanceof Chicken ||
+  //     enemy instanceof ChickenSmall ||
+  //     enemy instanceof Endboss
+  //   );
+  // console.log();
+  // }
 
   /**
    * Handles the logic when the character is hit by a dangerous enemy.
@@ -490,16 +500,19 @@ class World {
     this.addObjectsToMap(this.level.backgroundObject);
     this.addObjectsToMap(this.level.clouds);
     this.addToMap(this.character);
+
     this.addToMap(this.statusbarEndboss);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bottle);
     this.addObjectsToMap(this.level.coin);
     this.addObjectsToMap(this.throwabeleObjects);
     this.ctx.translate(-this.camera_x, 0);
+    // this.addToMap(this.endScreen);
+
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
-
+    // this.addToMap(this.endScreen);
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

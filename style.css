@@ -23,13 +23,47 @@ h1 {
   letter-spacing: 3px;
 }
 
-.start_end {
-  width: 720px;
+#startDisplay {
+  filter: drop-shadow(2px 4px 9px black);
   height: 480px;
+  width: 720px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border-radius: 32px;
+}
+
+.containerCanvas {
+  justify-content: center;
+  align-items: center;
+  max-width: 720px;
+  max-height: 480px;
+}
+
+.canvas {
+    width: 100%;
+  height: 100%;
+  border-radius: 32px;
+
+}
+
+.win_end {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 480px;
+  object-fit: contain;  
+border-radius: 32px;
+}
+
+.play_end_sequence {
+  width: 100%; 
+  height: 100%; 
+  border-radius: 32px;
+
 }
 
 .start_win_img{
@@ -41,6 +75,7 @@ h1 {
   width: 100%;
   height: 100%;
   object-fit: cover;  
+  border-radius: 32px;
 }
 
 .start_win_img {
@@ -108,14 +143,7 @@ p, span {
   top: -9999px; 
 }
 
-.containerCanvas {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
+
 
 .button:hover {
   cursor: pointer;
@@ -173,12 +201,6 @@ p, span {
   
 }
 
-.play_end_sequence {
-  width: 100%; 
-  height: 100%; 
-  object-fit: contain; 
-}
-
 #gameOver {
   filter: brightness(1.5);
 }
@@ -188,6 +210,7 @@ p, span {
   height: 480px;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
 
 .d_flex {
   display: flex;

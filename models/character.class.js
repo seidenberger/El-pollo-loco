@@ -7,6 +7,7 @@ class Character extends MovableObject {
   world;
   longIdleThreshold = 5000;
   deadAnimationStarted = false;
+  deadAnimationEndCharacter = false;
   isSleepingSoundPlaying = false;
   offset = {
     top: 100,
@@ -108,7 +109,7 @@ class Character extends MovableObject {
    * 2. Calls `playCharacter` once every 60 milliseconds to update the character's animation state.
    */
   animate() {
-    setInterval(() => this.moveCharacter(), 100 / 60);
+    setInterval(() => this.moveCharacter(), 500 / 60);
     setInterval(() => this.playCharacter(), 100);
   }
 
@@ -208,6 +209,7 @@ class Character extends MovableObject {
       this.sleepPause();
       this.deadAnimatio();
     } else if (this.isHurt()) {
+      // debugger;
       this.playHurt();
     } else if (this.isAboveGround()) {
       this.sleepPause();
@@ -248,6 +250,7 @@ class Character extends MovableObject {
     this.hurtSound();
   }
 
+  // neu
   deadAnimatio() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -257,16 +260,19 @@ class Character extends MovableObject {
       this.incrementCurrentImage();
     } else {
       // this.stopPlay();
-      // gameOver();
+      // this.youLostGame();
       // this.clerScreen();
-      this.triggerGameOver();
+      // this.triggerGameOver();
+      this.deadAnimationEndCharacter = true;
+      // this.endScreen.youLostGame();
+      console.log("daed");
     }
   }
 
-  triggerGameOver() {
-    const endScreen = new EndScreen(this.context);
-    endScreen.showEndScreen(false); // false für "Game Over"
-  }
+  // triggerGameOver() {
+  //   const endScreen = new EndScreen(this.context);
+  //   endScreen.showEndScreen(false); // false für "Game Over"
+  // }
 
   /**
    * Initiates the jumping action by adjusting the object's speed and playing the jump sound.
