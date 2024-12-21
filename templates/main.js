@@ -9,13 +9,13 @@ function footerShowOverlay() {
   let overlayFooter = document.getElementById("overlayFooter");
   overlayFooter.innerHTML = "";
 
-  overlayFooter.innerHTML += /*html*/ `
+  overlayFooter.innerHTML += `
         <footer>
         <span>
-        <a href="./footer/impressum_theo_seidenberger_developerakademie_net_de.pdf"  onclick="impressum()" class="d_flex button">Impressum</a>
+        <div onclick="impressum()" class="d_flex button">Impressum</div>
         </span>
         <span>
-        <a href="./footer/datenschutzerklaerung_theo_seidenberger_developerakademie_net_de.pdf"  onclick="dataPrivacy()" class="d_flex button">Data Privacy</a>
+        <div onclick="dataPrivacy()" class="d_flex button">Data Privacy</div>
         </span>
 
     `;
@@ -40,7 +40,63 @@ function footerShow() {
 function backShow() {
   let back = document.getElementById("back");
   back.innerHTML = "";
-  back.innerHTML += /*html*/ `
-  <div id="btnBack" class="d_j_center" onclick="backToMain()"><h2 class="button">back</h2></div>
+  back.innerHTML += `
+  <div id="home" onclick="home()"><img class="img" src="img/10_steering/buttons_symbol/home.png" alt="home"></div>
+`;
+}
+
+function backToMain() {
+  // stopGameElements();
+  footerShowOverlay();
+  document.getElementById("canvas").classList.add("hidden");
+  document.getElementById("containerCanvas").classList.add("hidden");
+  document.getElementById("startDisplay").classList.remove("hidden");
+  document.getElementById("youWin").classList.add("hidden");
+  document.getElementById("gameOver").classList.add("hidden");
+  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("playButton").classList.remove("hidden");
+  document.getElementById("audioButten").classList.add("hidden_imp");
+}
+
+function relodeAndHome() {
+  // console.log
+  let relodHome = document.getElementById("relodHome");
+  relodHome.innerHTML = "";
+
+  relodHome.innerHTML += `
+    <div  class="d_flex button_div">
+      <div id="home" onclick="home()"><img class="img" src="img/10_steering/buttons_symbol/home.png" alt="home"></div>
+      <div id="relod" onclick="relod()"><img class="img" src="img/10_steering/buttons_symbol/reload.png" alt="reload"></div>
+    </div>
+  `;
+}
+
+function relodeAndHomeNone() {
+  let relodHome = document.getElementById("relodHome");
+  relodHome.innerHTML = "";
+}
+
+function showImpressum() {
+  let overlayFooter = document.getElementById("overlayFooter");
+  overlayFooter.innerHTML = "";
+  overlayFooter.innerHTML += `
+<div class='impressum'><h1>Impressum</h1><p>Angaben gemäß § 5 DDG</p><p>Theo Seidenberger <br> 
+Sudetenstrasse 6<br> 
+82362 Weilheim <br> 
+</p><p> <strong>Vertreten durch: </strong><br>
+Theo Seidenberger<br>
+</p><p><strong>Kontakt:</strong> <br>
+E-Mail: <a href='mailto:theo.seidenberger@web.de'>theo.seidenberger@web.de</a></br></p><br> 
+Impressum vom <a href="https://www.impressum-generator.de">Impressum Generator</a> der <a href="https://www.kanzlei-hasselbach.de/standorte/bonn/" rel="nofollow">Kanzlei Hasselbach, Bonn</a> </div>
+ 
+`;
+}
+
+function showDataPrivacy() {
+  let overlayFooter = document.getElementById("overlayFooter");
+  overlayFooter.innerHTML = "";
+  overlayFooter.innerHTML += `
+
+
 `;
 }

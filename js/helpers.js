@@ -48,7 +48,10 @@ window.addEventListener("load", checkOrientationWithMediaQuery);
  * privacy details, and then calls `backShow()` to display the back button or hide certain UI elements.
  */
 function impressum() {
-  showImpressumDataPrivacy();
+  // console.log
+  clearDisplay();
+  // relodeAndHomeNone();
+  showImpressum();
   backShow();
 }
 
@@ -59,7 +62,8 @@ function impressum() {
  * and then calls `backShow()` to display the back button or hide certain UI elements for navigation.
  */
 function dataPrivacy() {
-  showImpressumDataPrivacy();
+  clearDisplay();
+  showDataPrivacy();
   backShow();
 }
 
@@ -70,7 +74,7 @@ function dataPrivacy() {
  * and the overlay by adding `hidden` and `hidden_imp` classes. These actions ensure the game
  * elements are not visible while the Impressum and data privacy details are shown.
  */
-function showImpressumDataPrivacy() {
+function showDataPrivacy() {
   let startDisplay = document.getElementById("startDisplay");
   let containerCanvas = document.getElementById("containerCanvas");
   let overlay = document.getElementById("overlay");

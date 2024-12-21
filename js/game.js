@@ -42,6 +42,17 @@ function initLevel() {
   }
 }
 
+function home() {
+  clearAllIntervals();
+  stopGameElements();
+}
+
+function relod() {
+  clearAllIntervals();
+  stopGameElements();
+  initLevel();
+}
+
 /**
  * Plays the background music of the game.
  *
@@ -64,7 +75,8 @@ function showGameElements() {
   document.getElementById("startDisplay").classList.add("hidden");
   document.getElementById("overlayFooter").innerHTML = "";
   document.getElementById("audioButten").classList.remove("hidden_imp");
-  document.getElementById("relodeHome").classList.add("hidden");
+  // document.getElementById("relodeHome").classList.add("hidden");
+  // document.getElementById()
 }
 
 /**
@@ -128,22 +140,10 @@ function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
-function stopGame() {
-  gameStarted = false;
-  // footerShowOverlay();
-  enableMute();
-  document.getElementById("relodeHome").classList.remove("hidden");
-  // stopGameElements();
-}
-
-/**
- * Stops the game elements by hiding or showing specific HTML elements.
- *
- * This function hides the canvas and game-related elements, displays the
- * start screen, and updates the visibility of other elements like the
- * "Play" button, win/loss messages, and audio button.
- */
 function stopGameElements() {
+  // confirm.log
+  relodeAndHomeNone();
+  footerShowOverlay();
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
@@ -157,7 +157,7 @@ function stopGameElements() {
 function youWinGame() {
   clearAllIntervals();
   youWinTime();
-  document.getElementById("relodeHome").classList.remove("hidden");
+  // document.getElementById("relodeHome").classList.remove("hidden");
 }
 
 /**
@@ -174,6 +174,7 @@ function youWinTime() {
 }
 
 function gameOver() {
+  // console.log
   clearAllIntervals();
   gameOverTime();
 }
@@ -189,6 +190,14 @@ function gameOverTime() {
   // setTimeout(() => {
   stopGame();
   // }, 2000);
+}
+
+function stopGame() {
+  // console.log
+  gameStarted = false;
+  // footerShowOverlay();
+  enableMute();
+  relodeAndHome();
 }
 
 /**
@@ -212,4 +221,16 @@ function enableMuteButten() {
 function disableMuteButten() {
   document.getElementById("audioOff").classList.add("hidden");
   document.getElementById("audioOn").classList.remove("hidden");
+}
+
+function clearDisplay() {
+  footerShow();
+  document.getElementById("canvas").classList.add("hidden");
+  document.getElementById("containerCanvas").classList.add("hidden");
+  document.getElementById("startDisplay").classList.add("hidden");
+  document.getElementById("youWin").classList.add("hidden");
+  document.getElementById("gameOver").classList.add("hidden");
+  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("playButton").classList.add("hidden");
+  document.getElementById("audioButten").classList.add("hidden_imp");
 }
