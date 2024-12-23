@@ -34,7 +34,7 @@ class MovableObject extends DrawabelObject {
           this.minusAcceleration();
         }
       }
-    }, 1000 / 25);
+    }, 750 / 25);
   }
 
   /**
@@ -120,24 +120,6 @@ class MovableObject extends DrawabelObject {
   isDead() {
     return this.energy == 0;
   }
-
-  /**
-   * Plays the animation by cycling through the provided images.
-   *
-   * This method selects the current image in the animation sequence by using the `currentImage` index,
-   * then sets the `img` property of the object to the corresponding image path from the `images` array.
-   * After updating the `img`, it increments the `currentImage` index to move to the next image in the sequence
-   * for the next animation cycle.
-   *
-   * @param {Array<string>} images An array of image paths representing the animation sequence.
-   */
-  // console.log()
-  // playAnimation(images) {
-  //   let i = this.currentImage % images.length;
-  //   let path = images[i];
-  //   this.img = this.imageCache[path];
-  //   this.incrementCurrentImage();
-  // }
 
   /**
    * Checks if the current object is colliding with another object.

@@ -6,14 +6,14 @@
     <title>El pollo loco</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png">
-    
+    <script src="./templates/impressum.js"></script>
+    <script src="./templates/data_privacy.js"></script>
     <script src="./js/helpers.js"></script>
     <script src="./js/control.js"></script>
     <script src="./templates/main.js"></script>
     <script src="./js/audio.js"></script>
     <script src="./models/world.class.js"></script>
     <script src="./models/drawabel_object.class.js"></script>
-    <!-- <script src="./models/end_screen.js"></script> -->
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken_small.class.js"></script>
@@ -64,13 +64,15 @@
     <section id="overlay">
         <div>
             <div id="playButton" onclick="initLevel()" class="button_center">
-                <!-- <p class="button">preess Enter for play</p> -->
                 <img class="imgplay" src="./img/10_steering/buttons_symbol/playbutton.png" alt="playbutton">
             </div>
-            <div id="audioButten" class="d_j_center">
-                <div role="audioButten" onclick="toggleMuteState()">
-                    <img class="img hidden" src="./img/10_steering/buttons_symbol/audio_off.png" alt="audioOff" id="audioOff" > 
-                    <img class="img " src="./img/10_steering/buttons_symbol/audio_on.png" alt="audioOn" id="audioOn" >
+            <div id="audioButten" class="d_flex">
+                <div id="home" onclick="home()"><img class="img" src="img/10_steering/buttons_symbol/home.png" alt="home"></div>
+                <div  class="d_j_center">
+                    <div role="audioButten" onclick="toggleMuteState()">
+                        <img class="img hidden" src="./img/10_steering/buttons_symbol/audio_off.png" alt="audioOff" id="audioOff" > 
+                        <img class="img " src="./img/10_steering/buttons_symbol/audio_on.png" alt="audioOn" id="audioOn" >
+                    </div>
                 </div>
             </div>
             <div id="buttonDiv" class="button_div" >
@@ -85,7 +87,7 @@
             </div>
             <div id="relodHome"></div>
         </div> 
-        <div id="back"></div>
+        <div id="back" class="hidden"></div>
         <div id="overlayFooter"></div>
         
     </section>      

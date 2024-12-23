@@ -66,19 +66,3 @@ function dataPrivacy() {
   showDataPrivacy();
   backShow();
 }
-
-/**
- * Displays the Impressum (legal notice) and data privacy information by hiding game elements.
- *
- * This function hides the game-related elements such as the start display, the canvas container,
- * and the overlay by adding `hidden` and `hidden_imp` classes. These actions ensure the game
- * elements are not visible while the Impressum and data privacy details are shown.
- */
-function showDataPrivacy() {
-  let startDisplay = document.getElementById("startDisplay");
-  let containerCanvas = document.getElementById("containerCanvas");
-  let overlay = document.getElementById("overlay");
-  startDisplay.classList.add("hidden");
-  containerCanvas.classList.add("hidden_imp");
-  overlay.classList.add("hidden_imp");
-}
