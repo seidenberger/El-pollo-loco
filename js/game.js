@@ -27,7 +27,6 @@ function initLevel() {
   if (!gameStarted) {
     // neu
     world = null;
-
     gameStarted = true;
     initLevelOne();
     backGroundMusicPlaying();
@@ -39,6 +38,7 @@ function initLevel() {
     disableMute();
     disableMuteButten();
     gameStarted = false;
+    // initStartDisplayNext();
   }
 }
 
@@ -155,17 +155,12 @@ function stopGameElements() {
 }
 
 function youWinGame() {
+  // console.log
   clearAllIntervals();
   youWinTime();
   // document.getElementById("relodeHome").classList.remove("hidden");
 }
 
-/**
- * Displays the "You Win" message and stops the game after a short delay.
- *
- * This function makes the "You Win" message visible by removing the `hidden` class.
- * After a 2-second delay, it calls the `stopGame` function to end the game.
- */
 function youWinTime() {
   document.getElementById("youWin").classList.remove("hidden");
   // setTimeout(() => {
@@ -179,12 +174,6 @@ function gameOver() {
   gameOverTime();
 }
 
-/**
- * Displays the "Game Over" message and stops the game after a short delay.
- *
- * This function makes the "Game Over" message visible by removing the `hidden` class.
- * After a 2-second delay, it calls the `stopGame` function to end the game.
- */
 function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
   // setTimeout(() => {
@@ -195,6 +184,7 @@ function gameOverTime() {
 function stopGame() {
   // console.log
   gameStarted = false;
+  document.getElementById("buttonDiv").classList.add("hidden");
   // footerShowOverlay();
   enableMute();
   relodeAndHome();

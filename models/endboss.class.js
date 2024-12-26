@@ -102,6 +102,7 @@ class Endboss extends MovableObject {
       console.log(typeof this.playAnimation);
       this.deadAnimation();
     } else if (this.isHurt()) {
+      // this.isAboveGround();
       this.angriSoundPlay();
       this.playAnimation(this.Images_endboss_hurt);
       this.isAngriChickenSound = false;

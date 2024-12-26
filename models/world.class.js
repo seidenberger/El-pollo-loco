@@ -11,7 +11,6 @@ class World {
   statusbarBottle = new StatusbarBottle();
   statusbarCoin = new StatusbarCoin();
   statusbarEndboss = new StatusbarEndboss();
-  // endScreen = new EndScreen();
   throwabeleObjects = [];
   lastDeadChicken = 0;
 
@@ -236,17 +235,6 @@ class World {
     }
   }
 
-  // entfernt funktionmiert
-
-  // isEnemyDangerous(enemy) {
-  //   return (
-  //     enemy instanceof Chicken ||
-  //     enemy instanceof ChickenSmall ||
-  //     enemy instanceof Endboss
-  //   );
-  // console.log();
-  // }
-
   /**
    * Handles the logic when the character is hit by a dangerous enemy.
    *
@@ -458,61 +446,22 @@ class World {
     this.level.enemies.splice(index, 1);
   }
 
-  /**
-   * Clears the canvas and redraws all objects in the game world.
-   *
-   * This method handles the drawing of the entire game world. It clears the canvas, applies the camera translation,
-   * and then redraws various game objects including the background, clouds, the main character, enemies, bottles, coins,
-   * and status bars. The drawing is done on the 2D context of the canvas.
-   *
-   * After the objects are drawn, it requests the next animation frame to continuously update the game display.
-   *
-   * @returns {void}
-   */
-  // draw() {
-  //   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  //   this.ctx.translate(this.camera_x, 0);
-  //   this.addObjectsToMap(this.level.backgroundObject);
-  //   this.addObjectsToMap(this.level.clouds);
-  //   this.addToMap(this.character);
-  //   this.addToMap(this.statusbarEndboss);
-  //   this.addObjectsToMap(this.level.enemies);
-  //   this.addObjectsToMap(this.level.bottle);
-  //   this.addObjectsToMap(this.level.coin);
-  //   this.addObjectsToMap(this.throwabeleObjects);
-  //   this.ctx.translate(-this.camera_x, 0);
-  //   this.addToMap(this.statusbarHealth);
-  //   this.addToMap(this.statusbarBottle);
-  //   this.addToMap(this.statusbarCoin);
-  //   let self = this;
-  //   requestAnimationFrame(function () {
-  //     self.draw();
-  //   });
-  // }
-
-  // neu
   draw() {
-    if (!this.running) return; // Beenden, falls das Spiel gestoppt ist
+    if (!this.running) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
-
-    // Elemente zeichnen
     this.addObjectsToMap(this.level.backgroundObject);
     this.addObjectsToMap(this.level.clouds);
     this.addToMap(this.character);
-
     this.addToMap(this.statusbarEndboss);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bottle);
     this.addObjectsToMap(this.level.coin);
     this.addObjectsToMap(this.throwabeleObjects);
     this.ctx.translate(-this.camera_x, 0);
-    // this.addToMap(this.endScreen);
-
     this.addToMap(this.statusbarHealth);
     this.addToMap(this.statusbarBottle);
     this.addToMap(this.statusbarCoin);
-    // this.addToMap(this.endScreen);
     let self = this;
     requestAnimationFrame(function () {
       self.draw();

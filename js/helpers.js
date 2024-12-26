@@ -29,7 +29,7 @@ function checkOrientationWithMediaQuery() {
       canvasContainer.classList.remove("invisible");
       gameName.classList.add("hidden");
       gameKeys.classList.remove("hidden");
-      footerShowOverlay();
+      // footerShowOverlay();
     }
   }
 }
@@ -66,3 +66,50 @@ function dataPrivacy() {
   showDataPrivacy();
   backShow();
 }
+
+// import { showGameElements } from "./game.js";
+
+// function detectDevice() {
+//   const isTouchDevice =
+//     "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+//   if (window.matchMedia("(max-width: 480px)").matches) {
+//     console.log("Smartphone erkannt");
+//     // showGameElements();
+//   } else if (
+//     window.matchMedia("(min-width: 481px) and (max-width: 1024px)").matches
+//   ) {
+//     // showGameElements();
+//     console.log("Tablet erkannt");
+//   } else {
+//     console.log("Desktop erkannt");
+//   }
+
+//   if (isTouchDevice) {
+//     console.log("Touchscreen-Gerät erkannt");
+//   }
+// }
+
+// window.addEventListener("resize", detectDevice);
+// detectDevice();
+
+// function initStartDisplayNext() {
+//   if (isTouchDevice()) {
+//     setupTouchControls();
+//   } else {
+//     console.log("Kein Touchscreen erkannt");
+//     setupKeyboardControls();
+//   }
+// }
+
+// function isTouchDevice() {
+//   return (
+//     "ontouchstart" in window ||
+//     navigator.maxTouchPoints > 0 ||
+//     navigator.msMaxTouchPoints > 0
+//   );
+// }
+
+// function setupTouchControls() {
+//   console.log("Touchscreen-Gerät erkannt");
+// }

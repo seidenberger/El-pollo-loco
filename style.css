@@ -328,4 +328,15 @@ display: none;
 
   }
 
+  /* Touchscreen-Geräte */
+/* @media (hover: none) and (pointer: coarse) { */
+  /* #gameKeys { */
+    /* display: none; Deaktiviere GameKeys auf Touchscreens */
+  /* } */
+  /* #overlay { */
+    /* width: 95%; */
+    /* height: auto; */
+  /* } */
+/* } */
+
 
