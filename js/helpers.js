@@ -67,49 +67,33 @@ function dataPrivacy() {
   backShow();
 }
 
-// import { showGameElements } from "./game.js";
+document.addEventListener("DOMContentLoaded", () => {
+  function detectDevice() {
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-// function detectDevice() {
-//   const isTouchDevice =
-//     "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    let width = window.innerWidth;
+    // let height = window.innerHeight;
 
-//   if (window.matchMedia("(max-width: 480px)").matches) {
-//     console.log("Smartphone erkannt");
-//     // showGameElements();
-//   } else if (
-//     window.matchMedia("(min-width: 481px) and (max-width: 1024px)").matches
-//   ) {
-//     // showGameElements();
-//     console.log("Tablet erkannt");
-//   } else {
-//     console.log("Desktop erkannt");
-//   }
+    if (width <= 480) {
+      console.log("Smartphone erkannt");
+    } else if (width > 480 && width <= 1024) {
+      if (isTouchDevice) {
+        console.log("Tablet erkannt");
+      } else {
+        console.log("Kleiner Desktop erkannt");
+      }
+    } else {
+      console.log("Desktop erkannt");
+    }
 
-//   if (isTouchDevice) {
-//     console.log("Touchscreen-Gerät erkannt");
-//   }
-// }
+    if (isTouchDevice) {
+      console.log("Touchscreen-Gerät erkannt");
+      document.getElementById("buttonDiv").classList.remove("hidden");
+      // debugger;
+    }
+  }
 
-// window.addEventListener("resize", detectDevice);
-// detectDevice();
-
-// function initStartDisplayNext() {
-//   if (isTouchDevice()) {
-//     setupTouchControls();
-//   } else {
-//     console.log("Kein Touchscreen erkannt");
-//     setupKeyboardControls();
-//   }
-// }
-
-// function isTouchDevice() {
-//   return (
-//     "ontouchstart" in window ||
-//     navigator.maxTouchPoints > 0 ||
-//     navigator.msMaxTouchPoints > 0
-//   );
-// }
-
-// function setupTouchControls() {
-//   console.log("Touchscreen-Gerät erkannt");
-// }
+  window.addEventListener("resize", detectDevice);
+  detectDevice();
+});

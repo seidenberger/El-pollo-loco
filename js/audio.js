@@ -5,7 +5,7 @@ let sleepSound = new Audio("./audio/sleep.mp3");
 let throwSound = new Audio("./audio/throw.mp3");
 let angriChickenSound = new Audio("./audio/angri_chicken.mp3");
 let chickenSound = new Audio("./audio/chicken.mp3");
-let backgrounMusik = new Audio("./audio/background.mp3");
+let backgroundMusic = new Audio("./audio/background.mp3");
 
 /**
  * Mutes all game sounds and background music.

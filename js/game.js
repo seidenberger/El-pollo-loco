@@ -59,7 +59,8 @@ function relod() {
  * This function triggers the playback of the `backgrounMusik` audio object.
  */
 function backGroundMusicPlaying() {
-  backgrounMusik.play();
+  backgroundMusic.loop = true;
+  backgroundMusic.play();
 }
 
 /**
@@ -177,6 +178,7 @@ function gameOver() {
 function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
   // setTimeout(() => {
+  document.getElementById("buttonDiv").classList.add("hidden");
   stopGame();
   // }, 2000);
 }
