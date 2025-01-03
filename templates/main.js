@@ -53,7 +53,7 @@ function backToMain() {
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
-  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("gameButtonsMobile").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
   document.getElementById("audioButten").classList.add("hidden_imp");
 }

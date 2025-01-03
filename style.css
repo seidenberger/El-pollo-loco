@@ -130,7 +130,7 @@ p, span {
 }
 
 .hidden {
-  display: none;
+  display: none ;
 }
 
 .hidden_imp {
@@ -150,7 +150,7 @@ p, span {
   text-shadow: 3px 3px 2px #333 
 }
 
-#gameKeys {
+#gameButtonsDescription {  
   display: flex;
   justify-content: center;
   gap: 16px;
@@ -222,18 +222,35 @@ footer {
   gap: 30px;
 }
 
-@media (min-width: 900px) {
-  #buttonDiv {
+/* @media (min-width: 900px) {
+  #gameButtonsMobile {
+    display: none;
+  }
+} */
+
+/* @media (max-width: 900px) {
+#gameButtonsDescription {
+    display: none;
+  }
+} */
+
+@media (min-width: 1025px) {
+  #gameButtonsMobile {
+    display: none;
+  }
+  #gameButtonsDescription {
+    display: flex;
+  }
+  /* #gameName {
+    display: flex;
+  } */
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  #gameButtonsDescription {
     display: none;
   }
 }
-
-@media (max-width: 900px) {
-  #gameKeys {
-    display: none;
-  }
-}
-
 
 @media only screen and (max-width: 720px) {
   .containerCanvas {
@@ -255,9 +272,7 @@ footer {
     width: 90%;
     height: 98%;
   }
-  #gameKeys {
-    display: none;
-  }
+
   .start_display {
     width: 100%;
     height: 100vh;
@@ -278,9 +293,9 @@ footer {
   .gameName {
     display: none;
   }
-  #gameKeys {
+  /* #gameButtonsDescription {
     display: none;
-  }
+  } */
   footer {
     display: flex;
     gap: 80px;
@@ -289,7 +304,7 @@ footer {
 
 @media (orientation: portrait) {
   #overlay {
-display: none;
+    display: none;
   }
   #startDisplay {
     display: none;
@@ -321,9 +336,9 @@ display: none;
     .gameName {
       display: none;
     }
-    #gameKeys {
+    /* #gameButtonsDescription {
       display: none;
-    }
+    } */
 
   }
 
@@ -334,21 +349,12 @@ display: none;
     .gameName {
       display: none;
     }
-    #gameKeys {
+    /* #gameButtonsDescription {  
       display: none;
-    }
+    } */
 
   }
 
-  /* Touchscreen-Geräte */
-/* @media (hover: none) and (pointer: coarse) { */
-  /* #gameKeys { */
-    /* display: none; Deaktiviere GameKeys auf Touchscreens */
-  /* } */
-  /* #overlay { */
-    /* width: 95%; */
-    /* height: auto; */
-  /* } */
-/* } */
+
 
 

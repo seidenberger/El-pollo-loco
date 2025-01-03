@@ -12,23 +12,27 @@ function checkOrientationWithMediaQuery() {
   let canvasContainer = document.getElementById("containerCanvas");
   let orientationMessage = document.getElementById("orientationMessage");
   let gameName = document.getElementById("gameName");
-  let gameKeys = document.getElementById("gameKeys");
+  // let gameButtonsDescription = document.getElementById(
+  // "gameButtonsDescription"
+  // );
+  // let gameButtonsMobile = document.getElementById("gameButtonsMobile");
 
   if (isPortrait) {
     orientationMessage.classList.remove("hidden");
     canvasContainer.classList.add("invisible");
     gameName.classList.add("hidden");
-    gameKeys.classList.remove("hidden");
+    // gameButtonsDescription.classList.remove("hidden");
   } else {
     if (gameStarted) {
       canvasContainer.classList.remove("invisible");
       orientationMessage.classList.add("hidden");
-      gameKeys.classList.remove("hidden");
+      // gameButtonsDescription.classList.remove("hidden");
     } else {
       orientationMessage.classList.add("hidden");
       canvasContainer.classList.remove("invisible");
       gameName.classList.add("hidden");
-      gameKeys.classList.remove("hidden");
+      // gameButtonsDescription.classList.add("hidden");
+      // gameButtonsMobile.classList.remove("hidden");
       // footerShowOverlay();
     }
   }
@@ -66,34 +70,3 @@ function dataPrivacy() {
   showDataPrivacy();
   backShow();
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  function detectDevice() {
-    const isTouchDevice =
-      "ontouchstart" in window || navigator.maxTouchPoints > 0;
-
-    let width = window.innerWidth;
-    // let height = window.innerHeight;
-
-    if (width <= 480) {
-      console.log("Smartphone erkannt");
-    } else if (width > 480 && width <= 1024) {
-      if (isTouchDevice) {
-        console.log("Tablet erkannt");
-      } else {
-        console.log("Kleiner Desktop erkannt");
-      }
-    } else {
-      console.log("Desktop erkannt");
-    }
-
-    if (isTouchDevice) {
-      console.log("Touchscreen-Gerät erkannt");
-      document.getElementById("buttonDiv").classList.remove("hidden");
-      // debugger;
-    }
-  }
-
-  window.addEventListener("resize", detectDevice);
-  detectDevice();
-});

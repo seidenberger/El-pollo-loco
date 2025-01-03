@@ -21,7 +21,7 @@ function enableMute() {
   throwSound.muted = true;
   angriChickenSound.muted = true;
   chickenSound.muted = true;
-  backgrounMusik.muted = true;
+  backgroundMusic.muted = true;
 }
 
 /**
@@ -38,5 +38,5 @@ function disableMute() {
   throwSound.muted = false;
   angriChickenSound.muted = false;
   chickenSound.muted = false;
-  backgrounMusik.muted = false;
+  backgroundMusic.muted = false;
 }

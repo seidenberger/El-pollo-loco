@@ -45,7 +45,8 @@
 
     <section id="startDisplay" >        
         <img id="startDisplayImg" class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
-            <div id="gameKeys"  class="hidden">
+            <!-- <div id="gameKeys"  class="hidden"> -->
+            <div id="gameButtonsDescription"  class="hidden">
                 <div class="help_button">press A for  <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
                 <div class="help_button">press D for  <img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
                 <div class="help_button">press W for  <img class="img" src="./img/10_steering/buttons_symbol/up.png" alt=""></div>
@@ -55,7 +56,7 @@
 
 
     <section id="containerCanvas" class="containerCanvas">
-        <canvas class="canvas" width="720px" height="480px" id="canvas">           
+        <canvas class="canvas" width="720" height="480" id="canvas">           
         </canvas>
                 <div id="youWin" class="win_end hidden" ><img class="play_end_sequence" src="./img/9_intro_outro_screens/win/win_2.png" alt="" ></div>
                 <div id="gameOver" class="win_end hidden"><img class="play_end_sequence" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
@@ -72,11 +73,11 @@
                 <div  class="d_j_center">
                     <div role="audioButten" onclick="toggleMuteState()">
                         <img class="img hidden" src="./img/10_steering/buttons_symbol/audio_off.png" alt="audioOff" id="audioOff" > 
-                        <img class="img " src="./img/10_steering/buttons_symbol/audio_on.png" alt="audioOn" id="audioOn" >
+                        <img class="img" src="./img/10_steering/buttons_symbol/audio_on.png" alt="audioOn" id="audioOn" >
                     </div>
                 </div>
             </div>
-            <div id="buttonDiv" class="button_div" >
+            <div id="gameButtonsMobile" class="button_div " >
                 <div class="d_flex">
                     <div id="btnLeft"><img class="img" src="./img/10_steering/buttons_symbol/left.png" alt="left"> </div>
                     <div id="btnRight"><img class="img" src="./img/10_steering/buttons_symbol/right.png" alt="right"></div>                

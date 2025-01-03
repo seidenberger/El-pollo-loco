@@ -13,6 +13,7 @@ let gameStarted = false;
  */
 function initStartDisplay() {
   document.getElementById("audioButten").classList.add("hidden_imp");
+  footerShowOverlay();
 }
 
 /**
@@ -38,6 +39,7 @@ function initLevel() {
     disableMute();
     disableMuteButten();
     gameStarted = false;
+
     // initStartDisplayNext();
   }
 }
@@ -150,7 +152,7 @@ function stopGameElements() {
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
-  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("gameButtonsMobile").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
   document.getElementById("audioButten").classList.add("hidden_imp");
 }
@@ -178,7 +180,7 @@ function gameOver() {
 function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
   // setTimeout(() => {
-  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("gameButtonsMobile").classList.add("hidden");
   stopGame();
   // }, 2000);
 }
@@ -186,7 +188,7 @@ function gameOverTime() {
 function stopGame() {
   // console.log
   gameStarted = false;
-  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("gameButtonsMobile").classList.add("hidden");
   // footerShowOverlay();
   enableMute();
   relodeAndHome();
@@ -222,7 +224,7 @@ function clearDisplay() {
   document.getElementById("startDisplay").classList.add("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
-  document.getElementById("buttonDiv").classList.add("hidden");
+  document.getElementById("gameButtonsMobile").classList.add("hidden");
   document.getElementById("playButton").classList.add("hidden");
   document.getElementById("audioButten").classList.add("hidden_imp");
 }
