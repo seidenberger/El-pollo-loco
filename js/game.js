@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let changeAudio = true;
+let changeAudio = false;
 let intervallIds = [];
 let gameStarted = false;
 
@@ -147,6 +147,7 @@ function stopGameElements() {
   // confirm.log
   relodeAndHomeNone();
   footerShowOverlay();
+  enableMute();
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
@@ -155,6 +156,7 @@ function stopGameElements() {
   document.getElementById("gameButtonsMobile").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
   document.getElementById("audioButten").classList.add("hidden_imp");
+  changeAudio = false;
 }
 
 function youWinGame() {
@@ -180,7 +182,7 @@ function gameOver() {
 function gameOverTime() {
   document.getElementById("gameOver").classList.remove("hidden");
   // setTimeout(() => {
-  document.getElementById("gameButtonsMobile").classList.add("hidden");
+  // document.getElementById("gameButtonsMobile").classList.add("hidden");
   stopGame();
   // }, 2000);
 }
@@ -188,7 +190,8 @@ function gameOverTime() {
 function stopGame() {
   // console.log
   gameStarted = false;
-  document.getElementById("gameButtonsMobile").classList.add("hidden");
+  changeAudio = false;
+  document.getElementById("gameButtonsMobile").classList.add("hidden_imp");
   // footerShowOverlay();
   enableMute();
   relodeAndHome();

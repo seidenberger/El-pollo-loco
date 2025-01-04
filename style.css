@@ -327,6 +327,15 @@ footer {
   #destopFooter {
     display: none;
   }
+  #canvas {
+    height: 100vh;
+  }
+  #overlay {
+    height: 100vh;
+  }
+  #startDisplay {
+    height: 100vh;
+  }
 
 } 
 @media only screen and (max-width: 480px) {
