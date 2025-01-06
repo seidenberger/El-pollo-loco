@@ -12,28 +12,19 @@ function checkOrientationWithMediaQuery() {
   let canvasContainer = document.getElementById("containerCanvas");
   let orientationMessage = document.getElementById("orientationMessage");
   let gameName = document.getElementById("gameName");
-  // let gameButtonsDescription = document.getElementById(
-  // "gameButtonsDescription"
-  // );
-  // let gameButtonsMobile = document.getElementById("gameButtonsMobile");
 
   if (isPortrait) {
     orientationMessage.classList.remove("hidden");
     canvasContainer.classList.add("invisible");
     gameName.classList.add("hidden");
-    // gameButtonsDescription.classList.remove("hidden");
   } else {
     if (gameStarted) {
       canvasContainer.classList.remove("invisible");
       orientationMessage.classList.add("hidden");
-      // gameButtonsDescription.classList.remove("hidden");
     } else {
       orientationMessage.classList.add("hidden");
       canvasContainer.classList.remove("invisible");
       gameName.classList.add("hidden");
-      // gameButtonsDescription.classList.add("hidden");
-      // gameButtonsMobile.classList.remove("hidden");
-      // footerShowOverlay();
     }
   }
 }
@@ -52,11 +43,10 @@ window.addEventListener("load", checkOrientationWithMediaQuery);
  * privacy details, and then calls `backShow()` to display the back button or hide certain UI elements.
  */
 function impressum() {
-  // console.log
   clearDisplay();
-  // relodeAndHomeNone();
   showImpressum();
   backShow();
+  document.getElementById("gameButtonsMobile").classList.add("hidden_imp");
 }
 
 /**
@@ -69,4 +59,5 @@ function dataPrivacy() {
   clearDisplay();
   showDataPrivacy();
   backShow();
+  document.getElementById("gameButtonsMobile").classList.add("hidden_imp");
 }

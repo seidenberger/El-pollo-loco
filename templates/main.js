@@ -8,7 +8,6 @@
 function footerShowOverlay() {
   let overlayFooter = document.getElementById("overlayFooter");
   overlayFooter.innerHTML = "";
-
   overlayFooter.innerHTML += `
         <footer>
         <span>
@@ -17,7 +16,6 @@ function footerShowOverlay() {
         <span>
         <div onclick="dataPrivacy()" class="d_flex button">Data Privacy</div>
         </span>
-
     `;
 }
 
@@ -45,32 +43,33 @@ function backShow() {
 `;
 }
 
-function backToMain() {
-  // stopGameElements();
-  footerShowOverlay();
-  document.getElementById("canvas").classList.add("hidden");
-  document.getElementById("containerCanvas").classList.add("hidden");
-  document.getElementById("startDisplay").classList.remove("hidden");
-  document.getElementById("youWin").classList.add("hidden");
-  document.getElementById("gameOver").classList.add("hidden");
-  document.getElementById("gameButtonsMobile").classList.add("hidden");
-  document.getElementById("playButton").classList.remove("hidden");
-  document.getElementById("audioButten").classList.add("hidden_imp");
+/**
+ * Clears the content of the "back" element.
+ * This method sets the inner HTML of the element with the ID "back" to an empty string, effectively removing its content.
+ */
+function backNone() {
+  let back = document.getElementById("back");
+  back.innerHTML = "";
 }
 
+/**
+ * Clears the content of the "back" element.
+ * This method sets the inner HTML of the element with the ID "back" to an empty string, effectively removing its content.
+ */
 function relodeAndHome() {
-  // console.log
   let relodHome = document.getElementById("relodHome");
   relodHome.innerHTML = "";
-
   relodHome.innerHTML += `
     <div  class="d_flex button_div">
-
       <div id="relod" onclick="relod()"><img class="img" src="img/10_steering/buttons_symbol/reload.png" alt="reload"></div>
     </div>
   `;
 }
 
+/**
+ * Updates the "relodHome" element with reload button HTML.
+ * This method clears the existing content of the "relodHome" element and adds new HTML for a reload button.
+ */
 function relodeAndHomeNone() {
   let relodHome = document.getElementById("relodHome");
   relodHome.innerHTML = "";

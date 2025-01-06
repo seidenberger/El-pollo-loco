@@ -266,23 +266,19 @@ class World {
   }
 
   /**
-   * Records the current time when a bottle is thrown.
-   * This method updates the `lastThrow` timestamp to the current time and logs it to the console.
+   * Updates the last throw time with the current timestamp.
    */
   throwTime() {
     this.lastThrow = new Date().getTime();
-    console.log(`lastThrow ist bereits gesetzt: ${this.lastThrow}`);
   }
 
   /**
-   * Checks if the throw cooldown has expired.
-   * Compares the current time with the last throw time to determine if the cooldown period (1 second) has passed.
-   * @returns {boolean} True if the cooldown period has not passed (less than 1 second), false otherwise.
+   * Checks if the throw cooldown is active.
+   * @returns {boolean} True if less than 1 second has passed since the last throw.
    */
   isThrowCooldown() {
     let currentTime = new Date().getTime();
     let timePassed = (currentTime - this.lastThrow) / 1000;
-    console.log(`timepassed ist bereits gesetzt: ${this.timePassed}`);
     return timePassed < 1;
   }
 
