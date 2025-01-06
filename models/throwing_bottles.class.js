@@ -4,8 +4,11 @@ class throwingBottles extends MovableObject {
   speedY = 0;
   x = 0;
   y = 0;
+  lastThrow = 0;
+  timePassed = 0;
   isBroken = false;
   throwSoundPlaying = false;
+  // isTrowCooldown = false;
   offset = {
     top: 10,
     bottom: 5,
@@ -49,6 +52,8 @@ class throwingBottles extends MovableObject {
     this.horizontalPosition(x);
     this.verticalPosition(y);
     this.otherDirection = otherDirection;
+    // this.throwTime();
+    // this.isThrowCooldown();
     this.throw();
   }
 
@@ -64,17 +69,6 @@ class throwingBottles extends MovableObject {
     }, 700 / 60);
   }
 
-  /**
-   * Initiates the throwing behavior of the bottle.
-   *
-   * This method triggers the bottle's throw action, determines its movement trajectory,
-   * and handles its animation and state updates. It checks if the bottle is broken and
-   * executes appropriate logic for both directions (left or right) of the throw.
-   *
-   * - Calls `throwBottl()` to initialize the throw.
-   * - Updates the bottle's position at regular intervals based on its direction and state.
-   * - Starts the animation loop for the bottle's movement.
-   */
   throw() {
     this.throwBottl();
     setInterval(() => {

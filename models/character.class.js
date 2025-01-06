@@ -212,7 +212,7 @@ class Character extends MovableObject {
       // debugger;
       this.playHurt();
     } else if (this.isAboveGround()) {
-      this.sleepPause();
+      // this.sleepPause();
       this.playAnimation(this.Images_Jamping);
     } else if (this.world.keyboard.D || this.world.keyboard.A) {
       this.playWalking();

@@ -102,12 +102,26 @@ class Endboss extends MovableObject {
       console.log(typeof this.playAnimation);
       this.deadAnimation();
     } else if (this.isHurt()) {
+      // if (!this.isHurtCooldown) {
+      // Verhindert mehrfaches Auslösen während der Verletzungsphase
+      // this.isHurtCooldown = true; // Aktiviert den Cooldown
+      this.playAnimation(this.Images_endboss_hurt); // Verletzungs-Animation abspielen
+      this.angriSoundPlay(); // Sound abspielen, falls benötigt
+
+      setTimedout(() => {
+        // this.isHurtCooldown = false; // Cooldown zurücksetzen
+        this.enbossAttack(); // Angriff fortsetzen
+      }, 100); // 1 Sekunde (1000 ms) warten
+      // }
       // this.isAboveGround();
-      this.angriSoundPlay();
-      this.playAnimation(this.Images_endboss_hurt);
-      this.isAngriChickenSound = false;
-    } else if (this.x < world.character.x + 350) {
-      this.enbossAttack();
+      // this.isAboveGround();
+      // this.jump();
+      // this.angriSoundPlay();
+      // this.playAnimation(this.Images_endboss_hurt);
+      // this.isAngriChickenSound = false;
+      // this.enbossAttack();
+      // } else if (this.x < world.character.x + 350) {
+      // this.enbossAttack();
     } else if (this.x < world.character.x + 450) {
       this.alertAndAtteckEndboss();
     } else {
@@ -171,6 +185,7 @@ class Endboss extends MovableObject {
     if (this.isAlert()) {
       this.playAnimation(this.Images_endboss_alert);
       // this.speedStop();
+      this.speedslow();
     } else {
       this.enbossAttack();
     }
@@ -251,4 +266,17 @@ class Endboss extends MovableObject {
   endbossPoint() {
     this.x = 3600;
   }
+
+  // console.log
+
+  jump() {
+    this.speedToJump();
+  }
+
+  speedToJump() {
+    this.speedY = 30;
+  }
+
+  // endboss wird von eineer flasche getroffen
+  // jump funktiom wird aus gefürt
 }

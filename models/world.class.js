@@ -13,6 +13,8 @@ class World {
   statusbarEndboss = new StatusbarEndboss();
   throwabeleObjects = [];
   lastDeadChicken = 0;
+  lastThrow = 0;
+  timePassed = 1;
 
   /**
    * Initializes the game world and its core components.
@@ -299,32 +301,38 @@ class World {
     });
   }
 
-  /**
-   * Checks if the player presses the SPACE key to throw a bottle.
-   *
-   * When the player presses the SPACE key and has at least 20 bottles, the character throws a bottle.
-   * The number of bottles is decreased by 20, ensuring it doesn't go below 0. The bottle count is updated
-   * in the status bar. A new `throwingBottles` object is created and added to the `throwableObjects` array
-   * to keep track of all thrown bottles.
-   *
-   * @returns {void}
-   */
+  // colsole.log
   checkThrowObjects() {
     if (this.keyboard.SPACE) {
-      if (this.character.bottle > 0) {
-        this.character.bottle -= 20;
-        if (this.character.bottle < 0) {
-          this.character.bottle = 0;
+      if (!this.isThrowCooldown()) {
+        if (this.character.bottle > 0) {
+          this.character.bottle -= 20;
+          if (this.character.bottle < 0) {
+            this.character.bottle = 0;
+          }
+          this.statusbarBottle.setPercentagebottle(this.character.bottle);
+          let bottle = new throwingBottles(
+            this.character.x + 50,
+            this.character.y + 50,
+            this.character.otherDirection
+          );
+          this.throwTime();
+          this.throwabeleObjects.push(bottle);
         }
-        this.statusbarBottle.setPercentagebottle(this.character.bottle);
-        let bottle = new throwingBottles(
-          this.character.x + 50,
-          this.character.y + 50,
-          this.character.otherDirection
-        );
-        this.throwabeleObjects.push(bottle);
       }
     }
+  }
+
+  throwTime() {
+    this.lastThrow = new Date().getTime();
+    console.log(`lastThrow ist bereits gesetzt: ${this.lastThrow}`);
+  }
+
+  isThrowCooldown() {
+    let currentTime = new Date().getTime();
+    let timePassed = (currentTime - this.lastThrow) / 1000;
+    console.log(`timepassed ist bereits gesetzt: ${this.timePassed}`);
+    return timePassed < 1;
   }
 
   /**
@@ -556,13 +564,6 @@ class World {
    * This method is invoked when a chicken (or small chicken) enemy is considered dead. It checks if the
    * chicken has already been marked as dead and either kills the chicken or adds it to the list of enemies
    * to be removed later.
-   *
-   * @param {Object} enemy - The enemy object that is being checked for death. It should be an instance
-   *                          of either `Chicken` or `ChickenSmall`.
-   * @param {number} index - The index of the enemy in the level's list of enemies. Used for removing
-   *                          the enemy from the level once it is dead.
-   *
-   * @returns {void}
    */
   deadChicken(enemy, index) {
     if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
@@ -581,17 +582,6 @@ class World {
    * `Chicken` or `ChickenSmall`, it marks the enemy as dead and adds it to the list of enemies to be
    * removed. If the enemy is the `Endboss`, it reduces the boss's health and updates the status bar.
    * After handling the collision, it processes the bottle's own collision effects.
-   *
-   * @param {Object} enemy - The enemy object that was hit by the throwing bottle. It can be an instance
-   *                          of `Chicken`, `ChickenSmall`, or `Endboss`.
-   * @param {number} index - The index of the enemy in the level's list of enemies. This is used for
-   *                          removing the enemy from the level when it is dead.
-   * @param {Object} bottle - The throwing bottle object that collided with the enemy. This object
-   *                           is used for handling the collision and updating the bottle's state.
-   * @param {number} bottleIndex - The index of the throwing bottle in the list of throwables. This is
-   *                                used for removing the bottle from the list once it has collided.
-   *
-   * @returns {void}
    */
   enemyIsDad(enemy, index, bottle, bottleIndex) {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
@@ -662,8 +652,8 @@ class World {
 
   // neu
   stopPlay() {
-    this.running = false; // Stoppt die Zeichenschleife
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // Löscht das Canvas
+    this.running = false;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     console.log("Spiel beendet!");
   }
 }
