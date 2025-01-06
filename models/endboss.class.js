@@ -73,6 +73,8 @@ class Endboss extends MovableObject {
     this.speedStop();
     this.endbossPoint();
     this.animate();
+    this.animationPlayed = false;
+    this.attackInProgress = false;
   }
 
   /**
@@ -102,26 +104,40 @@ class Endboss extends MovableObject {
       console.log(typeof this.playAnimation);
       this.deadAnimation();
     } else if (this.isHurt()) {
-      // if (!this.isHurtCooldown) {
-      // Verhindert mehrfaches Auslösen während der Verletzungsphase
-      // this.isHurtCooldown = true; // Aktiviert den Cooldown
-      this.playAnimation(this.Images_endboss_hurt); // Verletzungs-Animation abspielen
-      this.angriSoundPlay(); // Sound abspielen, falls benötigt
+      // this.playAnimation(this.Images_endbo'ss_hurt);
+      //       this.angriSoundPlay();
+      // this.animationPlayed = true;
+      // this.enbossAttack();
 
-      setTimedout(() => {
-        // this.isHurtCooldown = false; // Cooldown zurücksetzen
-        this.enbossAttack(); // Angriff fortsetzen
-      }, 100); // 1 Sekunde (1000 ms) warten
+      const randomChoice = Math.floor(Math.random() * 3); // Zufallszahl: 0, 1 oder 2
+
+      if (randomChoice === 0) {
+        // Aktion 1
+        this.playAnimation(this.Images_endboss_hurt);
+        this.angriSoundPlay();
+        this.animationPlayed = true;
+        console.log("Aktion 1: Endboss wird verletzt!");
+      } else if (randomChoice === 1) {
+        // Aktion 2
+        this.enbossAttack();
+        console.log("Aktion 2: Endboss greift an!");
+      } else if (randomChoice === 2) {
+        // Aktion 3
+        this.alertAndAtteckEndboss();
+        console.log("Aktion 3: Endboss bleibt passiv (Idle)!");
+      }
+
+      // if (Math.random() < 0.5) {
+      //   // 50% Wahrscheinlichkeit
+      //   this.playAnimation(this.Images_endboss_hurt);
+      //   this.angriSoundPlay();
+      //   this.animationPlayed = true;
+      //   console.log(1);
+      // } else {
+      //   console.log(2);
+      //   // 50% Wahrscheinlichkeit
+      //   this.enbossAttack();
       // }
-      // this.isAboveGround();
-      // this.isAboveGround();
-      // this.jump();
-      // this.angriSoundPlay();
-      // this.playAnimation(this.Images_endboss_hurt);
-      // this.isAngriChickenSound = false;
-      // this.enbossAttack();
-      // } else if (this.x < world.character.x + 350) {
-      // this.enbossAttack();
     } else if (this.x < world.character.x + 450) {
       this.alertAndAtteckEndboss();
     } else {
@@ -132,6 +148,40 @@ class Endboss extends MovableObject {
     }
   }
 
+  // playEndboss() {
+  //   if (this.isDead()) {
+  //     console.log(typeof this.playAnimation);
+  //     this.deadAnimation();
+  //   } else if (this.isHurt()) {
+  //     // if (!this.isHurtCooldown) {
+  //     // Verhindert mehrfaches Auslösen während der Verletzungsphase
+  //     // this.isHurtCooldown = true; // Aktiviert den Cooldown
+  //     this.playAnimation(this.Images_endboss_hurt);
+  //     this.angriSoundPlay();
+  //     setTimedout(() => {
+  //       // this.isHurtCooldown = false; // Cooldown zurücksetzen
+  //       this.enbossAttack(); // Angriff fortsetzen
+  //     }, 100); // 1 Sekunde (1000 ms) warten
+  //     // }
+  //     // this.isAboveGround();
+  //     // this.isAboveGround();
+  //     // this.jump();
+  //     // this.angriSoundPlay();
+  //     // this.playAnimation(this.Images_endboss_hurt);
+  //     // this.isAngriChickenSound = false;
+  //     // this.enbossAttack();
+  //     // } else if (this.x < world.character.x + 350) {
+  //     // this.enbossAttack();
+  //   } else if (this.x < world.character.x + 450) {
+  //     this.alertAndAtteckEndboss();
+  //   } else {
+  //     this.angriSoundPause();
+  //     this.playAnimation(this.Images_endboss_walk);
+  //     this.moveLeft();
+  //     this.speedslow();
+  //   }
+  // }
+
   deadAnimation() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -140,9 +190,6 @@ class Endboss extends MovableObject {
       this.playAnimation(this.Images_endboss_dead);
       this.incrementCurrentImage();
     } else {
-      // this.endScreen.youWinGame();
-      // this.endScreen.youWinGame();
-
       this.deadAnimationEndEndboss = true;
       // console.log("win");
     }

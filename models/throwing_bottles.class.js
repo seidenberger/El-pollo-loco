@@ -52,8 +52,6 @@ class throwingBottles extends MovableObject {
     this.horizontalPosition(x);
     this.verticalPosition(y);
     this.otherDirection = otherDirection;
-    // this.throwTime();
-    // this.isThrowCooldown();
     this.throw();
   }
 

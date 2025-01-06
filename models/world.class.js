@@ -102,7 +102,7 @@ class World {
       this.checkCollisionsEnemy();
       this.checkCollisionWithObject();
       this.checkCollisionWithbottle();
-      this.checkCollisionWithThrwObject();
+      // this.checkCollisionWithThrwObject();
       this.checkSpliceChicken();
       this.updatStatusEndboss();
       this.alertEndboss();
@@ -133,6 +133,7 @@ class World {
   checkSlowCollisions() {
     setInterval(() => {
       this.checkThrowObjects();
+      this.checkCollisionWithThrwObject();
     }, 1000 / 10);
   }
 

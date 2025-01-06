@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   height = 240;
   width = 120;
-  speed = 5;
+  speed = 3;
   currentTimeWalking = 0;
   longIdle = true;
   world;
@@ -109,7 +109,7 @@ class Character extends MovableObject {
    * 2. Calls `playCharacter` once every 60 milliseconds to update the character's animation state.
    */
   animate() {
-    setInterval(() => this.moveCharacter(), 500 / 60);
+    setInterval(() => this.moveCharacter(), 100 / 60);
     setInterval(() => this.playCharacter(), 100);
   }
 
