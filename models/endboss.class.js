@@ -90,54 +90,14 @@ class Endboss extends MovableObject {
   }
 
   /**
-   * Controls the behavior and animations of the endboss based on its current state.
-   *
-   * This method checks the endboss's current state and performs the appropriate actions:
-   * - If the endboss is dead, it plays the death animation.
-   * - If the endboss is hurt, it plays the hurt animation, triggers the angry sound, and disables the angry chicken sound flag.
-   * - If the endboss is within range to attack the character, it initiates the attack.
-   * - If the endboss is in a close range to the character, it issues an alert and prepares to attack.
-   * - If none of the above conditions are met, it plays the walking animation, moves left, and slows down its speed.
+   * Controls the behavior of the end boss based on its current state.
+   * Plays animations and performs actions such as attacks or movements.
    */
   playEndboss() {
     if (this.isDead()) {
-      console.log(typeof this.playAnimation);
       this.deadAnimation();
     } else if (this.isHurt()) {
-      // this.playAnimation(this.Images_endbo'ss_hurt);
-      //       this.angriSoundPlay();
-      // this.animationPlayed = true;
-      // this.enbossAttack();
-
-      const randomChoice = Math.floor(Math.random() * 3); // Zufallszahl: 0, 1 oder 2
-
-      if (randomChoice === 0) {
-        // Aktion 1
-        this.playAnimation(this.Images_endboss_hurt);
-        this.angriSoundPlay();
-        this.animationPlayed = true;
-        console.log("Aktion 1: Endboss wird verletzt!");
-      } else if (randomChoice === 1) {
-        // Aktion 2
-        this.enbossAttack();
-        console.log("Aktion 2: Endboss greift an!");
-      } else if (randomChoice === 2) {
-        // Aktion 3
-        this.alertAndAtteckEndboss();
-        console.log("Aktion 3: Endboss bleibt passiv (Idle)!");
-      }
-
-      // if (Math.random() < 0.5) {
-      //   // 50% Wahrscheinlichkeit
-      //   this.playAnimation(this.Images_endboss_hurt);
-      //   this.angriSoundPlay();
-      //   this.animationPlayed = true;
-      //   console.log(1);
-      // } else {
-      //   console.log(2);
-      //   // 50% Wahrscheinlichkeit
-      //   this.enbossAttack();
-      // }
+      this.randomAttack();
     } else if (this.x < world.character.x + 450) {
       this.alertAndAtteckEndboss();
     } else {
@@ -148,40 +108,11 @@ class Endboss extends MovableObject {
     }
   }
 
-  // playEndboss() {
-  //   if (this.isDead()) {
-  //     console.log(typeof this.playAnimation);
-  //     this.deadAnimation();
-  //   } else if (this.isHurt()) {
-  //     // if (!this.isHurtCooldown) {
-  //     // Verhindert mehrfaches Auslösen während der Verletzungsphase
-  //     // this.isHurtCooldown = true; // Aktiviert den Cooldown
-  //     this.playAnimation(this.Images_endboss_hurt);
-  //     this.angriSoundPlay();
-  //     setTimedout(() => {
-  //       // this.isHurtCooldown = false; // Cooldown zurücksetzen
-  //       this.enbossAttack(); // Angriff fortsetzen
-  //     }, 100); // 1 Sekunde (1000 ms) warten
-  //     // }
-  //     // this.isAboveGround();
-  //     // this.isAboveGround();
-  //     // this.jump();
-  //     // this.angriSoundPlay();
-  //     // this.playAnimation(this.Images_endboss_hurt);
-  //     // this.isAngriChickenSound = false;
-  //     // this.enbossAttack();
-  //     // } else if (this.x < world.character.x + 350) {
-  //     // this.enbossAttack();
-  //   } else if (this.x < world.character.x + 450) {
-  //     this.alertAndAtteckEndboss();
-  //   } else {
-  //     this.angriSoundPause();
-  //     this.playAnimation(this.Images_endboss_walk);
-  //     this.moveLeft();
-  //     this.speedslow();
-  //   }
-  // }
-
+  /**
+   * Handles the end boss's death animation sequence.
+   * - Starts the death animation if not already started.
+   * - Plays the animation frame by frame until it finishes.
+   */
   deadAnimation() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -191,7 +122,6 @@ class Endboss extends MovableObject {
       this.incrementCurrentImage();
     } else {
       this.deadAnimationEndEndboss = true;
-      // console.log("win");
     }
   }
 
@@ -219,6 +149,18 @@ class Endboss extends MovableObject {
   }
 
   /**
+   * Plays the hurt animation for the end boss.
+   * - Displays the hurt animation sequence.
+   * - Plays an angry sound effect.
+   * - Marks the animation as played.
+   */
+  hurtAnimation() {
+    this.playAnimation(this.Images_endboss_hurt);
+    this.angriSoundPlay();
+    this.animationPlayed = true;
+  }
+
+  /**
    * Manages the alert and attack sequence for the Endboss.
    *
    * This method first triggers the alert and attack behavior. If the alert animation hasn't started,
@@ -231,7 +173,6 @@ class Endboss extends MovableObject {
     }
     if (this.isAlert()) {
       this.playAnimation(this.Images_endboss_alert);
-      // this.speedStop();
       this.speedslow();
     } else {
       this.enbossAttack();
@@ -277,6 +218,21 @@ class Endboss extends MovableObject {
   }
 
   /**
+   * Executes a random attack action for the end boss.
+   * - Randomly selects one of three actions: hurt animation, basic attack, or alert attack.
+   */
+  randomAttack() {
+    let randomChoice = Math.floor(Math.random() * 3);
+    if (randomChoice === 0) {
+      this.hurtAnimation();
+    } else if (randomChoice === 1) {
+      this.enbossAttack();
+    } else if (randomChoice === 2) {
+      this.alertAndAtteckEndboss();
+    }
+  }
+
+  /**
    * Stops the Endboss's movement by setting its speed to zero.
    *
    * This method effectively halts the Endboss's movement by setting the `speed` property
@@ -314,16 +270,19 @@ class Endboss extends MovableObject {
     this.x = 3600;
   }
 
-  // console.log
-
+  /**
+   * Initiates the jump action for the character.
+   * - Calls the method to set the jump speed.
+   */
   jump() {
     this.speedToJump();
   }
 
+  /**
+   * Initiates the jump action for the character.
+   * - Calls the method to set the jump speed.
+   */
   speedToJump() {
     this.speedY = 30;
   }
-
-  // endboss wird von eineer flasche getroffen
-  // jump funktiom wird aus gefürt
 }

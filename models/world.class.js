@@ -17,25 +17,17 @@ class World {
   timePassed = 1;
 
   /**
-   * Initializes the game world and its core components.
-   *
-   * The constructor sets up the essential properties and methods required for the game, including:
-   * - Preparing the canvas and its drawing context.
-   * - Setting up keyboard controls.
-   * - Initializing collision detection mechanisms.
-   *
-   * @param {HTMLCanvasElement} canvas - The canvas element where the game will be rendered.
-   * @param {Object} keyboard - An object representing the keyboard controls for the game.
+   * Creates an instance of the Game.
+   * Initializes the game with canvas, keyboard, and sets up various checks and world settings.
+   * @param {HTMLCanvasElement} canvas - The canvas element where the game is rendered.
+   * @param {Object} keyboard - The keyboard input handler for user controls.
    */
   constructor(canvas, keyboard) {
     this.enemiesToRemove = [];
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
-
-    // nau
     this.running = true;
-
     this.draw();
     this.setWorld();
     this.checkCollisions();
@@ -46,11 +38,8 @@ class World {
   }
 
   /**
-   * Sets the current world reference for various game components.
-   *
-   * This method assigns the current game world (`this`) as the reference for key objects
-   * like the character and various status bars. This enables these components to interact
-   * with the game world and its properties.
+   * Sets the world context for various game objects.
+   * This method assigns the world (game instance) to character and statusbars.
    */
   setWorld() {
     this.character.world = this;
@@ -61,11 +50,8 @@ class World {
   }
 
   /**
-   * Triggers the alert state for the end boss based on the character's position.
-   *
-   * This method checks if the character's horizontal position (`x`) has reached a specific value (3200),
-   * which may signal the end boss to enter an alert or active state. The exact behavior can be defined
-   * within the method's body.
+   * Checks if the character has reached the endboss location.
+   * Triggers an action when the character's x position is 3200.
    */
   alertEndboss() {
     if (this.character.x === 3200) {
@@ -73,10 +59,8 @@ class World {
   }
 
   /**
-   * Updates the position of the end boss status bar.
-   *
-   * This method locates the end boss within the game's enemies and adjusts the horizontal position
-   * of the status bar to align with the end boss's current position on the screen.
+   * Updates the status bar position for the endboss.
+   * Finds the endboss in the current level and updates the status bar's horizontal position based on the endboss's x position.
    */
   updatStatusEndboss() {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
@@ -87,48 +71,37 @@ class World {
   }
 
   /**
-   * Continuously checks for various collisions and game state updates.
-   *
-   * This method runs at a consistent frame rate (60 FPS) and performs the following checks:
-   * - Collisions with enemies.
-   * - Collisions with objects like items or obstacles.
-   * - Collisions with bottles and thrown objects.
-   * - Removal of defeated enemies (e.g., chickens).
-   * - Updates the status bar for the end boss.
-   * - Triggers the end boss alert state if conditions are met.
+   * Continuously checks for collisions and game events.
+   * This method calls various collision checks, status updates, and alerts every frame (60 times per second).
    */
   checkCollisions() {
     setInterval(() => {
       this.checkCollisionsEnemy();
       this.checkCollisionWithObject();
       this.checkCollisionWithbottle();
-      // this.checkCollisionWithThrwObject();
       this.checkSpliceChicken();
       this.updatStatusEndboss();
       this.alertEndboss();
       this.checkGameStatus();
-      // console.log(neu);
     }, 1000 / 60);
   }
 
+  /**
+   * Checks the game status based on the endboss and character's state.
+   * If the endboss is defeated or the character is dead, triggers the appropriate game events.
+   */
   checkGameStatus() {
-    // ?''
     let endBoss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
-    // console.log(endBoss);
     if (endBoss.deadAnimationEndEndboss) {
-      // this.endScreen.youWinGame();
       youWinGame();
     } else if (this.character.deadAnimationEndCharacter) {
-      // this.endScreen.youLostGame();
       gameOver();
     }
   }
 
   /**
-   * Periodically checks for collisions at a slower rate.
-   *
-   * This method is designed to handle less frequent collision checks, specifically for thrown objects.
-   * It runs at 10 frames per second (FPS) to optimize performance while ensuring accurate collision detection.
+   * Continuously checks for slower collision events.
+   * This method calls collision checks for thrown objects at a slower interval (10 times per second).
    */
   checkSlowCollisions() {
     setInterval(() => {
@@ -139,11 +112,8 @@ class World {
 
   /**
    * Checks for collisions between the character and enemies.
-   *
-   * This method iterates through the list of enemies in the current level and verifies if
-   * the character collides with any of them. If a collision is detected, the appropriate
-   * collision handling logic is executed. After processing collisions, defeated enemies
-   * are removed from the game.
+   * Iterates through all enemies in the level, checking for collisions with the character.
+   * If a collision occurs, the appropriate collision handler is triggered.
    */
   checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy, index) => {
@@ -155,15 +125,9 @@ class World {
   }
 
   /**
-   * Handles the collision between the character and an enemy.
-   *
-   * Based on the character's current state and position, this method determines
-   * the appropriate action when a collision occurs:
-   * - If the character is jumping and above the ground, the enemy is marked as defeated.
-   * - Otherwise, the character takes damage from the enemy.
-   *
-   * @param {Object} enemy - The enemy involved in the collision.
-   * @param {number} index - The index of the enemy in the `enemies` array.
+   * Checks for collisions between the character and enemies.
+   * Iterates through all enemies in the level, checking for collisions with the character.
+   * If a collision occurs, the appropriate collision handler is triggered.
    */
   handleCollision(enemy, index) {
     if (this.isCharacterJumpingAndAboveGround()) {
@@ -175,26 +139,18 @@ class World {
 
   /**
    * Checks if the character is currently jumping and above the ground.
-   *
-   * This method evaluates two conditions:
-   * - The character's vertical speed (`speedY`) is negative, indicating upward movement (jumping).
-   * - The character's vertical position is above the ground, determined by `isAboveGround()`.
-   *
-   * @returns {boolean} - Returns `true` if the character is jumping and above ground, otherwise `false`.
+   * The character is considered jumping if its vertical speed is negative and it's above the ground.
+   * @returns {boolean} True if the character is jumping and above the ground, false otherwise.
    */
   isCharacterJumpingAndAboveGround() {
     return this.character.speedY < 0 && this.character.isAboveGround();
   }
 
   /**
-   * Handles the logic when a chicken enemy is defeated.
-   *
-   * This method is invoked when the character collides with a chicken enemy
-   * (either `Chicken` or `ChickenSmall`) and the conditions for defeating it are met.
-   * It either marks the chicken as dead or queues it for removal.
-   *
-   * @param {Object} enemy - The enemy involved in the collision, expected to be a chicken type.
-   * @param {number} index - The index of the enemy in the `enemies` array.
+   * Handles the logic when a chicken or small chicken is dead.
+   * If the chicken is not dead yet, it triggers the killing process. If it is already dead, it schedules the chicken for removal.
+   * @param {Object} enemy - The enemy object (should be an instance of Chicken or ChickenSmall).
+   * @param {number} index - The index of the enemy in the enemies array.
    */
   handleDeadChicken(enemy, index) {
     if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
@@ -207,12 +163,9 @@ class World {
   }
 
   /**
-   * Kills the specified chicken enemy and handles related actions.
-   *
-   * This method is called when a chicken enemy (either `Chicken` or `ChickenSmall`) is defeated.
-   * It marks the chicken as dead, stops its movement, plays its death animation, and records the time of death.
-   *
-   * @param {Object} enemy - The enemy that is being killed, expected to be a chicken type (e.g., `Chicken` or `ChickenSmall`).
+   * Kills the given chicken enemy.
+   * Sets the enemy's state to dead, stops its movement, plays the death animation, and records the time of death.
+   * @param {Object} enemy - The enemy object (should be an instance of Chicken or ChickenSmall).
    */
   killChicken(enemy) {
     enemy.deadChicken = true;
@@ -223,11 +176,8 @@ class World {
 
   /**
    * Handles the logic when the character is hit by an enemy.
-   *
-   * This method checks if the enemy is dangerous (i.e., capable of hurting the character).
-   * If the enemy is dangerous and not dead, the character's health is reduced, and the health status bar is updated.
-   *
-   * @param {Object} enemy - The enemy involved in the collision, which may affect the character's health.
+   * If the enemy is dangerous and not already dead, the character is hit and the health bar is updated.
+   * @param {Object} enemy - The enemy object that may hit the character (should be an instance of a dangerous enemy).
    */
   handleCharacterHit(enemy) {
     if (this.isEnemyDangerous(enemy)) {
@@ -239,13 +189,9 @@ class World {
   }
 
   /**
-   * Handles the logic when the character is hit by a dangerous enemy.
-   *
-   * This method checks if the enemy is considered dangerous (i.e., if it is an instance of `Chicken`,
-   * `ChickenSmall`, or `Endboss`). If the enemy is dangerous and not dead, the character's health is reduced,
-   * and the health status bar is updated.
-   *
-   * @param {Object} enemy - The enemy involved in the collision with the character, which may cause harm.
+   * Handles the logic when the character is hit by a specific type of enemy (Chicken, ChickenSmall, or Endboss).
+   * If the enemy is alive and not already dead, the character is hit, and the health bar is updated.
+   * @param {Object} enemy - The enemy object that may hit the character. It should be an instance of Chicken, ChickenSmall, or Endboss.
    */
   handleCharacterHit(enemy) {
     if (
@@ -261,13 +207,8 @@ class World {
   }
 
   /**
-   * Checks if the character collides with any coin object and handles the collision.
-   *
-   * This method iterates through all the coin objects in the level. If the character collides with a coin,
-   * the coin is collected, the coin count is incremented, and the status bar displaying the number of coins is updated.
-   * After the coin is collected, it is removed from the level.
-   *
-   * @returns {void}
+   * Checks for collisions between the character and coins.
+   * If a collision is detected, the coin is collected, the coin count is updated, and the coin is removed from the level.
    */
   checkCollisionWithObject() {
     this.level.coin.forEach((coin, index) => {
@@ -280,14 +221,10 @@ class World {
   }
 
   /**
-   * Checks if the character collides with any bottle object and handles the collision.
-   *
-   * This method iterates through all the bottle objects in the level. If the character collides with a bottle
-   * and has less than 100 bottles, it collects the bottle. The bottle count is incremented, and the bottle
-   * status bar is updated. If the bottle count exceeds 100, the `maxBottles()` method is called to ensure
-   * the bottle count does not exceed the maximum. After the bottle is collected, it is removed from the level.
-   *
-   * @returns {void}
+   * Checks for collisions between the character and bottles.
+   * If the character's bottle count is less than 100 and a collision with a bottle occurs,
+   * the bottle count is increased, the bottle count status bar is updated, and the bottle is removed from the level.
+   * If the bottle count exceeds 100, it is capped at 100.
    */
   checkCollisionWithbottle() {
     this.level.bottle.forEach((bottle, index) => {
@@ -302,7 +239,11 @@ class World {
     });
   }
 
-  // colsole.log
+  /**
+   * Handles the throwing of bottles by the character when the spacebar is pressed.
+   * If the character has enough bottles and is not on cooldown, a new bottle is created and thrown,
+   * reducing the bottle count and updating the status bar.
+   */
   checkThrowObjects() {
     if (this.keyboard.SPACE) {
       if (!this.isThrowCooldown()) {
@@ -324,11 +265,20 @@ class World {
     }
   }
 
+  /**
+   * Records the current time when a bottle is thrown.
+   * This method updates the `lastThrow` timestamp to the current time and logs it to the console.
+   */
   throwTime() {
     this.lastThrow = new Date().getTime();
     console.log(`lastThrow ist bereits gesetzt: ${this.lastThrow}`);
   }
 
+  /**
+   * Checks if the throw cooldown has expired.
+   * Compares the current time with the last throw time to determine if the cooldown period (1 second) has passed.
+   * @returns {boolean} True if the cooldown period has not passed (less than 1 second), false otherwise.
+   */
   isThrowCooldown() {
     let currentTime = new Date().getTime();
     let timePassed = (currentTime - this.lastThrow) / 1000;
@@ -337,16 +287,10 @@ class World {
   }
 
   /**
-   * Checks for collisions between thrown objects (bottles) and enemies.
-   *
-   * For each bottle in the `throwableObjects` array, this method checks if it collides
-   * with any enemy in the `level.enemies` array. If a collision is detected, the `enemyIsDead`
-   * method is called to handle the enemy's death. Additionally, if the bottle is no longer above ground,
-   * the `handleBottleCollision` method is called to process the bottle collision (such as breaking the bottle).
-   *
-   * After checking all collisions, the method ensures that the list of enemies is updated by removing dead enemies.
-   *
-   * @returns {void}
+   * Checks for collisions between thrown bottles and enemies.
+   * Iterates over all throwable objects (bottles) and checks if they collide with any enemies.
+   * If a collision occurs, the appropriate handler is called.
+   * If the bottle is no longer above the ground, it is processed for removal.
    */
   checkCollisionWithThrwObject() {
     this.throwabeleObjects.forEach((bottle, bottleIndex) => {
@@ -363,16 +307,10 @@ class World {
   }
 
   /**
-   * Handles the collision of a thrown bottle.
-   *
-   * When a bottle collides with an object (such as an enemy or the ground), this method is called
-   * to handle the bottle's "breakage" and animation. It sets the `isBroken` property of the bottle to `true`,
-   * plays the bottle's splash animation, and then removes the bottle from the `throwableObjects` array after a short delay.
-   *
-   * @param {throwingBottles} bottle - The bottle object that collided.
-   * @param {number} bottleIndex - The index of the bottle in the `throwableObjects` array.
-   *
-   * @returns {void}
+   * Handles the collision of a thrown bottle with the ground or other objects.
+   * Marks the bottle as broken, plays the bottle's splash animation, and removes it from the throwable objects list after a short delay.
+   * @param {Object} bottle - The thrown bottle object that collided.
+   * @param {number} bottleIndex - The index of the bottle in the throwable objects array.
    */
   handleBottleCollision(bottle, bottleIndex) {
     bottle.isBroken = true;
@@ -383,14 +321,8 @@ class World {
   }
 
   /**
-   * Checks for dead chickens in the game and removes them after a certain period.
-   *
-   * This method iterates over all enemies in the level and checks if any chicken is marked as dead.
-   * If a chicken is dead, it calculates how much time has passed since the chicken's death.
-   * If the time exceeds 2 seconds, the chicken is added to the `enemiesToRemove` list, marking it for removal.
-   * The method then calls `removeEnemies()` to actually remove the dead chickens from the game.
-   *
-   * @returns {void}
+   * Checks if any chickens are dead and removes them from the level after a certain time has passed.
+   * If a chicken is marked as dead and 2 seconds have passed since its death, it is scheduled for removal from the enemies array.
    */
   checkSpliceChicken() {
     this.level.enemies.forEach((enemy, index) => {
@@ -403,19 +335,13 @@ class World {
         }
       }
     });
-
     this.removeEnemies();
   }
 
   /**
-   * Removes enemies from the level that have been marked for removal.
-   *
-   * This method processes the enemies that are flagged for removal in the `enemiesToRemove` array.
-   * It sorts the array in descending order to ensure that the highest indices are removed first.
-   * Then, for each enemy marked for removal, it calls the `chickenDead()` method to handle the removal.
-   * After processing all the marked enemies, the `enemiesToRemove` array is cleared.
-   *
-   * @returns {void}
+   * Removes enemies that are marked for removal from the level.
+   * Sorts the enemies to be removed in descending order by their index to avoid modifying the array while iterating.
+   * Calls the `chickenDead` method to handle the removal logic for each enemy, then clears the list of enemies to remove.
    */
   removeEnemies() {
     this.enemiesToRemove
@@ -427,13 +353,9 @@ class World {
   }
 
   /**
-   * Removes a specific enemy from the level's enemy list.
-   *
-   * This method searches for the provided enemy in the `level.enemies` array.
-   * If the enemy is found, it removes the enemy from the array using the `splice()` method.
-   *
+   * Removes a specific enemy from the level.
+   * Searches for the given enemy in the level's enemies array and removes it if found.
    * @param {Object} enemy - The enemy object to be removed from the level.
-   * @returns {void}
    */
   removeEnemyFromLevel(enemy) {
     const index = this.level.enemies.indexOf(enemy);
@@ -443,18 +365,21 @@ class World {
   }
 
   /**
-   * Removes a dead chicken from the level's enemies list.
-   *
-   * This method removes the chicken enemy at the specified index from the `level.enemies` array.
-   * It is typically called when a chicken is dead and should be removed from the game world.
-   *
-   * @param {number} index - The index of the chicken to be removed from the `level.enemies` array.
-   * @returns {void}
+   * Removes a chicken from the level's enemies array.
+   * This method is called when a chicken is marked as dead and needs to be removed from the game.
+   * @method
+   * @param {number} index - The index of the chicken in the level's enemies array to be removed.
    */
   chickenDead(index) {
     this.level.enemies.splice(index, 1);
   }
 
+  /**
+   * Clears the canvas and redraws all game elements on each frame.
+   * This method handles the drawing of the background, clouds, character, enemies, items (bottles, coins),
+   * status bars, and throwable objects while also managing the camera's position.
+   * It uses the `requestAnimationFrame` method to repeatedly call itself and update the game screen.
+   */
   draw() {
     if (!this.running) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -478,15 +403,9 @@ class World {
   }
 
   /**
-   * Adds multiple objects to the map by calling `addToMap` for each object.
-   *
-   * This method iterates over an array of objects and adds each object to the map using the `addToMap` method.
-   * It is used to simplify the process of adding multiple objects to the canvas or game world.
-   *
-   * @param {Array} objects - An array of objects that need to be added to the map.
-   * Each object in the array is expected to have the necessary properties and methods required for rendering.
-   *
-   * @returns {void}
+   * Adds a list of objects to the map by iterating over each object and calling `addToMap`.
+   * This method is used to add multiple game elements (such as background objects, enemies, or items) to the map in one operation.
+   * @param {Array} objects - An array of objects to be added to the map.
    */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
@@ -495,20 +414,9 @@ class World {
   }
 
   /**
-   * Adds an object to the map by drawing it on the canvas.
-   *
-   * This method checks if the object needs to be flipped (for example, if it's facing the opposite direction),
-   * and then draws the object on the canvas using its `draw` and `drawFrameOffset` methods.
-   * If the object is flipped, the image is flipped back to its original orientation after drawing.
-   *
-   * @param {Object} mo - The object to be added to the map. The object must have the following properties and methods:
-   *   - `otherDirection` (boolean): Indicates if the object should be flipped.
-   *   - `draw(ctx)` (function): Method to draw the object on the canvas.
-   *   - `drawFrameOffset(ctx)` (function): Method to adjust the object's frame offset for drawing.
-   *   - `flipImage(mo)` (function): Method to flip the object image horizontally (if applicable).
-   *   - `flipImageBack(mo)` (function): Method to flip the object image back to the original orientation.
-   *
-   * @returns {void}
+   * Adds a single object to the map, handling its drawing and potential flipping (if it’s facing the opposite direction).
+   * This method calls the object's `draw` and `drawFrameOffset` methods to render it, and if the object faces the opposite direction, it flips the image before and after drawing.
+   * @param {Object} mo - The object to be added to the map (e.g., character, enemy, item).
    */
   addToMap(mo) {
     if (mo.otherDirection) {
@@ -516,24 +424,15 @@ class World {
     }
     mo.draw(this.ctx);
     mo.drawFrameOffset(this.ctx);
-
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }
   }
 
   /**
-   * Flips the image of an object horizontally.
-   *
-   * This method saves the current canvas context state, then flips the object's image horizontally
-   * by translating and scaling the canvas context. The object's `x` position is also adjusted to account
-   * for the flip.
-   *
-   * @param {Object} mo - The object whose image is to be flipped. The object must have the following properties:
-   *   - `x` (number): The x-coordinate of the object.
-   *   - `width` (number): The width of the object.
-   *
-   * @returns {void}
+   * Flips an object’s image horizontally by applying a transformation to the canvas context.
+   * This method saves the current canvas state, flips the context, and adjusts the object's position accordingly.
+   * @param {Object} mo - The object whose image is to be flipped.
    */
   flipImage(mo) {
     this.ctx.save();
@@ -543,16 +442,9 @@ class World {
   }
 
   /**
-   * Restores the flipped image of an object to its original orientation.
-   *
-   * This method undoes the horizontal flip applied by the `flipImage` method. It adjusts the object's
-   * `x` position to restore it to the original orientation and then restores the canvas context state
-   * to its previous configuration before the flip was applied.
-   *
-   * @param {Object} mo - The object whose image orientation is to be restored. The object must have the following properties:
-   *   - `x` (number): The x-coordinate of the object.
-   *
-   * @returns {void}
+   * Reverses the horizontal flip transformation applied to an object by restoring the canvas context and adjusting the object's position.
+   * This method undoes the flip applied by `flipImage`, restoring the original orientation of the object.
+   * @param {Object} mo - The object whose horizontal flip is to be undone.
    */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
@@ -560,11 +452,11 @@ class World {
   }
 
   /**
-   * Handles the death of a chicken (or small chicken) enemy.
-   *
-   * This method is invoked when a chicken (or small chicken) enemy is considered dead. It checks if the
-   * chicken has already been marked as dead and either kills the chicken or adds it to the list of enemies
-   * to be removed later.
+   * Handles the death of a chicken enemy by either killing it immediately or scheduling it for removal.
+   * If the chicken is not already marked as dead, it will be killed by calling `killChicken`.
+   * If the chicken is already dead, its index will be added to the `enemiesToRemove` array for later removal.
+   * @param {Object} enemy - The enemy object, which is checked if it's a chicken or a small chicken.
+   * @param {number} index - The index of the enemy in the enemies array.
    */
   deadChicken(enemy, index) {
     if (enemy instanceof Chicken || enemy instanceof ChickenSmall) {
@@ -577,12 +469,13 @@ class World {
   }
 
   /**
-   * Handles the interaction when a throwing bottle collides with an enemy.
-   *
-   * This method processes the collision of a throwing bottle with an enemy. If the enemy is a
-   * `Chicken` or `ChickenSmall`, it marks the enemy as dead and adds it to the list of enemies to be
-   * removed. If the enemy is the `Endboss`, it reduces the boss's health and updates the status bar.
-   * After handling the collision, it processes the bottle's own collision effects.
+   * Handles the impact of a thrown bottle on an enemy.
+   * If the enemy is a chicken or small chicken and is not already dead, it marks the chicken as dead, removes it from the level, and handles the bottle collision.
+   * If the enemy is an Endboss, it causes the Endboss to take damage, updates its health status, and handles the bottle collision.
+   * @param {Object} enemy - The enemy object that is hit by the bottle.
+   * @param {number} index - The index of the enemy in the level's enemies array.
+   * @param {Object} bottle - The thrown bottle object that causes the collision.
+   * @param {number} bottleIndex - The index of the thrown bottle in the array of throwable objects.
    */
   enemyIsDad(enemy, index, bottle, bottleIndex) {
     let endboss = this.level.enemies.find((enemy) => enemy instanceof Endboss);
@@ -601,15 +494,9 @@ class World {
   }
 
   /**
-   * Sets the speed of the enemy to zero.
-   *
-   * This method halts the movement of an enemy by setting its `speed` property to zero. It is typically
-   * used when the enemy is either dead or should no longer move.
-   *
-   * @param {Object} enemy - The enemy object whose speed will be set to zero. This object should have a
-   *                         `speed` property that will be modified.
-   *
-   * @returns {void}
+   * Sets the speed of an enemy to zero, effectively stopping its movement.
+   * This method is used to halt the movement of an enemy, for example, when it is dead or otherwise inactive.
+   * @param {Object} enemy - The enemy whose speed is to be set to zero.
    */
   enemySpeedZero(enemy) {
     enemy.speed = 0;
@@ -617,11 +504,7 @@ class World {
 
   /**
    * Increases the character's coin count by 10.
-   *
-   * This method adds 10 coins to the character's coin count. It is typically called when the character
-   * collides with a coin object in the game.
-   *
-   * @returns {void}
+   * This method is used to update the character’s coin total whenever the character collects a coin.
    */
   countHighCoin() {
     this.character.coin += 10;
@@ -629,32 +512,27 @@ class World {
 
   /**
    * Increases the character's bottle count by 20.
-   *
-   * This method adds 20 bottles to the character's bottle count. It is typically called when the character
-   * collides with a bottle object in the game.
-   *
-   * @returns {void}
+   * This method is used to update the character’s bottle total whenever the character collects a bottle.
    */
   countUpBottles() {
     this.character.bottle += 20;
   }
 
   /**
-   * Sets the character's bottle count to the maximum of 100.
-   *
-   * This method ensures that the character's bottle count does not exceed the maximum limit of 100.
-   * It is typically called when the character collects a bottle but already has the maximum amount.
-   *
-   * @returns {void}
+   * Sets the character's bottle count to the maximum value of 100.
+   * This method ensures that the character cannot exceed a bottle count of 100.
    */
   maxBottles() {
     this.character.bottle = 100;
   }
 
-  // neu
+  /**
+   * Stops the game and clears the canvas.
+   * This method halts the game's main loop by setting `running` to `false`
+   * and clears the canvas to remove all drawn objects.
+   */
   stopPlay() {
     this.running = false;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    console.log("Spiel beendet!");
   }
 }

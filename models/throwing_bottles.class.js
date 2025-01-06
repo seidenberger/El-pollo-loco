@@ -8,7 +8,6 @@ class throwingBottles extends MovableObject {
   timePassed = 0;
   isBroken = false;
   throwSoundPlaying = false;
-  // isTrowCooldown = false;
   offset = {
     top: 10,
     bottom: 5,
@@ -67,6 +66,12 @@ class throwingBottles extends MovableObject {
     }, 700 / 60);
   }
 
+  /**
+   * Initiates the throwing action for the character.
+   * - Starts the bottle throw.
+   * - Sets up a recurring interval to update the bottle's position or handle its break state.
+   * - Animates the throw action.
+   */
   throw() {
     this.throwBottl();
     setInterval(() => {

@@ -131,23 +131,18 @@ class Character extends MovableObject {
 
   /**
    * Checks if the character can move to the right.
-   *
-   * This method determines whether the character is allowed to move to the right
-   * based on the current keyboard input and the character's position within the level boundaries.
-   *
-   * @returns {boolean} Returns `true` if the "D" key is pressed and the character's
-   * x-coordinate is less than the level's end boundary; otherwise, `false`.
+   * - Returns true if the 'D' key is pressed and the character hasn't reached the end of the level.
+   * @returns {boolean} True if the character can move right, false otherwise.
    */
   canMoveRight() {
     return this.world.keyboard.D && this.x < this.world.level.level_end_x;
   }
 
   /**
-   * Moves the character to the right, plays a sound, and updates its direction.
-   *
-   * This method moves the character to the right by invoking the `moveRight` method
-   * of the parent class. Additionally, it plays a walking sound effect and sets the
-   * `otherDirection` property to `false`, ensuring the character faces to the right.
+   * Moves the character to the right.
+   * - Calls the parent class's `moveRight()` method.
+   * - Plays the walking sound.
+   * - Sets the `otherDirection` flag to false, indicating the character is facing right.
    */
   moveRight() {
     super.moveRight();
@@ -157,23 +152,18 @@ class Character extends MovableObject {
 
   /**
    * Checks if the character can move to the left.
-   *
-   * This method determines whether the character is allowed to move to the left
-   * based on the current keyboard input and the character's position within the level boundaries.
-   *
-   * @returns {boolean} Returns `true` if the "A" key is pressed and the character's
-   * x-coordinate is greater than 0; otherwise, `false`.
+   * - Returns true if the 'A' key is pressed and the character has not reached the left boundary of the level.
+   * @returns {boolean} True if the character can move left, false otherwise.
    */
   canMoveLeft() {
     return this.world.keyboard.A && this.x > 0;
   }
 
   /**
-   * Moves the character to the left, plays a sound, and updates its direction.
-   *
-   * This method moves the character to the left by invoking the `moveLeft` method
-   * of the parent class. Additionally, it plays the walking sound effect and sets the
-   * `otherDirection` property to `true`, ensuring the character faces to the left.
+   * Moves the character to the left.
+   * - Calls the parent class's `moveLeft()` method.
+   * - Plays the walking sound.
+   * - Sets the `otherDirection` flag to true, indicating the character is facing left.
    */
   moveLeft() {
     super.moveLeft();
@@ -183,36 +173,24 @@ class Character extends MovableObject {
 
   /**
    * Checks if the character can jump.
-   *
-   * This method checks whether the character is allowed to jump by verifying if the "W" key is pressed
-   * and if the character is not currently above the ground (i.e., not already jumping or falling).
-   *
-   * @returns {boolean} Returns `true` if the "W" key is pressed and the character is not above the ground; otherwise, `false`.
+   * - Returns true if the 'W' key is pressed and the character is not above the ground.
+   * @returns {boolean} True if the character can jump, false otherwise.
    */
   canJump() {
     return this.world.keyboard.W && !this.isAboveGround();
   }
 
   /**
-   * Plays the appropriate animation or sound based on the character's state.
-   *
-   * This method checks the character's current state and triggers the corresponding actions:
-   * - If the character is dead, it plays the death animation and pauses the character.
-   * - If the character is hurt, it plays the hurt animation.
-   * - If the character is above the ground, it pauses and plays the jumping animation.
-   * - If the "D" or "A" keys are pressed, it plays the walking animation.
-   * - If the character is idle, it pauses and plays the idle animation.
-   * - Otherwise, it plays the long idle animation.
+   * Controls the character's animations and actions based on its current state.
+   * - Handles states like death, hurt, jumping, walking, idle, and long idle.
    */
   playCharacter() {
     if (this.isDead()) {
       this.sleepPause();
       this.deadAnimatio();
     } else if (this.isHurt()) {
-      // debugger;
       this.playHurt();
     } else if (this.isAboveGround()) {
-      // this.sleepPause();
       this.playAnimation(this.Images_Jamping);
     } else if (this.world.keyboard.D || this.world.keyboard.A) {
       this.playWalking();
@@ -250,7 +228,12 @@ class Character extends MovableObject {
     this.hurtSound();
   }
 
-  // neu
+  /**
+   * Plays the character's death animation sequence.
+   * - Starts the death animation if not already started.
+   * - Plays the death animation frames until finished.
+   * - Marks the animation as complete once it's finished.
+   */
   deadAnimatio() {
     if (!this.deadAnimationStarted) {
       this.playDeadAnimation();
@@ -259,20 +242,9 @@ class Character extends MovableObject {
       this.playAnimation(this.Images_Dead);
       this.incrementCurrentImage();
     } else {
-      // this.stopPlay();
-      // this.youLostGame();
-      // this.clerScreen();
-      // this.triggerGameOver();
       this.deadAnimationEndCharacter = true;
-      // this.endScreen.youLostGame();
-      console.log("daed");
     }
   }
-
-  // triggerGameOver() {
-  //   const endScreen = new EndScreen(this.context);
-  //   endScreen.showEndScreen(false); // false für "Game Over"
-  // }
 
   /**
    * Initiates the jumping action by adjusting the object's speed and playing the jump sound.

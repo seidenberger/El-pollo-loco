@@ -8,7 +8,6 @@
     <link rel="icon" type="image/x-icon" href="./img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png">
     <script src="./templates/impressum.js"></script>
     <script src="./templates/data_privacy.js"></script>
-    <!-- <script src="./js/helpers.js"></script> -->
     <script src="./js/control.js"></script>
     <script src="./templates/main.js"></script>
     <script src="./js/audio.js"></script>
@@ -31,21 +30,17 @@
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/endboss.class.js"></script>
     <script src="./models/throwing_bottles.class.js"></script>
-
     <script src="./js/game.js"></script>
     <script src="./js/helpers.js"></script>
 </head>
 
 
-
 <body onload="initStartDisplay()">
-    
     <h1 id="gameName" class="gameName hidden" >El pollo loco</h1>
     
 
     <section id="startDisplay" >        
         <img id="startDisplayImg" class="start_display_img" src="./img/9_intro_outro_screens/start/startscreen_2.png" alt="">
-            <!-- <div id="gameKeys"  class="hidden"> -->
             <div id="gameButtonsDescription"  class="hidden">
                 <div class="help_button">press A for  <img class="img" src="./img/10_steering/buttons_symbol/left.png" alt=""> </div>
                 <div class="help_button">press D for  <img class="img" src="./img/10_steering/buttons_symbol/right.png" alt=""></div>
@@ -62,6 +57,7 @@
                 <div id="gameOver" class="win_end hidden"><img class="play_end_sequence" src="./img/9_intro_outro_screens/game_over/oh no you lost!.png" alt=""></div>
           
     </section>
+
 
     <section id="overlay">
         <div>
@@ -91,11 +87,9 @@
         </div> 
         <div id="back" class="hidden"></div>
         <div id="overlayFooter"></div>
-        
     </section>      
 
-    <div  id="orientationMessage" class="button_center hidden">Turn your Device to play</div>
-    
 
+    <div  id="orientationMessage" class="button_center hidden">Turn your Device to play</div>
 </body>
 </html>
