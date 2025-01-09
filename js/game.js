@@ -12,7 +12,7 @@ let gameStarted = false;
  * making it hidden or styled as per the CSS class definition.
  */
 function initStartDisplay() {
-  document.getElementById("audioButten").classList.add("hidden_imp");
+  document.getElementById("home").classList.add("hidden_imp");
   footerShowOverlay();
 }
 
@@ -35,8 +35,8 @@ function initLevel() {
     initializeWorld();
     fingerButtonEvent();
     footerShow();
-    disableMute();
-    disableMuteButten();
+    // disableMute();
+    // disableMuteButten();
     gameStarted = false;
   }
 }
@@ -60,6 +60,7 @@ function relod() {
   clearAllIntervals();
   stopGameElements();
   initLevel();
+  document.getElementById("gameButtonsMobile").classList.remove("hidden_imp");
 }
 
 /**
@@ -84,7 +85,7 @@ function showGameElements() {
   document.getElementById("playButton").classList.add("hidden");
   document.getElementById("startDisplay").classList.add("hidden");
   document.getElementById("overlayFooter").innerHTML = "";
-  document.getElementById("audioButten").classList.remove("hidden_imp");
+  document.getElementById("home").classList.remove("hidden_imp");
 }
 
 /**
@@ -156,14 +157,14 @@ function clearAllIntervals() {
 function stopGameElements() {
   relodeAndHomeNone();
   footerShowOverlay();
-  enableMute();
+  // enableMute();
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");
   document.getElementById("youWin").classList.add("hidden");
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("playButton").classList.remove("hidden");
-  document.getElementById("audioButten").classList.add("hidden_imp");
+  document.getElementById("home").classList.add("hidden_imp");
   changeAudio = false;
 }
 
@@ -212,7 +213,7 @@ function stopGame() {
   gameStarted = false;
   changeAudio = false;
   document.getElementById("gameButtonsMobile").classList.add("hidden_imp");
-  enableMute();
+  // enableMute();
   relodeAndHome();
 }
 
@@ -252,5 +253,5 @@ function clearDisplay() {
   document.getElementById("gameOver").classList.add("hidden");
   document.getElementById("gameButtonsMobile").classList.add("hidden");
   document.getElementById("playButton").classList.add("hidden");
-  document.getElementById("audioButten").classList.add("hidden_imp");
+  document.getElementById("home").classList.add("hidden_imp");
 }

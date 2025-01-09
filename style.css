@@ -96,7 +96,7 @@ a {
   color: black;
   z-index: 10;
   cursor: pointer;
-  text-shadow: 3px 3px 2px #333;
+  text-shadow: 3px 3px 2px #4d4a4a;
 }
 
 .button_center {
@@ -222,17 +222,6 @@ footer {
   gap: 30px;
 }
 
-/* @media (min-width: 900px) {
-  #gameButtonsMobile {
-    display: none;
-  }
-} */
-
-/* @media (max-width: 900px) {
-#gameButtonsDescription {
-    display: none;
-  }
-} */
 
 @media (min-width: 1025px) {
   #gameButtonsMobile {
@@ -241,9 +230,6 @@ footer {
   #gameButtonsDescription {
     display: flex;
   }
-  /* #gameName {
-    display: flex;
-  } */
 }
 
 @media (max-width: 1024px) and (orientation: landscape) {
@@ -263,7 +249,6 @@ footer {
     position: relative;
 }
   canvas {
-    /* height: 100vh; */
     width: 100%;
     border-radius: 0%;
     height: auto;
@@ -293,9 +278,6 @@ footer {
   .gameName {
     display: none;
   }
-  /* #gameButtonsDescription {
-    display: none;
-  } */
   footer {
     display: flex;
     gap: 80px;
@@ -336,8 +318,8 @@ footer {
   #startDisplay {
     height: 100vh;
   }
-
 } 
+
 @media only screen and (max-width: 480px) {
     canvas {
       height: 100vh;
@@ -345,10 +327,6 @@ footer {
     .gameName {
       display: none;
     }
-    /* #gameButtonsDescription {
-      display: none;
-    } */
-
   }
 
   @media only screen and (max-height: 375px) {
@@ -358,10 +336,6 @@ footer {
     .gameName {
       display: none;
     }
-    /* #gameButtonsDescription {  
-      display: none;
-    } */
-
   }
 
 

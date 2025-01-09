@@ -105,6 +105,7 @@ class World {
    */
   checkSlowCollisions() {
     setInterval(() => {
+      this.checkCollisionsEnemy();
       this.checkThrowObjects();
       this.checkCollisionWithThrwObject();
     }, 1000 / 10);
@@ -188,11 +189,7 @@ class World {
     }
   }
 
-  /**
-   * Handles the logic when the character is hit by a specific type of enemy (Chicken, ChickenSmall, or Endboss).
-   * If the enemy is alive and not already dead, the character is hit, and the health bar is updated.
-   * @param {Object} enemy - The enemy object that may hit the character. It should be an instance of Chicken, ChickenSmall, or Endboss.
-   */
+  // console.log
   handleCharacterHit(enemy) {
     if (
       enemy instanceof Chicken ||
@@ -200,7 +197,19 @@ class World {
       enemy instanceof Endboss
     ) {
       if (!enemy.deadChicken) {
-        this.character.hit();
+        if (
+          (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+          !this.isHitCooldown()
+        ) {
+          if (enemy instanceof ChickenSmall) {
+            this.character.hit(2);
+          } else if (enemy instanceof Chicken) {
+            this.character.hit(3);
+          }
+          this.lastHit = new Date().getTime();
+        } else if (enemy instanceof Endboss) {
+          this.character.hit();
+        }
         this.statusbarHealth.setPercentage(this.character.energy);
       }
     }
@@ -265,6 +274,14 @@ class World {
     }
   }
 
+  isHitCooldown() {
+    return this.Cooldown(this.lastHit);
+  }
+
+  isThrowCooldown() {
+    return this.Cooldown(this.lastThrow);
+  }
+
   /**
    * Updates the last throw time with the current timestamp.
    */
@@ -272,14 +289,11 @@ class World {
     this.lastThrow = new Date().getTime();
   }
 
-  /**
-   * Checks if the throw cooldown is active.
-   * @returns {boolean} True if less than 1 second has passed since the last throw.
-   */
-  isThrowCooldown() {
+  // console.log
+  Cooldown(lastActionTime) {
     let currentTime = new Date().getTime();
-    let timePassed = (currentTime - this.lastThrow) / 1000;
-    return timePassed < 1;
+    let timePassed = (currentTime - lastActionTime) / 500;
+    return timePassed < 0.5;
   }
 
   /**

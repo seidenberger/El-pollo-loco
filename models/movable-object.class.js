@@ -76,20 +76,19 @@ class MovableObject extends DrawabelObject {
     this.x -= this.speed;
   }
 
-  /**
-   * Handles the logic when the object is hit, reducing its energy.
-   *
-   * This method decreases the object's energy by 5 units using `hitEenergyMinusFive()`.
-   * If the energy falls below 0, it calls `energyZero()` to handle the case when the object runs out of energy.
-   * If the energy is still positive, it updates the `lastHit` timestamp to the current time.
-   */
-  hit() {
-    this.hitEenergyMinusFive();
+  // console.log
+  hit(points = 5) {
+    // this.hitEenergyMinusFive();
+    this.hitEnergy(points);
     if (this.energy < 0) {
       this.energyZero();
     } else {
       this.lastHit = new Date().getTime();
     }
+  }
+
+  hitEnergy(points) {
+    this.energy -= points;
   }
 
   /**
@@ -103,10 +102,10 @@ class MovableObject extends DrawabelObject {
    * @returns {boolean} `true` if the object is still hurt (less than 1 second has passed since the last hit),
    * `false` otherwise.
    */
-  isHurt() {
+  isHurt(duration = 1) {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
-    return timepassed < 1;
+    return timepassed < duration;
   }
 
   /**
