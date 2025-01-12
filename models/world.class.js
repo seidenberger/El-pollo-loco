@@ -189,29 +189,25 @@ class World {
     }
   }
 
-  // console.log
+  /**
+   * Handles the character being hit by an enemy and adjusts health accordingly.
+   */
   handleCharacterHit(enemy) {
-    if (
-      enemy instanceof Chicken ||
-      enemy instanceof ChickenSmall ||
-      enemy instanceof Endboss
-    ) {
-      if (!enemy.deadChicken) {
-        if (
-          (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
-          !this.isHitCooldown()
-        ) {
-          if (enemy instanceof ChickenSmall) {
-            this.character.hit(2);
-          } else if (enemy instanceof Chicken) {
-            this.character.hit(3);
-          }
-          this.lastHit = new Date().getTime();
-        } else if (enemy instanceof Endboss) {
-          this.character.hit();
+    if (!enemy.deadChicken) {
+      if (
+        (enemy instanceof Chicken || enemy instanceof ChickenSmall) &&
+        !this.isHitCooldown()
+      ) {
+        if (enemy instanceof ChickenSmall) {
+          this.character.hit(2);
+        } else if (enemy instanceof Chicken) {
+          this.character.hit(3);
         }
-        this.statusbarHealth.setPercentage(this.character.energy);
+        this.lastHit = new Date().getTime();
+      } else if (enemy instanceof Endboss) {
+        this.character.hit();
       }
+      this.statusbarHealth.setPercentage(this.character.energy);
     }
   }
 
@@ -274,10 +270,16 @@ class World {
     }
   }
 
+  /**
+   * Checks if the hit cooldown period has passed since the last hit.
+   */
   isHitCooldown() {
     return this.Cooldown(this.lastHit);
   }
 
+  /**
+   * Checks if the throw cooldown period has passed since the last throw.
+   */
   isThrowCooldown() {
     return this.Cooldown(this.lastThrow);
   }
@@ -289,7 +291,11 @@ class World {
     this.lastThrow = new Date().getTime();
   }
 
-  // console.log
+  /**
+   * Determines if the cooldown period has passed since the last action time.
+   * @param {number} lastActionTime - The timestamp of the last action.
+   * @returns {boolean} True if still in cooldown period, false otherwise.
+   */
   Cooldown(lastActionTime) {
     let currentTime = new Date().getTime();
     let timePassed = (currentTime - lastActionTime) / 500;

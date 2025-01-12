@@ -38,7 +38,6 @@ class StatusbarHealth extends DrawabelObject {
     this.percentage = percentage;
     let path = this.Images_Statusbar_health[this.resolveImageIndex()];
     this.img = this.imageCache[path];
-    console.log(percentage);
   }
 
   /**

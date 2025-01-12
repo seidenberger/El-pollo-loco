@@ -76,9 +76,11 @@ class MovableObject extends DrawabelObject {
     this.x -= this.speed;
   }
 
-  // console.log
+  /**
+   * Reduces the character's energy by the specified number of points and checks if energy reaches zero.
+   * @param {number} [points=5] - The amount of energy to deduct (default is 5).
+   */
   hit(points = 5) {
-    // this.hitEenergyMinusFive();
     this.hitEnergy(points);
     if (this.energy < 0) {
       this.energyZero();
@@ -87,6 +89,10 @@ class MovableObject extends DrawabelObject {
     }
   }
 
+  /**
+   * Deducts the specified number of points from the character's energy.
+   * @param {number} points - The amount of energy to subtract.
+   */
   hitEnergy(points) {
     this.energy -= points;
   }

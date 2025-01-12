@@ -96,6 +96,9 @@ a {
   color: black;
   z-index: 10;
   cursor: pointer;
+}
+
+a:hover {
   text-shadow: 3px 3px 2px #4d4a4a;
 }
 
@@ -222,6 +225,16 @@ footer {
   gap: 30px;
 }
 
+@keyframes rotating {
+	0% {	rotate: 0;	}
+	100% {	rotate: 1turn;	}
+}
+
+.bottle_rotation {
+  height: 80px;
+  width: 80px;
+	animation: rotating 4s linear infinite;
+}
 
 @media (min-width: 1025px) {
   #gameButtonsMobile {

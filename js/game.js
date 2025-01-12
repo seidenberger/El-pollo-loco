@@ -35,8 +35,6 @@ function initLevel() {
     initializeWorld();
     fingerButtonEvent();
     footerShow();
-    // disableMute();
-    // disableMuteButten();
     gameStarted = false;
   }
 }
@@ -157,7 +155,6 @@ function clearAllIntervals() {
 function stopGameElements() {
   relodeAndHomeNone();
   footerShowOverlay();
-  // enableMute();
   document.getElementById("canvas").classList.add("hidden");
   document.getElementById("containerCanvas").classList.add("hidden");
   document.getElementById("startDisplay").classList.remove("hidden");

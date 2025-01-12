@@ -56,23 +56,24 @@ class DrawabelObject {
    */
   loadImages(array) {
     let loadedCount = 0;
-
     let loadPromises = array.map((path) => {
       return new Promise((resolve) => {
         let img = new Image();
         img.src = path;
         img.onload = () => {
           loadedCount++;
+          console.log(loadedCount);
           resolve();
         };
+        // console.log(imageCache{});''
         this.imageCache[path] = img;
       });
     });
-    return Promise.all(loadPromises).then(() => {
-      if (typeof onComplete === "function") {
-        onComplete();
-      }
-    });
+    // return Promise.all(loadPromises).then(() => {
+    //   if (typeof onComplete === "function") {
+    //     onComplete();
+    //   }
+    // });
   }
 
   /**
