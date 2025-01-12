@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   height = 240;
   width = 120;
-  speed = 3;
+  speed = 2;
   currentTimeWalking = 0;
   longIdle = true;
   world;

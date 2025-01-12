@@ -54,7 +54,7 @@ class DrawabelObject {
    * @param {string[]} array - An array of image paths to be loaded.
    * @returns {Promise<void>} A promise that resolves when all images have been loaded.
    */
-  loadImages(array) {
+  loadImages(array, onComplete) {
     let loadedCount = 0;
     let loadPromises = array.map((path) => {
       return new Promise((resolve) => {
@@ -65,15 +65,14 @@ class DrawabelObject {
           console.log(loadedCount);
           resolve();
         };
-        // console.log(imageCache{});''
         this.imageCache[path] = img;
       });
     });
-    // return Promise.all(loadPromises).then(() => {
-    //   if (typeof onComplete === "function") {
-    //     onComplete();
-    //   }
-    // });
+    return Promise.all(loadPromises).then(() => {
+      if (typeof onComplete === "function") {
+        onComplete();
+      }
+    });
   }
 
   /**

@@ -225,17 +225,6 @@ footer {
   gap: 30px;
 }
 
-@keyframes rotating {
-	0% {	rotate: 0;	}
-	100% {	rotate: 1turn;	}
-}
-
-.bottle_rotation {
-  height: 80px;
-  width: 80px;
-	animation: rotating 4s linear infinite;
-}
-
 @media (min-width: 1025px) {
   #gameButtonsMobile {
     display: none;

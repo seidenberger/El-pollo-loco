@@ -245,7 +245,7 @@ class Endboss extends MovableObject {
   /**
    * Slows down the Endboss by setting its speed to a lower value.
    *
-   * This method sets the Endboss's speed to `2`, reducing its movement speed to a slower pace.
+   * This method sets the Endboss's speed to `4`, reducing its movement speed to a slower pace.
    */
   speedslow() {
     this.speed = 4;
@@ -254,10 +254,10 @@ class Endboss extends MovableObject {
   /**
    * Increases the Endboss's movement speed.
    *
-   * This method sets the Endboss's speed to `4`, making it move faster during certain actions or states.
+   * This method sets the Endboss's speed to `10`, making it move faster during certain actions or states.
    */
   speedfast() {
-    this.speed = 8;
+    this.speed = 10;
   }
 
   /**
