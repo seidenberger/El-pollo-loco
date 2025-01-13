@@ -62,7 +62,6 @@ class DrawabelObject {
         img.src = path;
         img.onload = () => {
           loadedCount++;
-          console.log(loadedCount);
           resolve();
         };
         this.imageCache[path] = img;
